@@ -860,7 +860,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "name": "SAMM-Prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -957,7 +958,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "name": "SAMM-Prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -1069,7 +1071,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "name": "SAMM-Prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -1388,7 +1391,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "name": "SAMM-Prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -1491,7 +1495,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "a3b388bb-5990-45ca-a5b5-0bca47387fe1"
+        "name": "SAMM-Loki"
       },
       "fieldConfig": {
         "defaults": {
@@ -1712,8 +1716,8 @@
       {
         "current": {
           "selected": false,
-          "text": "smnnovctxnvda01",
-          "value": "smnnovctxnvda01"
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "prometheus",
@@ -1817,8 +1821,8 @@
       {
         "current": {
           "selected": false,
-          "text": "samana.local",
-          "value": "samana.local"
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "prometheus",
