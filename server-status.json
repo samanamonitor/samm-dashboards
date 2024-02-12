@@ -24,7 +24,8 @@
   "panels": [
     {
       "datasource": {
-        "type": "SAMM-Prometheus"
+        "type": "prometheus",
+        "name": "SAMM-Prometheus"
       },
       "gridPos": {
         "h": 6,
@@ -46,7 +47,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "SAMM-Prometheus"
+            "type": "prometheus"
           },
           "editorMode": "builder",
           "expr": "os_lastbootuptime{instance=\"$servers\"}",
@@ -60,7 +61,8 @@
     },
     {
       "datasource": {
-        "type": "SAMM-Prometheus"
+        "type": "prometheus",
+        "name": "SAMM-Prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -114,7 +116,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "SAMM-Prometheus"
+            "type": "prometheus"
           },
           "editorMode": "builder",
           "exemplar": false,
@@ -129,8 +131,8 @@
     },
     {
       "datasource": {
-        "type": "SAMM-Prometheus",
-        "uid": "bf09c051-f26b-4f5e-9b89-677017d93cfa"
+        "type": "prometheus",
+        "name": "SAMM-Prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -183,7 +185,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "SAMM-Prometheus"
+            "type": "prometheus"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -199,7 +201,8 @@
     },
     {
       "datasource": {
-        "type": "SAMM-Prometheus"
+        "type": "prometheus",
+        "name": "SAMM-Prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -251,7 +254,7 @@
       "pluginVersion": "10.0.0",
       "targets": [
         {
-          "datasource": "SAMM-SAMM-Prometheus",
+          "datasource": "SAMM-prometheus",
           "editorMode": "code",
           "expr": "1 - os_freephysicalmemory{instance=\"$instance\"} / os_totalvisiblememorysize{instance=\"$instance\"}",
           "instant": false,
@@ -265,8 +268,8 @@
     },
     {
       "datasource": {
-        "type": "SAMM-Prometheus",
-        "uid": "bf09c051-f26b-4f5e-9b89-677017d93cfa"
+        "type": "prometheus",
+        "name": "SAMM-Prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -382,8 +385,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "SAMM-Prometheus",
-            "uid": "bf09c051-f26b-4f5e-9b89-677017d93cfa"
+            "type": "prometheus",
+            "name": "SAMM-Prometheus"
           },
           "editorMode": "builder",
           "exemplar": false,
@@ -409,7 +412,8 @@
     },
     {
       "datasource": {
-        "type": "SAMM-Prometheus"
+        "type": "prometheus",
+        "name": "SAMM-Prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -477,7 +481,7 @@
       "pluginVersion": "10.0.0",
       "targets": [
         {
-          "datasource": "SAMM-SAMM-Prometheus",
+          "datasource": "SAMM-prometheus",
           "editorMode": "code",
           "expr": "max(1 - disk_freespace{instance=\"$instance\"} / disk_size{instance=\"$instance\"})",
           "instant": false,
@@ -491,7 +495,8 @@
     },
     {
       "datasource": {
-        "type": "SAMM-Prometheus"
+        "type": "prometheus",
+        "name": "SAMM-Prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -559,7 +564,7 @@
       "pluginVersion": "10.0.0",
       "targets": [
         {
-          "datasource": "SAMM-SAMM-Prometheus",
+          "datasource": "SAMM-prometheus",
           "editorMode": "code",
           "expr": "max(pagefile_currentusage{instance=\"$instance\"} / pagefile_allocatedbasesize{instance=\"$instance\"})",
           "instant": false,
@@ -574,7 +579,7 @@
     {
       "datasource": {
         "type": "loki",
-        "uid": "a3b388bb-5990-45ca-a5b5-0bca47387fe1"
+        "name": "SAMM-Loki"
       },
       "fieldConfig": {
         "defaults": {
@@ -756,8 +761,8 @@
     },
     {
       "datasource": {
-        "type": "SAMM-Prometheus",
-        "uid": "bf09c051-f26b-4f5e-9b89-677017d93cfa"
+        "type": "prometheus",
+        "name": "SAMM-Prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -839,7 +844,7 @@
       },
       "targets": [
         {
-          "datasource": "SAMM-SAMM-Prometheus",
+          "datasource": "SAMM-prometheus",
           "editorMode": "code",
           "expr": "1- (rate(perfcpu_percentidletime{instance=\"$instance\", name=\"_total\"}[$__rate_interval]) / rate(perfcpu_timestamp_perftime{instance=~\"$instance\", name=\"_total\"}[$__rate_interval]))",
           "hide": false,
@@ -855,7 +860,7 @@
     },
     {
       "datasource": {
-        "type": "SAMM-Prometheus"
+        "type": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -938,7 +943,7 @@
       },
       "targets": [
         {
-          "datasource": "SAMM-SAMM-Prometheus",
+          "datasource": "SAMM-prometheus",
           "editorMode": "code",
           "expr": "1 - os_freephysicalmemory{instance=\"$instance\"} / os_totalvisiblememorysize{instance=\"$instance\"}",
           "instant": false,
@@ -952,7 +957,7 @@
     },
     {
       "datasource": {
-        "type": "SAMM-Prometheus"
+        "type": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -1050,7 +1055,7 @@
       },
       "targets": [
         {
-          "datasource": "SAMM-SAMM-Prometheus",
+          "datasource": "SAMM-prometheus",
           "editorMode": "code",
           "expr": "1 - disk_freespace{instance=\"$instance\"} / disk_size{instance=\"$instance\"}",
           "instant": false,
@@ -1064,7 +1069,7 @@
     },
     {
       "datasource": {
-        "type": "SAMM-Prometheus"
+        "type": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -1162,7 +1167,7 @@
       },
       "targets": [
         {
-          "datasource": "SAMM-SAMM-Prometheus",
+          "datasource": "SAMM-prometheus",
           "editorMode": "code",
           "expr": "pagefile_currentusage{instance=\"$instance\"} / pagefile_allocatedbasesize{instance=\"$instance\"}",
           "instant": false,
@@ -1176,8 +1181,8 @@
     },
     {
       "datasource": {
-        "type": "SAMM-Prometheus",
-        "uid": "bf09c051-f26b-4f5e-9b89-677017d93cfa"
+        "type": "prometheus",
+        "name": "SAMM-Prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -1254,7 +1259,7 @@
       },
       "targets": [
         {
-          "datasource": "SAMM-SAMM-Prometheus",
+          "datasource": "SAMM-prometheus",
           "editorMode": "builder",
           "expr": "rate(perfnic_bytesreceivedpersec{instance=\"$instance\", name!~\"isatap.*|teredo.*\"}[5m])",
           "instant": false,
@@ -1264,7 +1269,7 @@
           "refId": "A"
         },
         {
-          "datasource": "SAMM-SAMM-Prometheus",
+          "datasource": "SAMM-prometheus",
           "editorMode": "builder",
           "expr": "rate(perfnic_bytessentpersec{instance=\"$instance\", name!~\"isatap.*|teredo.*\"}[5m])",
           "hide": false,
@@ -1280,8 +1285,8 @@
     },
     {
       "datasource": {
-        "type": "SAMM-Prometheus",
-        "uid": "bf09c051-f26b-4f5e-9b89-677017d93cfa"
+        "type": "prometheus",
+        "name": "SAMM-Prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -1357,7 +1362,7 @@
       },
       "targets": [
         {
-          "datasource": "SAMM-SAMM-Prometheus",
+          "datasource": "SAMM-prometheus",
           "editorMode": "code",
           "expr": "rate(perfdisk_avgdiskbytesperread{instance=\"$instance\",name=\"_total\"}[$__rate_interval]) / rate(perfdisk_avgdisksecperread{instance=\"$instance\",name=\"_total\"}[$__rate_interval])",
           "instant": false,
@@ -1367,7 +1372,7 @@
           "refId": "A"
         },
         {
-          "datasource": "SAMM-SAMM-Prometheus",
+          "datasource": "SAMM-prometheus",
           "editorMode": "code",
           "expr": "rate(perfdisk_avgdiskbytesperwrite{instance=\"$instance\",name=\"_total\"}[$__rate_interval])/ rate(perfdisk_avgdisksecperwrite{instance=\"$instance\",name=\"_total\"}[$__rate_interval])",
           "hide": false,
@@ -1383,7 +1388,7 @@
     },
     {
       "datasource": {
-        "type": "SAMM-Prometheus"
+        "type": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -1459,7 +1464,7 @@
       },
       "targets": [
         {
-          "datasource": "SAMM-SAMM-Prometheus",
+          "datasource": "SAMM-prometheus",
           "editorMode": "code",
           "expr": "count by (instance) (perftssession_handlecount{instance=\"$instance\",name=~\"ica.*|rdp.*\"})",
           "instant": false,
@@ -1469,7 +1474,7 @@
           "refId": "A"
         },
         {
-          "datasource": "SAMM-SAMM-Prometheus",
+          "datasource": "SAMM-prometheus",
           "editorMode": "code",
           "expr": "count by (instance) (perftssession_handlecount{instance=\"$instance\",name=~\".*disc\"})",
           "hide": false,
@@ -1684,8 +1689,8 @@
           ]
         },
         "datasource": {
-          "type": "SAMM-Prometheus",
-          "uid": "bf09c051-f26b-4f5e-9b89-677017d93cfa"
+          "type": "prometheus",
+          "name": "SAMM-Prometheus"
         },
         "definition": "label_values(os_lastbootuptime,layer)",
         "hide": 0,
@@ -1711,8 +1716,8 @@
           "value": "smnnovctxnvda01"
         },
         "datasource": {
-          "type": "SAMM-Prometheus",
-          "uid": "bf09c051-f26b-4f5e-9b89-677017d93cfa"
+          "type": "prometheus",
+          "name": "SAMM-Prometheus"
         },
         "definition": "query_result(os_lastbootuptime{layer=~\"${layer}\"})",
         "hide": 0,
@@ -1738,8 +1743,8 @@
           "value": "microsoft windows server 2022 datacenter"
         },
         "datasource": {
-          "type": "SAMM-Prometheus",
-          "uid": "bf09c051-f26b-4f5e-9b89-677017d93cfa"
+          "type": "prometheus",
+          "name": "SAMM-Prometheus"
         },
         "definition": "query_result(os_lastbootuptime{instance=\"$instance\"})",
         "hide": 2,
@@ -1764,8 +1769,8 @@
           "value": "resource"
         },
         "datasource": {
-          "type": "SAMM-Prometheus",
-          "uid": "bf09c051-f26b-4f5e-9b89-677017d93cfa"
+          "type": "prometheus",
+          "name": "SAMM-Prometheus"
         },
         "definition": "query_result(os_lastbootuptime{instance=\"$instance\"})",
         "hide": 2,
@@ -1790,8 +1795,8 @@
           "value": "smnnovctxnvda01"
         },
         "datasource": {
-          "type": "SAMM-Prometheus",
-          "uid": "bf09c051-f26b-4f5e-9b89-677017d93cfa"
+          "type": "prometheus",
+          "name": "SAMM-Prometheus"
         },
         "definition": "query_result(computer_numberofprocessors{instance=\"$instance\"})",
         "hide": 2,
@@ -1816,8 +1821,8 @@
           "value": "samana.local"
         },
         "datasource": {
-          "type": "SAMM-Prometheus",
-          "uid": "bf09c051-f26b-4f5e-9b89-677017d93cfa"
+          "type": "prometheus",
+          "name": "SAMM-Prometheus"
         },
         "definition": "query_result(computer_numberofprocessors{instance=\"$instance\"})",
         "hide": 2,
@@ -1842,8 +1847,8 @@
           "value": "mc_smndesktop"
         },
         "datasource": {
-          "type": "SAMM-Prometheus",
-          "uid": "bf09c051-f26b-4f5e-9b89-677017d93cfa"
+          "type": "prometheus",
+          "name": "SAMM-Prometheus"
         },
         "definition": "query_result(ctxmachine_currentpowerstate{dnsname=\"${dnsname}.${domain}\"})",
         "hide": 2,
