@@ -18,15 +18,11 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 21,
+  "id": 24,
   "links": [],
   "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "prometheus",
-        "name": "SAMM-Prometheus"
-      },
       "gridPos": {
         "h": 6,
         "w": 9,
@@ -40,29 +36,17 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "<table>\n<tr><th>Server Name</th><td>${instance}</td></tr>\n<tr><th>OS Name</th><td>${os_name}</td></tr>\n<tr><th>Layer</th>\n  <td>\n    <a href=\"https://grafana.samana.cloud:3000/d/e28f7d21-1089-41a0-9786-265770929175/dashboard?orgId=1&var-layer=${selected_layer}\">${selected_layer}</a>\n  </td>\n</tr>\n<tr><th>Citrix Catalog</th>\n  <td>\n    <a href=\"/d/c50521b0-dd6a-49ed-9c6b-99978d02fdc8/machine-catalogs?orgId=1&refresh=30s&var-catalog_name=${catalog_name}\">${catalog_name}</a>\n  </td>\n</tr>\n<tr><th>FQDN</th>\n  <td>\n    ${dnsname}.${domain}\n  </td>\n</tr>\n</table>\n",
+        "content": "<table>\n<tr><th>Server Name</th><td>${instance}</td></tr>\n<tr><th>OS Name</th><td>${os_name}</td></tr>\n<tr><th>Layer</th>\n  <td>\n    <a href=\"https://grafana.samana.cloud:3000/d/e28f7d21-1089-41a0-9786-265770929175/dashboard?orgId=1&var-layer=${selected_layer}\">${selected_layer}</a>\n  </td>\n</tr>\n<tr><th>Citrix Catalog</th>\n  <td>\n    <a href=\"/d/c50521b0-dd6a-49ed-9c6b-99978d02fdc8/machine-catalogs?orgId=1&refresh=30s&var-catalog_name=${catalog_name}\">${catalog_name}</a>\n  </td>\n</tr>\n<tr><th>FQDN</th>\n  <td>\n    ${dnsname}\n  </td>\n</tr>\n</table>\n",
         "mode": "html"
       },
       "pluginVersion": "10.0.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus"
-          },
-          "editorMode": "builder",
-          "expr": "os_lastbootuptime{instance=\"$servers\"}",
-          "instant": false,
-          "range": true,
-          "refId": "A"
-        }
-      ],
       "title": "Server Info",
       "type": "text"
     },
     {
       "datasource": {
         "type": "prometheus",
-        "name": "SAMM-Prometheus"
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
       },
       "fieldConfig": {
         "defaults": {
@@ -116,11 +100,12 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus"
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
-          "editorMode": "builder",
+          "editorMode": "code",
           "exemplar": false,
-          "expr": "time() - os_lastbootuptime{instance=\"$instance\"}",
+          "expr": "time() - cim_os_lastbootuptime{instance=\"$instance\"}",
           "instant": true,
           "range": false,
           "refId": "A"
@@ -132,14 +117,14 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "SAMM-Prometheus"
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
-          "decimals": 1,
+          "decimals": 0,
           "mappings": [],
           "thresholds": {
             "mode": "percentage",
@@ -185,11 +170,12 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus"
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "1-(rate(perfcpu_percentidletime{instance=~\"$instance\", name=\"_total\"}[$__rate_interval]) / rate(perfcpu_timestamp_perftime{instance=~\"$instance\", name=\"_total\"}[$__rate_interval]))",
+          "expr": "1-(rate(cim_perfcpu_percentidletime{instance=~\"$instance\", name=\"_total\"}[5m]) / rate(cim_perfcpu_timestamp_perftime{instance=~\"$instance\", name=\"_total\"}[5m]))",
           "instant": true,
           "interval": "90s",
           "range": false,
@@ -202,7 +188,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "SAMM-Prometheus"
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
       },
       "fieldConfig": {
         "defaults": {
@@ -254,12 +240,16 @@
       "pluginVersion": "10.0.0",
       "targets": [
         {
-          "datasource": "SAMM-prometheus",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
           "editorMode": "code",
-          "expr": "1 - os_freephysicalmemory{instance=\"$instance\"} / os_totalvisiblememorysize{instance=\"$instance\"}",
-          "instant": false,
+          "exemplar": false,
+          "expr": "1 - cim_os_freephysicalmemory{instance=\"$instance\"} / cim_os_totalvisiblememorysize{instance=\"$instance\"}",
+          "instant": true,
           "legendFormat": "{{instance}}",
-          "range": true,
+          "range": false,
           "refId": "A"
         }
       ],
@@ -269,7 +259,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "SAMM-Prometheus"
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
       },
       "fieldConfig": {
         "defaults": {
@@ -386,7 +376,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "name": "SAMM-Prometheus"
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "builder",
           "exemplar": false,
@@ -413,7 +403,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "SAMM-Prometheus"
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
       },
       "fieldConfig": {
         "defaults": {
@@ -481,9 +471,12 @@
       "pluginVersion": "10.0.0",
       "targets": [
         {
-          "datasource": "SAMM-prometheus",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
           "editorMode": "code",
-          "expr": "max(1 - disk_freespace{instance=\"$instance\"} / disk_size{instance=\"$instance\"})",
+          "expr": "max(1 - cim_disk_freespace{instance=\"$instance\"} / cim_disk_size{instance=\"$instance\"})",
           "instant": false,
           "legendFormat": " ",
           "range": true,
@@ -496,7 +489,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "SAMM-Prometheus"
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
       },
       "fieldConfig": {
         "defaults": {
@@ -564,9 +557,12 @@
       "pluginVersion": "10.0.0",
       "targets": [
         {
-          "datasource": "SAMM-prometheus",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
           "editorMode": "code",
-          "expr": "max(pagefile_currentusage{instance=\"$instance\"} / pagefile_allocatedbasesize{instance=\"$instance\"})",
+          "expr": "max(cim_pagefile_currentusage{instance=\"$instance\"} / cim_pagefile_allocatedbasesize{instance=\"$instance\"})",
           "instant": false,
           "legendFormat": "{{name}}",
           "range": true,
@@ -579,7 +575,7 @@
     {
       "datasource": {
         "type": "loki",
-        "name": "SAMM-Loki"
+        "uid": "a3b388bb-5990-45ca-a5b5-0bca47387fe1"
       },
       "fieldConfig": {
         "defaults": {
@@ -680,7 +676,7 @@
             "uid": "a3b388bb-5990-45ca-a5b5-0bca47387fe1"
           },
           "editorMode": "builder",
-          "expr": "{instance=~\"$dnsname.$domain\"} | json",
+          "expr": "{instance=~\"$dnsname\"} | json",
           "queryType": "range",
           "refId": "A"
         }
@@ -762,7 +758,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "SAMM-Prometheus"
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
       },
       "fieldConfig": {
         "defaults": {
@@ -844,9 +840,12 @@
       },
       "targets": [
         {
-          "datasource": "SAMM-prometheus",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
           "editorMode": "code",
-          "expr": "1- (rate(perfcpu_percentidletime{instance=\"$instance\", name=\"_total\"}[$__rate_interval]) / rate(perfcpu_timestamp_perftime{instance=~\"$instance\", name=\"_total\"}[$__rate_interval]))",
+          "expr": "1- (rate(cim_perfcpu_percentidletime{instance=\"$instance\", name=\"_total\"}[5m]) / rate(cim_perfcpu_timestamp_perftime{instance=~\"$instance\", name=\"_total\"}[5m]))",
           "hide": false,
           "instant": false,
           "interval": "90s",
@@ -861,7 +860,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "SAMM-Prometheus"
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
       },
       "fieldConfig": {
         "defaults": {
@@ -944,9 +943,12 @@
       },
       "targets": [
         {
-          "datasource": "SAMM-prometheus",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
           "editorMode": "code",
-          "expr": "1 - os_freephysicalmemory{instance=\"$instance\"} / os_totalvisiblememorysize{instance=\"$instance\"}",
+          "expr": "1 - cim_os_freephysicalmemory{instance=\"$instance\"} / cim_os_totalvisiblememorysize{instance=\"$instance\"}",
           "instant": false,
           "legendFormat": "{{instance}}",
           "range": true,
@@ -959,7 +961,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "SAMM-Prometheus"
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
       },
       "fieldConfig": {
         "defaults": {
@@ -1057,9 +1059,12 @@
       },
       "targets": [
         {
-          "datasource": "SAMM-prometheus",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
           "editorMode": "code",
-          "expr": "1 - disk_freespace{instance=\"$instance\"} / disk_size{instance=\"$instance\"}",
+          "expr": "1 - cim_disk_freespace{instance=\"$instance\"} / cim_disk_size{instance=\"$instance\"}",
           "instant": false,
           "legendFormat": "{{caption}}",
           "range": true,
@@ -1072,7 +1077,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "SAMM-Prometheus"
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
       },
       "fieldConfig": {
         "defaults": {
@@ -1170,9 +1175,12 @@
       },
       "targets": [
         {
-          "datasource": "SAMM-prometheus",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
           "editorMode": "code",
-          "expr": "pagefile_currentusage{instance=\"$instance\"} / pagefile_allocatedbasesize{instance=\"$instance\"}",
+          "expr": "cim_pagefile_currentusage{instance=\"$instance\"} / cim_pagefile_allocatedbasesize{instance=\"$instance\"}",
           "instant": false,
           "legendFormat": "{{name}}",
           "range": true,
@@ -1185,7 +1193,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "SAMM-Prometheus"
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
       },
       "fieldConfig": {
         "defaults": {
@@ -1228,8 +1236,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1262,9 +1269,12 @@
       },
       "targets": [
         {
-          "datasource": "SAMM-prometheus",
-          "editorMode": "builder",
-          "expr": "rate(perfnic_bytesreceivedpersec{instance=\"$instance\", name!~\"isatap.*|teredo.*\"}[5m])",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "expr": "rate(cim_perfnic_bytesreceivedpersec{instance=\"$instance\", name!~\"isatap.*|teredo.*\"}[5m])",
           "instant": false,
           "interval": "90s",
           "legendFormat": "Rx_{{name}}",
@@ -1272,9 +1282,12 @@
           "refId": "A"
         },
         {
-          "datasource": "SAMM-prometheus",
-          "editorMode": "builder",
-          "expr": "rate(perfnic_bytessentpersec{instance=\"$instance\", name!~\"isatap.*|teredo.*\"}[5m])",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "expr": "rate(cim_perfnic_bytessentpersec{instance=\"$instance\", name!~\"isatap.*|teredo.*\"}[5m])",
           "hide": false,
           "instant": false,
           "interval": "90s",
@@ -1289,7 +1302,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "SAMM-Prometheus"
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
       },
       "fieldConfig": {
         "defaults": {
@@ -1331,8 +1344,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1365,9 +1377,12 @@
       },
       "targets": [
         {
-          "datasource": "SAMM-prometheus",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
           "editorMode": "code",
-          "expr": "rate(perfdisk_avgdiskbytesperread{instance=\"$instance\",name=\"_total\"}[$__rate_interval]) / rate(perfdisk_avgdisksecperread{instance=\"$instance\",name=\"_total\"}[$__rate_interval])",
+          "expr": "rate(cim_perfdisk_avgdiskbytesperread{instance=\"$instance\",name=\"_total\"}[$__rate_interval]) / rate(cim_perfdisk_avgdisksecperread{instance=\"$instance\",name=\"_total\"}[$__rate_interval])",
           "instant": false,
           "interval": "90s",
           "legendFormat": "read",
@@ -1375,9 +1390,12 @@
           "refId": "A"
         },
         {
-          "datasource": "SAMM-prometheus",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
           "editorMode": "code",
-          "expr": "rate(perfdisk_avgdiskbytesperwrite{instance=\"$instance\",name=\"_total\"}[$__rate_interval])/ rate(perfdisk_avgdisksecperwrite{instance=\"$instance\",name=\"_total\"}[$__rate_interval])",
+          "expr": "rate(cim_perfdisk_avgdiskbytesperwrite{instance=\"$instance\",name=\"_total\"}[$__rate_interval])/ rate(cim_perfdisk_avgdisksecperwrite{instance=\"$instance\",name=\"_total\"}[$__rate_interval])",
           "hide": false,
           "instant": false,
           "interval": "90s",
@@ -1392,7 +1410,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "name": "SAMM-Prometheus"
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
       },
       "fieldConfig": {
         "defaults": {
@@ -1435,8 +1453,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1468,9 +1485,12 @@
       },
       "targets": [
         {
-          "datasource": "SAMM-prometheus",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
           "editorMode": "code",
-          "expr": "count by (instance) (perftssession_handlecount{instance=\"$instance\",name=~\"ica.*|rdp.*\"})",
+          "expr": "count by (instance) (cim_perftssession_handlecount{instance=\"$instance\",name=~\"ica.*|rdp.*\"})",
           "instant": false,
           "interval": "",
           "legendFormat": "active_sessions_{{instance}}",
@@ -1478,9 +1498,12 @@
           "refId": "A"
         },
         {
-          "datasource": "SAMM-prometheus",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
           "editorMode": "code",
-          "expr": "count by (instance) (perftssession_handlecount{instance=\"$instance\",name=~\".*disc\"})",
+          "expr": "count by (instance) (cim_perftssession_handlecount{instance=\"$instance\",name=~\".*disc\"})",
           "hide": false,
           "instant": false,
           "interval": "",
@@ -1491,189 +1514,6 @@
       ],
       "title": "Remote Sessions",
       "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "loki",
-        "name": "SAMM-Loki"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "auto",
-            "cellOptions": {
-              "type": "auto"
-            },
-            "filterable": false,
-            "inspect": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.*/"
-            },
-            "properties": [
-              {
-                "id": "custom.hidden",
-                "value": true
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "DisplayName"
-            },
-            "properties": [
-              {
-                "id": "custom.hidden"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "State"
-            },
-            "properties": [
-              {
-                "id": "custom.hidden"
-              },
-              {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "Running": {
-                        "color": "#73BF69",
-                        "index": 0,
-                        "text": "Running"
-                      }
-                    },
-                    "type": "value"
-                  },
-                  {
-                    "options": {
-                      "pattern": "(.*)",
-                      "result": {
-                        "color": "red",
-                        "index": 1,
-                        "text": "$1"
-                      }
-                    },
-                    "type": "regex"
-                  }
-                ]
-              },
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "type": "color-background"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Time"
-            },
-            "properties": [
-              {
-                "id": "custom.hidden",
-                "value": true
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 12,
-        "x": 12,
-        "y": 27
-      },
-      "id": 14,
-      "options": {
-        "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "showHeader": true,
-        "sortBy": [
-          {
-            "desc": false,
-            "displayName": "DisplayName"
-          }
-        ]
-      },
-      "pluginVersion": "10.0.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "loki",
-            "uid": "a3b388bb-5990-45ca-a5b5-0bca47387fe1"
-          },
-          "editorMode": "builder",
-          "expr": "{instance=~\"${dnsname}.${domain}\"} | json | Caption =~ `.*(Citrix|Spooler|Group).*`",
-          "queryType": "range",
-          "refId": "A"
-        }
-      ],
-      "title": "Services",
-      "transformations": [
-        {
-          "id": "extractFields",
-          "options": {
-            "keepTime": true,
-            "replace": true,
-            "source": "labels"
-          }
-        },
-        {
-          "id": "groupBy",
-          "options": {
-            "fields": {
-              "DisplayName": {
-                "aggregations": [],
-                "operation": "groupby"
-              },
-              "State": {
-                "aggregations": [],
-                "operation": "groupby"
-              },
-              "Status": {
-                "aggregations": []
-              }
-            }
-          }
-        }
-      ],
-      "type": "table"
     }
   ],
   "refresh": "10s",
@@ -1683,20 +1523,11 @@
   "templating": {
     "list": [
       {
-        "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
         "datasource": {
           "type": "prometheus",
-          "name": "SAMM-Prometheus"
+          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "label_values(os_lastbootuptime,layer)",
+        "definition": "label_values(cim_os_lastbootuptime,layer)",
         "hide": 0,
         "includeAll": true,
         "label": "Layer",
@@ -1704,7 +1535,7 @@
         "name": "layer",
         "options": [],
         "query": {
-          "query": "label_values(os_lastbootuptime,layer)",
+          "query": "label_values(cim_os_lastbootuptime,layer)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -1714,16 +1545,11 @@
         "type": "query"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "",
-          "value": ""
-        },
         "datasource": {
           "type": "prometheus",
-          "name": "SAMM-Prometheus"
+          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "query_result(os_lastbootuptime{layer=~\"${layer}\"})",
+        "definition": "query_result(cim_os_lastbootuptime{layer=~\"${layer}\"})",
         "hide": 0,
         "includeAll": false,
         "label": "Server",
@@ -1731,7 +1557,7 @@
         "name": "instance",
         "options": [],
         "query": {
-          "query": "query_result(os_lastbootuptime{layer=~\"${layer}\"})",
+          "query": "query_result(cim_os_lastbootuptime{layer=~\"${layer}\"})",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -1741,23 +1567,18 @@
         "type": "query"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "microsoft windows server 2022 datacenter",
-          "value": "microsoft windows server 2022 datacenter"
-        },
         "datasource": {
           "type": "prometheus",
-          "name": "SAMM-Prometheus"
+          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "query_result(os_lastbootuptime{instance=\"$instance\"})",
+        "definition": "query_result(cim_os_lastbootuptime{instance=\"$instance\"})",
         "hide": 2,
         "includeAll": false,
         "multi": false,
         "name": "os_name",
         "options": [],
         "query": {
-          "query": "query_result(os_lastbootuptime{instance=\"$instance\"})",
+          "query": "query_result(cim_os_lastbootuptime{instance=\"$instance\"})",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -1767,23 +1588,18 @@
         "type": "query"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "resource",
-          "value": "resource"
-        },
         "datasource": {
           "type": "prometheus",
-          "name": "SAMM-Prometheus"
+          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "query_result(os_lastbootuptime{instance=\"$instance\"})",
+        "definition": "query_result(cim_os_lastbootuptime{instance=\"$instance\"})",
         "hide": 2,
         "includeAll": false,
         "multi": false,
         "name": "selected_layer",
         "options": [],
         "query": {
-          "query": "query_result(os_lastbootuptime{instance=\"$instance\"})",
+          "query": "query_result(cim_os_lastbootuptime{instance=\"$instance\"})",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -1793,75 +1609,39 @@
         "type": "query"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "smnnovctxnvda01",
-          "value": "smnnovctxnvda01"
-        },
         "datasource": {
           "type": "prometheus",
-          "name": "SAMM-Prometheus"
+          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "query_result(computer_numberofprocessors{instance=\"$instance\"})",
+        "definition": "query_result(cim_computer_numberofprocessors{instance=\"$instance\"})",
         "hide": 2,
         "includeAll": false,
         "multi": false,
         "name": "dnsname",
         "options": [],
         "query": {
-          "query": "query_result(computer_numberofprocessors{instance=\"$instance\"})",
+          "query": "query_result(cim_computer_numberofprocessors{instance=\"$instance\"})",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
-        "regex": "/.*dnshostname=\"([^\"]+)\".*/",
+        "regex": "/.*fqdn=\"([^\"]+)\".*/",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
       },
       {
-        "current": {
-          "selected": false,
-          "text": "",
-          "value": ""
-        },
         "datasource": {
           "type": "prometheus",
-          "name": "SAMM-Prometheus"
+          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "query_result(computer_numberofprocessors{instance=\"$instance\"})",
-        "hide": 2,
-        "includeAll": false,
-        "multi": false,
-        "name": "domain",
-        "options": [],
-        "query": {
-          "query": "query_result(computer_numberofprocessors{instance=\"$instance\"})",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": "/.*domain=\"([^\"]+)\".*/",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      },
-      {
-        "current": {
-          "selected": false,
-          "text": "mc_smndesktop",
-          "value": "mc_smndesktop"
-        },
-        "datasource": {
-          "type": "prometheus",
-          "name": "SAMM-Prometheus"
-        },
-        "definition": "query_result(ctxmachine_currentpowerstate{dnsname=\"${dnsname}.${domain}\"})",
+        "definition": "query_result(ctx_machine_currentpowerstate{dnsname=\"${dnsname}\"})",
         "hide": 2,
         "includeAll": false,
         "multi": false,
         "name": "catalog_name",
         "options": [],
         "query": {
-          "query": "query_result(ctxmachine_currentpowerstate{dnsname=\"${dnsname}.${domain}\"})",
+          "query": "query_result(ctx_machine_currentpowerstate{dnsname=\"${dnsname}\"})",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -1873,13 +1653,13 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Server Status",
-  "uid": "b292747d-6380-4061-8655-89fb069b3b91",
-  "version": 57,
+  "uid": "c96dd703-89d1-42e6-be4d-c9ccf02b7487",
+  "version": 8,
   "weekStart": ""
 }
