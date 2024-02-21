@@ -36,7 +36,7 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "<table>\n<tr><th>Server Name</th><td>${instance}</td></tr>\n<tr><th>OS Name</th><td>${os_name}</td></tr>\n<tr><th>Layer</th>\n  <td>\n    <a href=\"https://grafana.samana.cloud:3000/d/e28f7d21-1089-41a0-9786-265770929175/dashboard?orgId=1&var-layer=${selected_layer}\">${selected_layer}</a>\n  </td>\n</tr>\n<tr><th>Citrix Catalog</th>\n  <td>\n    <a href=\"/d/c50521b0-dd6a-49ed-9c6b-99978d02fdc8/machine-catalogs?orgId=1&refresh=30s&var-catalog_name=${catalog_name}\">${catalog_name}</a>\n  </td>\n</tr>\n<tr><th>FQDN</th>\n  <td>\n    ${dnsname}\n  </td>\n</tr>\n</table>\n",
+        "content": "<table>\n<tr><th>Server Name</th><td>${instance}</td></tr>\n<tr><th>OS Name</th><td>${os_name}</td></tr>\n<tr><th>Layer</th>\n  <td>\n    <a href=\"https://grafana.samana.cloud:3000/d/e28f7d21-1089-41a0-9786-265770929175/dashboard?orgId=1&var-layer=${selected_layer}\">${selected_instance_layer}</a>\n  </td>\n</tr>\n<tr><th>Role</th>\n  <td>\n    ${role}\n  </td>\n</tr>\n<tr><th>Citrix Catalog</th>\n  <td>\n    <a href=\"/d/c50521b0-dd6a-49ed-9c6b-99978d02fdc8/machine-catalogs?orgId=1&refresh=30s&var-catalog_name=${catalog_name}\">${catalog_name}</a>\n  </td>\n</tr>\n<tr><th>FQDN</th>\n  <td>\n    ${dnsname}\n  </td>\n</tr>\n</table>\n",
         "mode": "html"
       },
       "pluginVersion": "10.0.0",
@@ -1594,6 +1594,15 @@
   "templating": {
     "list": [
       {
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
         "datasource": {
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
@@ -1616,11 +1625,16 @@
         "type": "query"
       },
       {
+        "current": {
+          "selected": true,
+          "text": "3tesla41a",
+          "value": "3tesla41a"
+        },
         "datasource": {
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "query_result(cim_os_lastbootuptime{layer=~\"${layer}\"})",
+        "definition": "label_values(cim_os_lastbootuptime{layer=~\"$layer\"},instance)",
         "hide": 0,
         "includeAll": false,
         "label": "Server",
@@ -1628,95 +1642,144 @@
         "name": "instance",
         "options": [],
         "query": {
-          "query": "query_result(cim_os_lastbootuptime{layer=~\"${layer}\"})",
+          "qryType": 1,
+          "query": "label_values(cim_os_lastbootuptime{layer=~\"$layer\"},instance)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
-        "regex": "/.*instance=\"([^\"]*)\".*/",
+        "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
       },
       {
+        "current": {
+          "selected": false,
+          "text": "microsoft windows server 2016 standard",
+          "value": "microsoft windows server 2016 standard"
+        },
         "datasource": {
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "query_result(cim_os_lastbootuptime{instance=\"$instance\"})",
+        "definition": "label_values(cim_os_lastbootuptime{instance=\"$instance\"},caption)",
         "hide": 2,
         "includeAll": false,
         "multi": false,
         "name": "os_name",
         "options": [],
         "query": {
-          "query": "query_result(cim_os_lastbootuptime{instance=\"$instance\"})",
+          "qryType": 1,
+          "query": "label_values(cim_os_lastbootuptime{instance=\"$instance\"},caption)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
-        "regex": "/.*caption=\"([^\"]+)\".*/",
+        "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
       },
       {
+        "current": {
+          "selected": false,
+          "text": "access",
+          "value": "access"
+        },
         "datasource": {
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "query_result(cim_os_lastbootuptime{instance=\"$instance\"})",
+        "definition": "label_values(cim_os_lastbootuptime{instance=\"$instance\"},layer)",
         "hide": 2,
         "includeAll": false,
         "multi": false,
-        "name": "selected_layer",
+        "name": "selected_instance_layer",
         "options": [],
         "query": {
-          "query": "query_result(cim_os_lastbootuptime{instance=\"$instance\"})",
+          "qryType": 1,
+          "query": "label_values(cim_os_lastbootuptime{instance=\"$instance\"},layer)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
-        "regex": "/.*layer=\"([^\"]+)\".*/",
+        "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
       },
       {
+        "current": {
+          "selected": false,
+          "text": "3tesla41a.pr.mmmhc.com",
+          "value": "3tesla41a.pr.mmmhc.com"
+        },
         "datasource": {
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "query_result(cim_computer_numberofprocessors{instance=\"$instance\"})",
+        "definition": "label_values(cim_os_lastbootuptime{instance=\"$instance\"},fqdn)",
         "hide": 2,
         "includeAll": false,
         "multi": false,
         "name": "dnsname",
         "options": [],
         "query": {
-          "query": "query_result(cim_computer_numberofprocessors{instance=\"$instance\"})",
+          "qryType": 1,
+          "query": "label_values(cim_os_lastbootuptime{instance=\"$instance\"},fqdn)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
-        "regex": "/.*fqdn=\"([^\"]+)\".*/",
+        "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
       },
       {
+        "current": {
+          "isNone": true,
+          "selected": false,
+          "text": "None",
+          "value": ""
+        },
         "datasource": {
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "query_result(ctx_machine_currentpowerstate{dnsname=\"${dnsname}\"})",
+        "definition": "label_values(ctx_machine_currentpowerstate{dnsname=\"$dnsname\"},catalog_name)",
         "hide": 2,
         "includeAll": false,
         "multi": false,
         "name": "catalog_name",
         "options": [],
         "query": {
-          "query": "query_result(ctx_machine_currentpowerstate{dnsname=\"${dnsname}\"})",
+          "qryType": 1,
+          "query": "label_values(ctx_machine_currentpowerstate{dnsname=\"$dnsname\"},catalog_name)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
-        "regex": "/.*catalog_name=\"([^\"]+)\".*/",
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "cvad_sf",
+          "value": "cvad_sf"
+        },
+        "definition": "label_values(cim_os_lastbootuptime{instance=\"$instance\"},role)",
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "role",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(cim_os_lastbootuptime{instance=\"$instance\"},role)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
