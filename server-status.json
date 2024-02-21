@@ -175,7 +175,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "1-(rate(cim_perfcpu_percentidletime{instance=~\"$instance\", name=\"_total\"}[5m]) / rate(cim_perfcpu_timestamp_perftime{instance=~\"$instance\", name=\"_total\"}[5m]))",
+          "expr": "1-(rate(cim_perfcpu_percentidletime{instance=~\"$instance\", name=\"_total\"}[$__rate_interval]) / rate(cim_perfcpu_timestamp_sys100ns{instance=~\"$instance\", name=\"_total\"}[$__rate_interval]))",
           "instant": true,
           "interval": "90s",
           "range": false,
@@ -845,7 +845,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "1- (rate(cim_perfcpu_percentidletime{instance=\"$instance\", name=\"_total\"}[$__rate_interval]) / 10000000)",
+          "expr": "1- (rate(cim_perfcpu_percentidletime{instance=\"$instance\", name=\"_total\"}[$__rate_interval]) / rate(cim_perfcpu_timestamp_sys100ns{instance=\"$instance\", name=\"_total\"}[$__rate_interval]))",
           "hide": false,
           "instant": false,
           "interval": "90s",
