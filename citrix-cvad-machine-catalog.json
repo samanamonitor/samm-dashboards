@@ -2218,7 +2218,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": false
         },
         "datasource": {
           "type": "prometheus",
@@ -2242,7 +2242,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": false
         },
         "datasource": {
           "type": "prometheus",
@@ -2327,7 +2327,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": false
         },
         "datasource": {
           "type": "prometheus",
