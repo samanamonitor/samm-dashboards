@@ -18,7 +18,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 12,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -45,7 +44,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unitScale": true
         },
         "overrides": []
       },
@@ -68,9 +68,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.0.0",
+      "pluginVersion": "10.3.1",
       "targets": [
         {
           "datasource": {
@@ -110,93 +112,15 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unitScale": true
         },
         "overrides": []
       },
       "gridPos": {
         "h": 4,
-        "w": 3,
+        "w": 9,
         "x": 3,
-        "y": 0
-      },
-      "id": 11,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "10.0.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "editorMode": "code",
-          "expr": "count(ctx_machine_currentregistrationstate{catalog_name=\"$catalog\",instance=\"$instance\"} ) - count(ctx_machine_currentregistrationstate{catalog_name=\"$catalog\",instance=\"$instance\"} == 1)",
-          "instant": false,
-          "legendFormat": "Registered",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "editorMode": "code",
-          "expr": "count(ctx_machine_currentregistrationstate{catalog_name=\"$catalog\",instance=\"$instance\"} == 2)",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "Unregistered",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "Unregistered",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 6,
         "y": 0
       },
       "id": 45,
@@ -212,21 +136,27 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.0.0",
+      "pluginVersion": "10.3.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
+          "disableTextWrap": false,
           "editorMode": "code",
           "expr": "count(ctx_machine_currentregistrationstate{catalog_name=\"$catalog\",instance=\"$instance\"} == 1)",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "Registered",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         },
         {
           "datasource": {
@@ -234,81 +164,32 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "count(ctx_machine_currentregistrationstate{catalog_name=\"$catalog\",instance=\"$instance\"} == 2)",
+          "expr": "count(ctx_machine_currentregistrationstate{catalog_name=\"$catalog\",instance=\"$instance\"} != 1)",
           "hide": false,
           "instant": false,
           "legendFormat": "Unregistered",
           "range": true,
           "refId": "B"
-        }
-      ],
-      "title": "Registered",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
         },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 3,
-        "x": 9,
-        "y": 0
-      },
-      "id": 7,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "10.0.0",
-      "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
+          "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum(ctx_machine_isinmaintenancemode{catalog_name=\"$catalog\",instance=\"$instance\"})",
+          "expr": "count(ctx_machine_isinmaintenancemode{catalog_name=\"$catalog\", instance=\"$instance\"} == 1)",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "InMaintenance",
+          "legendFormat": "In Maintenance",
           "range": true,
-          "refId": "A"
+          "refId": "C",
+          "useBackend": false
         }
       ],
-      "title": "In Maintenance",
+      "title": "Registered",
       "type": "stat"
     },
     {
@@ -363,7 +244,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unitScale": true
         },
         "overrides": [
           {
@@ -471,7 +353,7 @@
           }
         ]
       },
-      "pluginVersion": "10.0.0",
+      "pluginVersion": "10.3.1",
       "targets": [
         {
           "datasource": {
@@ -536,7 +418,8 @@
                 "value": 1
               }
             ]
-          }
+          },
+          "unitScale": true
         },
         "overrides": []
       },
@@ -559,9 +442,11 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "10.0.0",
+      "pluginVersion": "10.3.1",
       "targets": [
         {
           "datasource": {
@@ -616,6 +501,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -629,6 +515,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -659,7 +546,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unitScale": true
         },
         "overrides": [
           {
@@ -845,6 +733,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -858,6 +747,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -892,7 +782,8 @@
                 "value": 9800
               }
             ]
-          }
+          },
+          "unitScale": true
         },
         "overrides": []
       },
@@ -943,6 +834,7 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -956,6 +848,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -985,7 +878,8 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unitScale": true
         },
         "overrides": []
       },
@@ -1039,14 +933,15 @@
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": false
+          "selected": false,
+          "text": "3tesla53a",
+          "value": "3tesla53a"
         },
         "datasource": {
           "type": "prometheus",
@@ -1070,7 +965,9 @@
       },
       {
         "current": {
-          "selected": false
+          "selected": false,
+          "text": "assigned administration",
+          "value": "assigned administration"
         },
         "datasource": {
           "type": "prometheus",
@@ -1095,13 +992,7 @@
       },
       {
         "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
+          "selected": false
         },
         "datasource": {
           "type": "prometheus",
@@ -1114,6 +1005,7 @@
         "name": "unregistered",
         "options": [],
         "query": {
+          "qryType": 3,
           "query": "query_result(ctx_machine_currentregistrationstate != 1)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
@@ -1125,37 +1017,34 @@
       },
       {
         "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
+          "selected": false
         },
         "datasource": {
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "query_result(ctx_machine_currentregistrationstate == 1)",
+        "definition": "query_result(ctx_machine_currentregistrationstate{instance=\"$instance\"} == 1)",
         "hide": 2,
-        "includeAll": true,
-        "multi": true,
+        "includeAll": false,
+        "multi": false,
         "name": "registered",
         "options": [],
         "query": {
-          "query": "query_result(ctx_machine_currentregistrationstate == 1)",
+          "qryType": 3,
+          "query": "query_result(ctx_machine_currentregistrationstate{instance=\"$instance\"} == 1)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
-        "regex": ".*dnsname=\"(.*?)\".*",
+        "regex": "/.*dnsname=\"([^\"]+)\".*/",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
       },
       {
         "current": {
-          "selected": false
+          "selected": false,
+          "text": "vdiadmn0002.pr.mmmhc.com",
+          "value": "vdiadmn0002.pr.mmmhc.com"
         },
         "datasource": {
           "type": "prometheus",
@@ -1187,6 +1076,6 @@
   "timezone": "",
   "title": "Machine Catalogs",
   "uid": "ab02af16-876f-4cd9-b0c5-00449c7a65db",
-  "version": 47,
+  "version": 2,
   "weekStart": ""
 }
