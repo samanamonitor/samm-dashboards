@@ -1698,9 +1698,7 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
+          "selected": false
         },
         "datasource": {
           "type": "prometheus",
@@ -1710,7 +1708,7 @@
         "hide": 2,
         "includeAll": true,
         "label": "Layer",
-        "multi": true,
+        "multi": false,
         "name": "layer",
         "options": [],
         "query": {
