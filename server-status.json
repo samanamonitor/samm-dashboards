@@ -685,7 +685,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/ab8b636e-07c1-42f6-8a1e-4b4174c870bb/windows-events?orgId=1&var-instance=$fqdn&var-type=${__data.fields[\"Event Type\"]}&var-logfile=${__data.fields.Logfile}&${__url_time_range}"
+                    "url": "/d/e6bb5f59-de47-4112-90e5-da49afb86715/windows-events?orgId=1&var-instance=$fqdn&var-type=${__data.fields[\"Event Type\"]}&var-logfile=${__data.fields.Logfile}&${__url_time_range}"
                   }
                 ]
               }
