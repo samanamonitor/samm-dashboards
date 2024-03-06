@@ -128,7 +128,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/a10828ed-83a6-4199-bf83-1af0c49f2d75/windows-event-details?orgId=1&var-instance=$instance&var-logfile=$logfile&var-recordnumber=${__data.fields.RecordNumber}"
+                    "url": "/d/7bd84cfb-dc4f-44ec-83ff-4bf10685f4c9/windows-event-details?orgId=1&var-instance=$instance&var-logfile=$logfile&var-recordnumber=${__data.fields.RecordNumber}"
                   }
                 ]
               }
