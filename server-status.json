@@ -1704,7 +1704,7 @@
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "label_values(cim_os_lastbootuptime{instance=\"$instance\"},layer)",
+        "definition": "label_values(cim_os_lastbootuptime{fqdn=\"$fqdn\"},layer)",
         "hide": 2,
         "includeAll": true,
         "label": "Layer",
@@ -1713,7 +1713,7 @@
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(cim_os_lastbootuptime{instance=\"$instance\"},layer)",
+          "query": "label_values(cim_os_lastbootuptime{fqdn=\"$fqdn\"},layer)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -1730,7 +1730,7 @@
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "label_values(cim_os_lastbootuptime{layer=~\"$layer\", fqdn=\"$fqdn\"},instance)",
+        "definition": "label_values(cim_os_lastbootuptime{fqdn=\"$fqdn\"},instance)",
         "hide": 2,
         "includeAll": false,
         "label": "Server",
@@ -1739,7 +1739,7 @@
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(cim_os_lastbootuptime{layer=~\"$layer\", fqdn=\"$fqdn\"},instance)",
+          "query": "label_values(cim_os_lastbootuptime{fqdn=\"$fqdn\"},instance)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
