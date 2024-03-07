@@ -51,7 +51,7 @@
           "links": [
             {
               "title": "Details",
-              "url": "/d/c96dd703-89d1-42e6-be4d-c9ccf02b7487/server-status?orgId=1&refresh=10s&var-instance=${__field.labels.instance}"
+              "url": "/d/c96dd703-89d1-42e6-be4d-c9ccf02b7487/server-status?orgId=1&refresh=10s&var-fqdn=${__field.labels.fqdn}"
             }
           ],
           "mappings": [],
