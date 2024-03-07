@@ -189,7 +189,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "ctx_machine_isinmaintenancemode{catalog_name=~\"$catalog\", instance=\"$instance\"}",
+          "expr": "ctx_machine_isinmaintenancemode{catalog_name=~\"$catalog\", instance=\"$instance\", catalog_sessionsupport=\"1\"}",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -203,7 +203,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "ctx_machine_currentregistrationstate{catalog_name=~\"$catalog\",instance=\"$instance\"} == 1",
+          "expr": "ctx_machine_currentregistrationstate{catalog_name=~\"$catalog\",instance=\"$instance\", catalog_sessionsupport=\"1\"} == 1",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -218,7 +218,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "ctx_machine_currentregistrationstate{catalog_name=~\"$catalog\",instance=\"$instance\"} != 1",
+          "expr": "ctx_machine_currentregistrationstate{catalog_name=~\"$catalog\",instance=\"$instance\", catalog_sessionsupport=\"1\"} != 1",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -233,7 +233,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "ctx_machine_currentsessioncount{catalog_name=~\"$catalog\", instance=\"$instance\"}",
+          "expr": "ctx_machine_currentsessioncount{catalog_name=~\"$catalog\", instance=\"$instance\", catalog_sessionsupport=\"1\"}",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -359,24 +359,6 @@
             "reduce": {
               "reducer": "sum"
             }
-          }
-        },
-        {
-          "id": "filterByValue",
-          "options": {
-            "filters": [
-              {
-                "config": {
-                  "id": "regex",
-                  "options": {
-                    "value": "xa.*"
-                  }
-                },
-                "fieldName": "catalog_name 1 (lastNotNull)"
-              }
-            ],
-            "match": "any",
-            "type": "exclude"
           }
         }
       ],
