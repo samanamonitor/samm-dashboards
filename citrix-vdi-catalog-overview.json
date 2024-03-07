@@ -75,7 +75,7 @@
                 "value": [
                   {
                     "title": "",
-                    "url": "/d/c42d6204-54c9-43c1-abd6-7a8d631e6c4d/machine-catalogs?orgId=1&refresh=30s&var-instance=${instance}﻿&var-catalog=${__data.fields[\"catalog_name 1 (lastNotNull)\"]}"
+                    "url": "/d/ab02af16-876f-4cd9-b0c5-00449c7a65db/machine-catalogs?orgId=1&refresh=30s&var-instance=${instance}﻿&var-catalog=${__data.fields[\"catalog_name 1 (lastNotNull)\"]}"
                   }
                 ]
               }
@@ -454,7 +454,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Machine Catalog Overview",
+  "title": "VDI Machine Catalog Overview",
   "uid": "a89835c6-8b11-41ca-b4b1-6c45cecb7a55",
   "version": 12,
   "weekStart": ""
