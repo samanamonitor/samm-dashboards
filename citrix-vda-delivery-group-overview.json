@@ -27,6 +27,7 @@
         "type": "prometheus",
         "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -75,7 +76,7 @@
                 "value": [
                   {
                     "title": "",
-                    "url": "/d/c42d6204-54c9-43c1-abd6-7a8d631e6c4d/machine-catalogs?orgId=1&refresh=30s&var-instance=${instance}﻿&var-desktopgroup=${__data.fields[\"desktopgroup_name 1 (lastNotNull)\"]}"
+                    "url": "/d/e031f554-8327-4683-9e69-94c2119fae48/vda-delivery-group?orgId=1&refresh=30s&var-instance=${instance}﻿&var-desktopgroup_name=${__data.fields.desktopgroup_name}&${__url_time_range}"
                   }
                 ]
               }
@@ -246,7 +247,6 @@
           "refId": "sessioncount"
         }
       ],
-      "title": "Panel Title",
       "transformations": [
         {
           "id": "joinByField",
@@ -436,13 +436,13 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "VDA - Delivery Group Overview",
-  "uid": "f37aec43-c073-47ad-bdc7-83f46ff26a61",
-  "version": 2,
+  "uid": "bd4503c1-62b3-4bb1-bf78-80a1e4de9bc6",
+  "version": 7,
   "weekStart": ""
 }
