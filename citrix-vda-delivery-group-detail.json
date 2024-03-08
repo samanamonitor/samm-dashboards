@@ -217,7 +217,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(sum(ctx_machine_currentloadindex_effectiveloadindex{desktopgroup_name=\"$desktopgroup_name\", isinmaintenancemode=\"false\", currentregistrationstate=\"1\"}) or vector(0)) + \r\n((count(ctx_machine_currentloadindex_effectiveloadindex{desktopgroup_name=\"$desktopgroup_name\", isinmaintenancemode=\"false\", currentregistrationstate!=\"1\"}) or vector(0)) * 10000) + \r\n((count(ctx_machine_currentloadindex_effectiveloadindex{desktopgroup_name=\"$desktopgroup_name\", isinmaintenancemode=\"true\"}) or vector(0)) * 10000) / count(ctx_machine_currentloadindex_effectiveloadindex{desktopgroup_name=\"$desktopgroup_name\"})",
+          "expr": "((sum(ctx_machine_currentloadindex_effectiveloadindex{desktopgroup_name=\"$desktopgroup_name\", isinmaintenancemode=\"false\", currentregistrationstate=\"1\"}) or vector(0)) + \r\n((count(ctx_machine_currentloadindex_effectiveloadindex{desktopgroup_name=\"$desktopgroup_name\", isinmaintenancemode=\"false\", currentregistrationstate!=\"1\"}) or vector(0)) * 10000) + \r\n((count(ctx_machine_currentloadindex_effectiveloadindex{desktopgroup_name=\"$desktopgroup_name\", isinmaintenancemode=\"true\"}) or vector(0)) * 10000)) / count(ctx_machine_currentloadindex_effectiveloadindex{desktopgroup_name=\"$desktopgroup_name\"})",
           "format": "table",
           "fullMetaSearch": false,
           "hide": false,
