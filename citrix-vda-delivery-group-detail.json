@@ -283,6 +283,24 @@
           "range": false,
           "refId": "inmaintenance",
           "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktop_group\"})",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "sessions",
+          "range": true,
+          "refId": "sessions",
+          "useBackend": false
         }
       ],
       "title": "Machines",
@@ -350,7 +368,7 @@
               "Value #inuse": "InUse",
               "Value #registered": "Registered",
               "Value #total": "Total",
-              "Value #unregistered": "UnRegistered"
+              "sessions": "Sessions"
             }
           }
         }
@@ -923,7 +941,7 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 12,
+        "w": 11,
         "x": 0,
         "y": 10
       },
@@ -1002,35 +1020,8 @@
         "overrides": [
           {
             "matcher": {
-              "id": "byRegexp",
-              "options": "/.*/"
-            },
-            "properties": [
-              {
-                "id": "custom.hidden",
-                "value": true
-              }
-            ]
-          },
-          {
-            "matcher": {
               "id": "byName",
-              "options": "dnsname"
-            },
-            "properties": [
-              {
-                "id": "custom.hidden"
-              },
-              {
-                "id": "displayName",
-                "value": "Machine"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value #A"
+              "options": "currentregistrationstate"
             },
             "properties": [
               {
@@ -1041,10 +1032,6 @@
                 "value": {
                   "type": "color-background"
                 }
-              },
-              {
-                "id": "displayName",
-                "value": "Registration State"
               },
               {
                 "id": "mappings",
@@ -1076,7 +1063,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Value #B"
+              "options": "Is In Maintenance"
             },
             "properties": [
               {
@@ -1087,12 +1074,12 @@
                 "value": [
                   {
                     "options": {
-                      "0": {
+                      "false": {
                         "color": "green",
                         "index": 1,
                         "text": "No"
                       },
-                      "1": {
+                      "true": {
                         "color": "red",
                         "index": 0,
                         "text": "Yes"
@@ -1107,17 +1094,13 @@
                 "value": {
                   "type": "color-background"
                 }
-              },
-              {
-                "id": "displayName",
-                "value": "In Maintenance"
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "Value #C"
+              "options": "Value #powerstate"
             },
             "properties": [
               {
@@ -1176,10 +1159,65 @@
               },
               {
                 "id": "custom.hidden"
-              },
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Machine"
+            },
+            "properties": [
               {
-                "id": "displayName",
-                "value": "Power State"
+                "id": "custom.width",
+                "value": 176
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value #D"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Registration State"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 167
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Power State"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 111
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Sessions"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 105
               }
             ]
           }
@@ -1187,8 +1225,8 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 11,
-        "x": 12,
+        "w": 12,
+        "x": 11,
         "y": 10
       },
       "id": 96,
@@ -1205,51 +1243,10 @@
         },
         "frameIndex": 1,
         "showHeader": true,
-        "sortBy": [
-          {
-            "desc": true,
-            "displayName": "__name__"
-          }
-        ]
+        "sortBy": []
       },
       "pluginVersion": "10.3.1",
       "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "exemplar": false,
-          "expr": "ctx_machine_currentregistrationstate{desktopgroup_name=\"$desktopgroup_name\", instance=\"$instance\"}",
-          "format": "table",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "A",
-          "useBackend": false
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "exemplar": false,
-          "expr": "ctx_machine_isinmaintenancemode{desktopgroup_name=\"$desktopgroup_name\", instance=\"$instance\"}",
-          "format": "table",
-          "fullMetaSearch": false,
-          "hide": false,
-          "includeNullMetadata": true,
-          "instant": true,
-          "range": false,
-          "refId": "B",
-          "useBackend": false
-        },
         {
           "datasource": {
             "type": "prometheus",
@@ -1266,7 +1263,26 @@
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
-          "refId": "C",
+          "refId": "powerstate",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "label_replace(count by(machine_dnsname) (ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktop_group\"} != 3), \"dnsname\", \"$1\", \"machine_dnsname\", \"(.*)\")",
+          "format": "table",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "D",
           "useBackend": false
         }
       ],
@@ -1276,7 +1292,115 @@
           "id": "joinByField",
           "options": {
             "byField": "dnsname",
-            "mode": "outer"
+            "mode": "inner"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Time 2": true,
+              "Time 3": true,
+              "Time 4": true,
+              "Value #isinmaintenance": true,
+              "__name__": true,
+              "__name__ 1": true,
+              "__name__ 2": true,
+              "__name__ 3": true,
+              "catalog_allocationtype": true,
+              "catalog_allocationtype 2": true,
+              "catalog_allocationtype 3": true,
+              "catalog_ismachinephysical": true,
+              "catalog_ismachinephysical 2": true,
+              "catalog_ismachinephysical 3": true,
+              "catalog_name": true,
+              "catalog_name 2": true,
+              "catalog_name 3": true,
+              "catalog_persistentuserchanges": true,
+              "catalog_persistentuserchanges 2": true,
+              "catalog_persistentuserchanges 3": true,
+              "catalog_provisioningtype": true,
+              "catalog_provisioningtype 2": true,
+              "catalog_provisioningtype 3": true,
+              "catalog_sessionsupport": true,
+              "catalog_sessionsupport 2": true,
+              "catalog_sessionsupport 3": true,
+              "currentregistrationstate": false,
+              "currentregistrationstate 2": true,
+              "currentregistrationstate 3": true,
+              "desktopgroup_deliverytype": true,
+              "desktopgroup_deliverytype 2": true,
+              "desktopgroup_deliverytype 3": true,
+              "desktopgroup_desktopkind": true,
+              "desktopgroup_desktopkind 2": true,
+              "desktopgroup_desktopkind 3": true,
+              "desktopgroup_name": true,
+              "desktopgroup_name 2": true,
+              "desktopgroup_name 3": true,
+              "fqdn": true,
+              "fqdn 2": true,
+              "fqdn 3": true,
+              "hostedmachinename": true,
+              "hostedmachinename 2": true,
+              "hostedmachinename 3": true,
+              "hostingservername": false,
+              "hostingservername 2": true,
+              "instance": true,
+              "instance 2": true,
+              "instance 3": true,
+              "isinmaintenancemode": false,
+              "isinmaintenancemode 2": true,
+              "isinmaintenancemode 3": true,
+              "job": true,
+              "job 2": true,
+              "job 3": true,
+              "layer": true,
+              "layer 2": true,
+              "layer 3": true,
+              "machine_dnsname": true,
+              "role": true,
+              "role 2": true,
+              "role 3": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "Time": 2,
+              "Time 2": 4,
+              "Value #D": 1,
+              "Value #powerstate": 22,
+              "__name__": 23,
+              "catalog_allocationtype": 5,
+              "catalog_ismachinephysical": 6,
+              "catalog_name": 7,
+              "catalog_persistentuserchanges": 8,
+              "catalog_provisioningtype": 9,
+              "catalog_sessionsupport": 10,
+              "currentregistrationstate": 11,
+              "desktopgroup_deliverytype": 12,
+              "desktopgroup_desktopkind": 13,
+              "desktopgroup_name": 14,
+              "dnsname": 0,
+              "fqdn": 15,
+              "hostedmachinename": 16,
+              "hostingservername": 24,
+              "instance": 17,
+              "isinmaintenancemode": 18,
+              "job": 19,
+              "layer": 20,
+              "machine_dnsname": 3,
+              "role": 21
+            },
+            "renameByName": {
+              "Value #A": "Registration State",
+              "Value #B": "Is In Maintenance",
+              "Value #C": "Power State",
+              "Value #D": "Sessions",
+              "Value #powerstate": "Power State",
+              "currentregistrationstate": "Registration State",
+              "dnsname": "Machine",
+              "isinmaintenancemode": "Is In Maintenance"
+            }
           }
         }
       ],
