@@ -19,7 +19,20 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 20,
-  "links": [],
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "dashboard",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Citrix Site",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/80c4c491-5b8e-4719-b485-15480435437b/citrix-site?orgId=1"
+    }
+  ],
   "liveNow": false,
   "panels": [
     {

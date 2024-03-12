@@ -31,6 +31,18 @@
       "tooltip": "",
       "type": "link",
       "url": "/d/f37aec43-c073-47ad-bdc7-83f46ff26a61/vda-delivery-group-overview?orgId=1&${__url_time_range}"
+    },
+    {
+      "asDropdown": false,
+      "icon": "dashboard",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Citrix Site",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/80c4c491-5b8e-4719-b485-15480435437b/citrix-site?orgId=1"
     }
   ],
   "liveNow": false,
