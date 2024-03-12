@@ -591,7 +591,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "builder",
-          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_catalog\"} == 0)",
+          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktopgroup\"} == 0)",
           "instant": false,
           "legendFormat": "Unknown",
           "range": true,
@@ -603,7 +603,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "builder",
-          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_catalog\"} == 1)",
+          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktopgroup\"} == 1)",
           "hide": false,
           "instant": false,
           "legendFormat": "Connected",
@@ -616,7 +616,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "builder",
-          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_catalog\"} == 2)",
+          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktopgroup\"} == 2)",
           "hide": false,
           "instant": false,
           "legendFormat": "Disconnected",
@@ -630,7 +630,7 @@
           },
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_catalog\"} == 5)",
+          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktopgroup\"} == 5)",
           "hide": false,
           "instant": false,
           "legendFormat": "Active",
@@ -643,7 +643,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "builder",
-          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_catalog\"} == 4)",
+          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktopgroup\"} == 4)",
           "hide": false,
           "instant": false,
           "legendFormat": "Preparing Session",
@@ -656,7 +656,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "builder",
-          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_catalog\"} == 6)",
+          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktopgroup\"} == 6)",
           "hide": false,
           "instant": false,
           "legendFormat": "Reconnecting",
@@ -669,7 +669,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "builder",
-          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_catalog\"} == 7)",
+          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktopgroup\"} == 7)",
           "hide": false,
           "instant": false,
           "legendFormat": "Non Brokered Session",
@@ -682,7 +682,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "builder",
-          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_catalog\"} == 8)",
+          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktopgroup\"} == 8)",
           "hide": false,
           "instant": false,
           "legendFormat": "Other",
@@ -695,7 +695,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "builder",
-          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_catalog\"} == 9)",
+          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktopgroup\"} == 9)",
           "hide": false,
           "instant": false,
           "legendFormat": "Pending",
@@ -716,7 +716,7 @@
       },
       "id": 60,
       "panels": [],
-      "title": "Total Catalog",
+      "title": "Total Delivery Group",
       "type": "row"
     },
     {
@@ -898,7 +898,7 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "ctx_session_connectionstate{machine_dnsname=~\"$machines_in_catalog\"}",
+          "expr": "ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktopgroup\"}",
           "format": "table",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
