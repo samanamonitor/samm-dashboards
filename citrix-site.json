@@ -1,0 +1,1797 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 25,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Total Sessions"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Machines In Failure"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Failed Sessions"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 0
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "sum(ctx_machine_currentsessioncount)",
+          "format": "table",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "TotalSessions",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "count(ctx_machineinfail_faultstate)",
+          "format": "table",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "MachinesInFailure",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "a3b388bb-5990-45ca-a5b5-0bca47387fe1"
+          },
+          "editorMode": "code",
+          "expr": "count(rate({event_type=\"loginfail\"} [$__auto]))",
+          "hide": false,
+          "queryType": "instant",
+          "refId": "SessionFailures"
+        }
+      ],
+      "title": "Panel Title",
+      "transformations": [
+        {
+          "id": "joinByField",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Value #MachinesInFailure": "Machines In Failure",
+              "Value #SessionFailures": "Failed Sessions",
+              "Value #TotalSessions": "Total Sessions"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 2
+              },
+              {
+                "color": "green",
+                "value": 5
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Percent InMaintenance"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "yellow",
+                      "value": 0.05
+                    },
+                    {
+                      "color": "red",
+                      "value": 0.1
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "unit",
+                "value": "percentunit"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Percent UnRegistered"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 0.000001
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "unit",
+                "value": "percentunit"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 9,
+        "x": 6,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count(ctx_machine_isinmaintenancemode{instance=\"$instance\",catalog_sessionsupport=\"1\"})",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "total"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count(ctx_machine_currentsessioncount{instance=\"$instance\",catalog_sessionsupport=\"1\"} == 0)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "available"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count(ctx_machine_currentsessioncount{instance=\"$instance\",catalog_sessionsupport=\"1\"} > 0)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "inuse"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count(ctx_machine_currentregistrationstate{instance=\"$instance\",catalog_sessionsupport=\"1\"} == 1)",
+          "format": "table",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "registered",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count(ctx_machine_currentregistrationstate{instance=\"$instance\",catalog_sessionsupport=\"1\"} != 1)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "unregistered"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count(ctx_machine_isinmaintenancemode{instance=\"$instance\",catalog_sessionsupport=\"1\"} == 1)",
+          "format": "table",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "inmaintenance",
+          "useBackend": false
+        }
+      ],
+      "title": "VDI",
+      "transformations": [
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "Time",
+            "mode": "outer"
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Percent InMaintenance",
+            "binary": {
+              "left": "Value #inmaintenance",
+              "operator": "/",
+              "right": "Value #total"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Percent UnRegistered",
+            "binary": {
+              "left": "Value #unregistered",
+              "operator": "/",
+              "right": "Value #total"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Percent InMaintenance": false,
+              "Value #inmaintenance": true,
+              "Value #unregistered": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "Percent InMaintenance": 8,
+              "Percent UnRegistered": 5,
+              "Time": 0,
+              "Value #available": 3,
+              "Value #inmaintenance": 7,
+              "Value #inuse": 2,
+              "Value #registered": 4,
+              "Value #total": 1,
+              "Value #unregistered": 6
+            },
+            "renameByName": {
+              "Value #available": "Available",
+              "Value #inmaintenance": "InMaintenance",
+              "Value #inuse": "Sessions",
+              "Value #registered": "Registered",
+              "Value #total": "Machines",
+              "Value #unregistered": "UnRegistered"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 2
+              },
+              {
+                "color": "green",
+                "value": 5
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Percent InMaintenance"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "yellow",
+                      "value": 0.05
+                    },
+                    {
+                      "color": "red",
+                      "value": 0.1
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "unit",
+                "value": "percentunit"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Percent UnRegistered"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 0.000001
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "unit",
+                "value": "percentunit"
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value #loadindex"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Load Index"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 9500
+                    },
+                    {
+                      "color": "red",
+                      "value": 9800
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 9,
+        "x": 15,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "count(ctx_machine_isinmaintenancemode{instance=\"$instance\", catalog_sessionsupport=\"2\"})",
+          "format": "table",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "total",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "((sum(ctx_machine_currentloadindex_effectiveloadindex{instance=\"$instance\", isinmaintenancemode=\"false\", currentregistrationstate=\"1\", catalog_sessionsupport=\"2\"}) or vector(0)) + \r\n((count(ctx_machine_currentloadindex_effectiveloadindex{instance=\"$instance\", isinmaintenancemode=\"false\", currentregistrationstate!=\"1\", catalog_sessionsupport=\"2\"}) or vector(0)) * 10000) + \r\n((count(ctx_machine_currentloadindex_effectiveloadindex{instance=\"$instance\", isinmaintenancemode=\"true\", catalog_sessionsupport=\"2\"}) or vector(0)) * 10000)) / count(ctx_machine_currentloadindex_effectiveloadindex{instance=\"$instance\", catalog_sessionsupport=\"2\"})",
+          "format": "table",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "loadindex",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "count(ctx_machine_currentregistrationstate{instance=\"$instance\", catalog_sessionsupport=\"2\"} == 1)",
+          "format": "table",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "registered",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "count(ctx_machine_currentregistrationstate{instance=\"$instance\", catalog_sessionsupport=\"2\"} != 1)",
+          "format": "table",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "unregistered",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "count(ctx_machine_isinmaintenancemode{instance=\"$instance\", catalog_sessionsupport=\"2\"} == 1)",
+          "format": "table",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "inmaintenance",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$vda_machines\"} != 3)",
+          "format": "table",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "sessions",
+          "range": false,
+          "refId": "sessions",
+          "useBackend": false
+        }
+      ],
+      "title": "VDA",
+      "transformations": [
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "Time",
+            "mode": "outer"
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Percent InMaintenance",
+            "binary": {
+              "left": "Value #inmaintenance",
+              "operator": "/",
+              "right": "Value #total"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Percent UnRegistered",
+            "binary": {
+              "left": "Value #unregistered",
+              "operator": "/",
+              "right": "Value #total"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Value #inmaintenance": true,
+              "Value #unregistered": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "Percent InMaintenance": 8,
+              "Percent UnRegistered": 5,
+              "Time": 0,
+              "Value #inmaintenance": 7,
+              "Value #loadindex": 3,
+              "Value #registered": 4,
+              "Value #sessions": 2,
+              "Value #total": 1,
+              "Value #unregistered": 6
+            },
+            "renameByName": {
+              "Value #available": "Available",
+              "Value #inuse": "InUse",
+              "Value #registered": "Registered",
+              "Value #sessions": "Sessions",
+              "Value #total": "Machines",
+              "sessions": "Sessions"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "a3b388bb-5990-45ca-a5b5-0bca47387fe1"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Exit Code"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "Unknown"
+                      },
+                      "1": {
+                        "index": 1,
+                        "text": "None"
+                      },
+                      "2": {
+                        "index": 2,
+                        "text": "SessionPreparation"
+                      },
+                      "3": {
+                        "index": 3,
+                        "text": "RegistrationTimeout"
+                      },
+                      "4": {
+                        "index": 4,
+                        "text": "ConnectionTimeout"
+                      },
+                      "5": {
+                        "index": 5,
+                        "text": "Licensing"
+                      },
+                      "6": {
+                        "index": 6,
+                        "text": "Ticketing"
+                      },
+                      "7": {
+                        "index": 7,
+                        "text": "Other"
+                      },
+                      "8": {
+                        "index": 8,
+                        "text": "GeneralFail"
+                      },
+                      "9": {
+                        "index": 9,
+                        "text": "MaintenanceMode"
+                      },
+                      "10": {
+                        "index": 10,
+                        "text": "ApplicationDisabled"
+                      },
+                      "11": {
+                        "index": 11,
+                        "text": "LicenseFeatureRefused"
+                      },
+                      "12": {
+                        "index": 12,
+                        "text": "NoDesktopAvailable"
+                      },
+                      "13": {
+                        "index": 13,
+                        "text": "SessionLimitReached"
+                      },
+                      "14": {
+                        "index": 14,
+                        "text": "DisallowedProtocol"
+                      },
+                      "15": {
+                        "index": 15,
+                        "text": "ResourceUnavailable"
+                      },
+                      "16": {
+                        "index": 16,
+                        "text": "ActiveSessionReconnectDisabled"
+                      },
+                      "17": {
+                        "index": 17,
+                        "text": "NoSessionToReconnect"
+                      },
+                      "18": {
+                        "index": 18,
+                        "text": "SpinUpFailed"
+                      },
+                      "19": {
+                        "index": 19,
+                        "text": "Refused"
+                      },
+                      "20": {
+                        "index": 20,
+                        "text": "ConfigurationSetFailure"
+                      },
+                      "21": {
+                        "index": 21,
+                        "text": "MaxTotalInstancesExceeded"
+                      },
+                      "22": {
+                        "index": 22,
+                        "text": "MaxPerUserInstancesExceeded"
+                      },
+                      "23": {
+                        "index": 23,
+                        "text": "CommunicationError"
+                      },
+                      "24": {
+                        "index": 24,
+                        "text": "MaxPerMachineInstancesExceeded"
+                      },
+                      "25": {
+                        "index": 25,
+                        "text": "MaxPerEntitlementInstancesExceeded"
+                      },
+                      "100": {
+                        "index": 100,
+                        "text": "NoMachineAvailable"
+                      },
+                      "101": {
+                        "index": 101,
+                        "text": "MachineNotFunctional"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "id": 7,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "10.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "a3b388bb-5990-45ca-a5b5-0bca47387fe1"
+          },
+          "editorMode": "builder",
+          "expr": "{event_type=\"loginfail\"}",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Session Failures",
+      "transformations": [
+        {
+          "id": "extractFields",
+          "options": {
+            "replace": true,
+            "source": "Line"
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "User"
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Machine"
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Timestamp",
+            "binary": {
+              "left": "StartDate",
+              "operator": "*",
+              "right": "1000"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "AgentVersion": true,
+              "ApplicationInstances": true,
+              "AssociatedUserFullNames": true,
+              "AssociatedUserNames": true,
+              "AssociatedUserUPNs": true,
+              "Catalog": true,
+              "CatalogId": true,
+              "ConnectionState": true,
+              "ConnectionStateChangeDate": true,
+              "Connections": true,
+              "ControllerDnsName": true,
+              "CreatedDate": true,
+              "CreatedDate 2": true,
+              "CreatedDate 3": true,
+              "CurrentConnection": true,
+              "CurrentConnectionId": true,
+              "CurrentLoadIndex": true,
+              "CurrentLoadIndexId": true,
+              "CurrentPowerState": true,
+              "CurrentRegistrationState": true,
+              "CurrentSessionCount": true,
+              "DesktopGroup": true,
+              "DesktopGroupId": true,
+              "Domain": true,
+              "EndDate": true,
+              "Failure": true,
+              "FailureDate": true,
+              "FailureDate 2": true,
+              "FaultState": true,
+              "FunctionalLevel": true,
+              "Hash": true,
+              "HostedMachineId": true,
+              "HostedMachineName": true,
+              "Hypervisor": true,
+              "HypervisorId": true,
+              "IPAddress": true,
+              "Id 1": true,
+              "Id 2": true,
+              "IsAnonymous": true,
+              "IsAssigned": true,
+              "IsInMaintenanceMode": true,
+              "IsPendingUpdate": true,
+              "IsPreparing": true,
+              "LastDeregisteredCode": true,
+              "LastDeregisteredDate": true,
+              "LifecycleState": true,
+              "LifecycleState 2": true,
+              "LoadIndex": true,
+              "LogOnDuration": true,
+              "Machine": true,
+              "MachineFailures": true,
+              "MachineHotfixLogs": true,
+              "MachineId": true,
+              "MachineRole": true,
+              "ModifiedDate": true,
+              "ModifiedDate 2": true,
+              "ModifiedDate 3": true,
+              "Name": true,
+              "OSType": true,
+              "PowerStateChangeDate": true,
+              "PoweredOnDate": true,
+              "RegistrationStateChangeDate": true,
+              "SessionKey": true,
+              "SessionType": true,
+              "Sessions": true,
+              "Sessions 2": true,
+              "Sid 1": true,
+              "Sid 2": true,
+              "StartDate": true,
+              "User": true,
+              "UserId": true,
+              "UserName": true,
+              "WindowsConnectionSetting": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "AgentVersion": 44,
+              "ApplicationInstances": 22,
+              "AssociatedUserFullNames": 45,
+              "AssociatedUserNames": 46,
+              "AssociatedUserUPNs": 47,
+              "Catalog": 71,
+              "CatalogId": 64,
+              "ConnectionState": 12,
+              "ConnectionStateChangeDate": 13,
+              "Connections": 23,
+              "ControllerDnsName": 54,
+              "CreatedDate": 20,
+              "CreatedDate 2": 31,
+              "CreatedDate 3": 69,
+              "CurrentConnection": 24,
+              "CurrentConnectionId": 15,
+              "CurrentLoadIndex": 72,
+              "CurrentLoadIndexId": 63,
+              "CurrentPowerState": 52,
+              "CurrentRegistrationState": 48,
+              "CurrentSessionCount": 53,
+              "DesktopGroup": 73,
+              "DesktopGroupId": 65,
+              "DnsName": 4,
+              "Domain": 30,
+              "EndDate": 10,
+              "ExitCode": 3,
+              "Failure": 25,
+              "FailureDate": 11,
+              "FailureDate 2": 58,
+              "FaultState": 61,
+              "FullName": 2,
+              "FunctionalLevel": 57,
+              "Hash": 67,
+              "HostedMachineId": 39,
+              "HostedMachineName": 40,
+              "HostingServerName": 5,
+              "Hypervisor": 74,
+              "HypervisorId": 66,
+              "IPAddress": 38,
+              "Id 1": 27,
+              "Id 2": 34,
+              "IsAnonymous": 19,
+              "IsAssigned": 41,
+              "IsInMaintenanceMode": 42,
+              "IsPendingUpdate": 43,
+              "IsPreparing": 60,
+              "LastDeregisteredCode": 50,
+              "LastDeregisteredDate": 51,
+              "LifecycleState": 14,
+              "LifecycleState 2": 37,
+              "LoadIndex": 75,
+              "LogOnDuration": 9,
+              "Machine": 26,
+              "MachineFailures": 76,
+              "MachineHotfixLogs": 77,
+              "MachineId": 17,
+              "MachineRole": 68,
+              "ModifiedDate": 21,
+              "ModifiedDate 2": 32,
+              "ModifiedDate 3": 70,
+              "Name": 36,
+              "OSType": 62,
+              "PowerStateChangeDate": 56,
+              "PoweredOnDate": 55,
+              "RegistrationStateChangeDate": 49,
+              "SessionKey": 8,
+              "SessionType": 18,
+              "Sessions": 33,
+              "Sessions 2": 78,
+              "Sid 1": 28,
+              "Sid 2": 35,
+              "StartDate": 6,
+              "Timestamp": 1,
+              "Upn": 0,
+              "User": 7,
+              "UserId": 16,
+              "UserName": 29,
+              "WindowsConnectionSetting": 59
+            },
+            "renameByName": {
+              "DnsName": "Machine",
+              "ExitCode": "Exit Code",
+              "FullName": "Full Name",
+              "HostingServerName": "Hosting Server",
+              "StartDate": "",
+              "Timestamp": "Time",
+              "Upn": "User"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 195
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Fault State"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "Unknown"
+                      },
+                      "1": {
+                        "index": 1,
+                        "text": "None (Healthy)"
+                      },
+                      "2": {
+                        "index": 2,
+                        "text": "Failed to Start"
+                      },
+                      "3": {
+                        "index": 3,
+                        "text": "Stuck On Boot"
+                      },
+                      "4": {
+                        "index": 4,
+                        "text": "Unregistered"
+                      },
+                      "5": {
+                        "index": 5,
+                        "text": "Max Capacity"
+                      },
+                      "6": {
+                        "index": 6,
+                        "text": "VM not found"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 164
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Last Deregistration Code"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "AgentShutdown"
+                      },
+                      "1": {
+                        "index": 1,
+                        "text": "AgentSuspended"
+                      },
+                      "2": {
+                        "index": 2,
+                        "text": "AgentRequested"
+                      },
+                      "100": {
+                        "index": 3,
+                        "text": "IncompatibleVersion"
+                      },
+                      "101": {
+                        "index": 4,
+                        "text": "AgentAddressResolutionFailed"
+                      },
+                      "102": {
+                        "index": 5,
+                        "text": "AgentNotContactable"
+                      },
+                      "103": {
+                        "index": 6,
+                        "text": "AgentWrongActiveDirectoryOU"
+                      },
+                      "104": {
+                        "index": 7,
+                        "text": "EmptyRegistrationRequest"
+                      },
+                      "105": {
+                        "index": 8,
+                        "text": "MissingRegistrationCapabilities"
+                      },
+                      "106": {
+                        "index": 9,
+                        "text": "MissingAgentVersion"
+                      },
+                      "107": {
+                        "index": 10,
+                        "text": "InconsistentRegistrationCapabilities"
+                      },
+                      "108": {
+                        "index": 11,
+                        "text": "NotLicensedForFeature"
+                      },
+                      "109": {
+                        "index": 12,
+                        "text": "UnsupportedCredentialSecurityVersion"
+                      },
+                      "110": {
+                        "index": 13,
+                        "text": "InvalidRegistrationRequest"
+                      },
+                      "111": {
+                        "index": 14,
+                        "text": "SingleMultiSessionMismatch"
+                      },
+                      "112": {
+                        "index": 15,
+                        "text": "FunctionalLevelTooLowForCatalog"
+                      },
+                      "113": {
+                        "index": 16,
+                        "text": "FunctionalLevelTooLowForDesktopGroup"
+                      },
+                      "114": {
+                        "index": 17,
+                        "text": "OSNotCompatibleWithDdc"
+                      },
+                      "115": {
+                        "index": 18,
+                        "text": "VMNotCompatibleWithDdc"
+                      },
+                      "200": {
+                        "index": 19,
+                        "text": "PowerOff"
+                      },
+                      "201": {
+                        "index": 20,
+                        "text": "DesktopRestart"
+                      },
+                      "202": {
+                        "index": 21,
+                        "text": "DesktopRemoved"
+                      },
+                      "203": {
+                        "index": 22,
+                        "text": "AgentRejectedSettingsUpdate"
+                      },
+                      "204": {
+                        "index": 23,
+                        "text": "SendSettingsFailure"
+                      },
+                      "205": {
+                        "index": 24,
+                        "text": "SessionAuditFailure"
+                      },
+                      "206": {
+                        "index": 25,
+                        "text": "SessionPrepareFailure"
+                      },
+                      "207": {
+                        "index": 26,
+                        "text": "ContactLost"
+                      },
+                      "208": {
+                        "index": 27,
+                        "text": "SettingsCreationFailure"
+                      },
+                      "300": {
+                        "index": 28,
+                        "text": "SettingsCreationFailure"
+                      },
+                      "301": {
+                        "index": 29,
+                        "text": "BrokerRegistrationLimitReached"
+                      },
+                      "400": {
+                        "index": 30,
+                        "text": "None"
+                      },
+                      "401": {
+                        "index": 31,
+                        "text": "HypervisorReportedFailure"
+                      },
+                      "402": {
+                        "index": 32,
+                        "text": "HypervisorRateLimitExceeded"
+                      },
+                      "1000": {
+                        "index": 33,
+                        "text": "HardRegistrationPending"
+                      },
+                      "1001": {
+                        "index": 34,
+                        "text": "SoftRegistered"
+                      },
+                      "1002": {
+                        "index": 35,
+                        "text": "Unknown"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Power State"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "Unknown"
+                      },
+                      "1": {
+                        "index": 1,
+                        "text": "Unavailable"
+                      },
+                      "2": {
+                        "index": 2,
+                        "text": "Off"
+                      },
+                      "3": {
+                        "index": 3,
+                        "text": "On"
+                      },
+                      "4": {
+                        "index": 4,
+                        "text": "Suspended"
+                      },
+                      "5": {
+                        "index": 5,
+                        "text": "TurningOn"
+                      },
+                      "6": {
+                        "index": 6,
+                        "text": "TurningOff"
+                      },
+                      "7": {
+                        "index": 7,
+                        "text": "Suspending"
+                      },
+                      "8": {
+                        "index": 8,
+                        "text": "Resuming"
+                      },
+                      "9": {
+                        "index": 9,
+                        "text": "Unmanaged"
+                      },
+                      "10": {
+                        "index": 10,
+                        "text": "NotSupported"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 107
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
+      "id": 5,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "10.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "ctx_machineinfail_faultstate{instance=\"$instance\"}",
+          "format": "table",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Failed Machines",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true,
+              "__name__": true,
+              "fqdn": true,
+              "instance": true,
+              "job": true,
+              "layer": true,
+              "machine_controllerdnsname": true,
+              "machine_currentregistrationstate": true,
+              "machine_hostedmachinename": true,
+              "role": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "Time": 7,
+              "Value": 16,
+              "__name__": 8,
+              "faultstate": 2,
+              "fqdn": 9,
+              "instance": 10,
+              "job": 11,
+              "lastderegisteredcode": 3,
+              "layer": 12,
+              "machine_associateduserupns": 1,
+              "machine_controllerdnsname": 13,
+              "machine_currentpowerstate": 4,
+              "machine_currentregistrationstate": 5,
+              "machine_dnsname": 0,
+              "machine_hostedmachinename": 14,
+              "machine_hostingservername": 6,
+              "role": 15
+            },
+            "renameByName": {
+              "Time": "",
+              "faultstate": "Fault State",
+              "lastderegisteredcode": "Last Deregistration Code",
+              "machine_associateduserupns": "Assigned User",
+              "machine_currentpowerstate": "Power State",
+              "machine_currentregistrationstate": "Registration State",
+              "machine_dnsname": "Machine",
+              "machine_hostingservername": "Hosting Server"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "3tesla53a",
+          "value": "3tesla53a"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        },
+        "definition": "label_values(ctx_machine_currentpowerstate,instance)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Instance",
+        "multi": false,
+        "name": "instance",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(ctx_machine_currentpowerstate,instance)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "vdiadmn0002.pr.mmmhc.com",
+          "value": "vdiadmn0002.pr.mmmhc.com"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        },
+        "definition": "label_values(ctx_machine_currentpowerstate{catalog_sessionsupport=\"1\"},dnsname)",
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "vdi_machines",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(ctx_machine_currentpowerstate{catalog_sessionsupport=\"1\"},dnsname)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        },
+        "definition": "label_values(ctx_machine_currentpowerstate{catalog_sessionsupport=\"2\"},dnsname)",
+        "hide": 2,
+        "includeAll": true,
+        "multi": true,
+        "name": "vda_machines",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(ctx_machine_currentpowerstate{catalog_sessionsupport=\"2\"},dnsname)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Citrix Site",
+  "uid": "80c4c491-5b8e-4719-b485-15480435437b",
+  "version": 24,
+  "weekStart": ""
+}
