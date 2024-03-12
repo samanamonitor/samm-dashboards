@@ -24,11 +24,11 @@
       "asDropdown": false,
       "icon": "external link",
       "includeVars": false,
-      "keepTime": false,
+      "keepTime": true,
       "tags": [
         "citrix-site"
       ],
-      "targetBlank": true,
+      "targetBlank": false,
       "title": "Citrix Site",
       "tooltip": "",
       "type": "dashboards",

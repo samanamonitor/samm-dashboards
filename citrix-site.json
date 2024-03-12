@@ -24,7 +24,7 @@
       "asDropdown": false,
       "icon": "external link",
       "includeVars": false,
-      "keepTime": false,
+      "keepTime": true,
       "tags": [
         "citrix-failures"
       ],
