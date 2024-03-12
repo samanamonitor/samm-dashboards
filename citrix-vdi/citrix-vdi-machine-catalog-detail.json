@@ -1255,7 +1255,7 @@
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "label_values(ctx_machine_isinmaintenancemode{instance=\"$instance\"},catalog_name)",
+        "definition": "label_values(ctx_machine_isinmaintenancemode{instance=\"$instance\", catalog_sessionsupport=\"1\"},catalog_name)",
         "hide": 0,
         "includeAll": false,
         "label": "Machine Catalog",
@@ -1263,7 +1263,7 @@
         "name": "catalog_name",
         "options": [],
         "query": {
-          "query": "label_values(ctx_machine_isinmaintenancemode{instance=\"$instance\"},catalog_name)",
+          "query": "label_values(ctx_machine_isinmaintenancemode{instance=\"$instance\", catalog_sessionsupport=\"1\"},catalog_name)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
