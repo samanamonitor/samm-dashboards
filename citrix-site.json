@@ -228,7 +228,16 @@
           "color": {
             "mode": "thresholds"
           },
-          "mappings": [],
+          "links": [
+            {
+              "title": "Machine Catalogs",
+              "url": "/d/a89835c6-8b11-41ca-b4b1-6c45cecb7a55/vdi-machine-catalog-overview?orgId=1"
+            },
+            {
+              "title": "Delivery Groups",
+              "url": "/d/qwer35c6-8b11-41ca-b4b1-6c45cecb7a55/vdi-delivery-group-overview?orgId=1"
+            }
+          ],          "mappings": [],
           "noValue": "0",
           "thresholds": {
             "mode": "absolute",
