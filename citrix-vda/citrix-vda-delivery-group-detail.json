@@ -24,13 +24,16 @@
       "asDropdown": false,
       "icon": "external link",
       "includeVars": false,
-      "keepTime": false,
-      "tags": [],
+      "keepTime": true,
+      "tags": [
+        "vda-overview",
+        "vda-delivery-group"
+      ],
       "targetBlank": false,
       "title": "Delivery Group Overview",
       "tooltip": "",
-      "type": "link",
-      "url": "/d/f37aec43-c073-47ad-bdc7-83f46ff26a61/vda-delivery-group-overview?orgId=1&${__url_time_range}"
+      "type": "dashboards",
+      "url": ""
     },
     {
       "asDropdown": false,

@@ -24,13 +24,16 @@
       "asDropdown": false,
       "icon": "external link",
       "includeVars": false,
-      "keepTime": false,
-      "tags": [],
+      "keepTime": true,
+      "tags": [
+        "vdi-overview",
+        "vdi-machine-catalog"
+      ],
       "targetBlank": false,
       "title": "Catalog Overview",
       "tooltip": "",
-      "type": "link",
-      "url": "/d/a89835c6-8b11-41ca-b4b1-6c45cecb7a55/vdi-machine-catalog-overview?orgId=1&${__url_time_range}"
+      "type": "dashboards",
+      "url": ""
     },
     {
       "asDropdown": false,

@@ -24,13 +24,16 @@
       "asDropdown": false,
       "icon": "external link",
       "includeVars": false,
-      "keepTime": false,
-      "tags": [],
+      "keepTime": true,
+      "tags": [
+        "vdi-overview",
+        "vdi-delivery-group"
+      ],
       "targetBlank": false,
-      "title": "Delivery Group Overview",
+      "title": "Catalog Overview",
       "tooltip": "",
-      "type": "link",
-      "url": "/d/eca44171-24b3-4858-af9c-786bd6dbe841/vdi-delivery-group-overview?orgId=1&${__url_time_range}"
+      "type": "dashboards",
+      "url": ""
     },
     {
       "asDropdown": false,

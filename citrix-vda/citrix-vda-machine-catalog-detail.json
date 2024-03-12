@@ -24,13 +24,16 @@
       "asDropdown": false,
       "icon": "external link",
       "includeVars": false,
-      "keepTime": false,
-      "tags": [],
+      "keepTime": true,
+      "tags": [
+        "vda-overview",
+        "vda-machine-catalog"
+      ],
       "targetBlank": false,
-      "title": "Machine Catalog Overview",
+      "title": "Catalog Overview",
       "tooltip": "",
-      "type": "link",
-      "url": "/d/a715ef32-46d4-407e-b76c-fd991392ba28/vda-machine-catalog-overview?orgId=1&${__url_time_range}"
+      "type": "dashboards",
+      "url": ""
     },
     {
       "asDropdown": false,
