@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 7,
+  "id": 23,
   "links": [
     {
       "asDropdown": false,
@@ -27,10 +27,10 @@
       "keepTime": false,
       "tags": [],
       "targetBlank": false,
-      "title": "Catalog Overview",
+      "title": "Delivery Group Overview",
       "tooltip": "",
       "type": "link",
-      "url": "/d/a89835c6-8b11-41ca-b4b1-6c45cecb7a55/vdi-machine-catalog-overview?orgId=1"
+      "url": "/d/f37aec43-c073-47ad-bdc7-83f46ff26a61/citrix-vda/citrix-vda-delivery-group-overview?orgId=1&${__url_time_range}"
     }
   ],
   "liveNow": false,
@@ -134,12 +134,44 @@
                 "value": 1
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value #loadindex"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Load Index"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 9500
+                    },
+                    {
+                      "color": "red",
+                      "value": 9800
+                    }
+                  ]
+                }
+              }
+            ]
           }
         ]
       },
       "gridPos": {
-        "h": 9,
-        "w": 7,
+        "h": 5,
+        "w": 19,
         "x": 0,
         "y": 0
       },
@@ -167,9 +199,9 @@
             "type": "prometheus",
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
-          "editorMode": "code",
+          "editorMode": "builder",
           "exemplar": false,
-          "expr": "count(ctx_machine_isinmaintenancemode{catalog_name=\"$catalog\", instance=\"$instance\"})",
+          "expr": "count(ctx_machine_isinmaintenancemode{desktopgroup_name=\"$desktopgroup_name\", instance=\"$instance\"})",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -182,30 +214,19 @@
             "type": "prometheus",
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
+          "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "count(ctx_machine_currentsessioncount{catalog_name=\"$catalog\"} == 0)",
+          "expr": "((sum(ctx_machine_currentloadindex_effectiveloadindex{desktopgroup_name=\"$desktopgroup_name\", isinmaintenancemode=\"false\", currentregistrationstate=\"1\"}) or vector(0)) + \r\n((count(ctx_machine_currentloadindex_effectiveloadindex{desktopgroup_name=\"$desktopgroup_name\", isinmaintenancemode=\"false\", currentregistrationstate!=\"1\"}) or vector(0)) * 10000) + \r\n((count(ctx_machine_currentloadindex_effectiveloadindex{desktopgroup_name=\"$desktopgroup_name\", isinmaintenancemode=\"true\"}) or vector(0)) * 10000)) / count(ctx_machine_currentloadindex_effectiveloadindex{desktopgroup_name=\"$desktopgroup_name\"})",
           "format": "table",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
-          "refId": "available"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "count(ctx_machine_currentsessioncount{catalog_name=\"$catalog\"} > 0)",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "inuse"
+          "refId": "loadindex",
+          "useBackend": false
         },
         {
           "datasource": {
@@ -213,9 +234,9 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "disableTextWrap": false,
-          "editorMode": "code",
+          "editorMode": "builder",
           "exemplar": false,
-          "expr": "count(ctx_machine_currentregistrationstate{catalog_name=\"$catalog\",instance=\"$instance\"} == 1)",
+          "expr": "count(ctx_machine_currentregistrationstate{desktopgroup_name=\"$desktopgroup_name\", instance=\"$instance\"} == 1)",
           "format": "table",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -230,15 +251,19 @@
             "type": "prometheus",
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
-          "editorMode": "code",
+          "disableTextWrap": false,
+          "editorMode": "builder",
           "exemplar": false,
-          "expr": "count(ctx_machine_currentregistrationstate{catalog_name=\"$catalog\",instance=\"$instance\"} != 1)",
+          "expr": "count(ctx_machine_currentregistrationstate{desktopgroup_name=\"$desktopgroup_name\", instance=\"$instance\"} != 1)",
           "format": "table",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
-          "refId": "unregistered"
+          "refId": "unregistered",
+          "useBackend": false
         },
         {
           "datasource": {
@@ -246,9 +271,9 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "disableTextWrap": false,
-          "editorMode": "code",
+          "editorMode": "builder",
           "exemplar": false,
-          "expr": "count(ctx_machine_isinmaintenancemode{catalog_name=\"$catalog\", instance=\"$instance\"} == 1)",
+          "expr": "count(ctx_machine_isinmaintenancemode{desktopgroup_name=\"$desktopgroup_name\", instance=\"$instance\"} == 1)",
           "format": "table",
           "fullMetaSearch": false,
           "hide": false,
@@ -257,6 +282,24 @@
           "legendFormat": "__auto",
           "range": false,
           "refId": "inmaintenance",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktop_group\"})",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "sessions",
+          "range": true,
+          "refId": "sessions",
           "useBackend": false
         }
       ],
@@ -303,7 +346,6 @@
           "id": "organize",
           "options": {
             "excludeByName": {
-              "Percent InMaintenance": false,
               "Value #inmaintenance": true,
               "Value #unregistered": true
             },
@@ -321,11 +363,10 @@
             },
             "renameByName": {
               "Value #available": "Available",
-              "Value #inmaintenance": "InMaintenance",
               "Value #inuse": "InUse",
               "Value #registered": "Registered",
               "Value #total": "Total",
-              "Value #unregistered": "UnRegistered"
+              "sessions": "Sessions"
             }
           }
         }
@@ -375,6 +416,7 @@
             }
           },
           "mappings": [],
+          "max": 10000,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -384,8 +426,12 @@
                 "value": null
               },
               {
+                "color": "#EAB839",
+                "value": 9500
+              },
+              {
                 "color": "red",
-                "value": 80
+                "value": 9900
               }
             ]
           },
@@ -426,9 +472,9 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 16,
-        "x": 7,
-        "y": 0
+        "w": 9,
+        "x": 0,
+        "y": 5
       },
       "id": 98,
       "options": {
@@ -449,16 +495,20 @@
             "type": "prometheus",
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
+          "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "count(ctx_machine_currentsessioncount{catalog_name=\"$catalog\"} == 0)",
+          "expr": "((sum(ctx_machine_currentloadindex_effectiveloadindex{desktopgroup_name=\"$desktopgroup_name\", isinmaintenancemode=\"false\", currentregistrationstate=\"1\"}) or vector(0)) + \r\n((count(ctx_machine_currentloadindex_effectiveloadindex{desktopgroup_name=\"$desktopgroup_name\", isinmaintenancemode=\"false\", currentregistrationstate!=\"1\"}) or vector(0)) * 10000) + \r\n((count(ctx_machine_currentloadindex_effectiveloadindex{desktopgroup_name=\"$desktopgroup_name\", isinmaintenancemode=\"true\"}) or vector(0)) * 10000)) / count(ctx_machine_currentloadindex_effectiveloadindex{desktopgroup_name=\"$desktopgroup_name\"})",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
-      "title": "Available Machines",
+      "title": "Overall Load Index",
       "type": "timeseries"
     },
     {
@@ -554,9 +604,9 @@
         ]
       },
       "gridPos": {
-        "h": 4,
-        "w": 16,
-        "x": 7,
+        "h": 5,
+        "w": 10,
+        "x": 9,
         "y": 5
       },
       "id": 1,
@@ -578,117 +628,153 @@
             "type": "prometheus",
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_catalog\"} == 0)",
+          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktop_group\"}) == 0",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "Unknown",
           "range": true,
-          "refId": "A"
+          "refId": "unknown",
+          "useBackend": false
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_catalog\"} == 1)",
+          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktop_group\"} == 1)",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "Connected",
           "range": true,
-          "refId": "B"
+          "refId": "connected",
+          "useBackend": false
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_catalog\"} == 2)",
+          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktop_group\"} == 2)",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "Disconnected",
           "range": true,
-          "refId": "C"
+          "refId": "disconnected",
+          "useBackend": false
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_catalog\"} == 5)",
+          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktop_group\"} == 5)",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "Active",
           "range": true,
-          "refId": "D"
+          "refId": "active",
+          "useBackend": false
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_catalog\"} == 4)",
+          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktop_group\"} == 4)",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "Preparing Session",
           "range": true,
-          "refId": "E"
+          "refId": "preparingsession",
+          "useBackend": false
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_catalog\"} == 6)",
+          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktop_group\"} == 6)",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "Reconnecting",
           "range": true,
-          "refId": "F"
+          "refId": "reconnecting",
+          "useBackend": false
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_catalog\"} == 7)",
+          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktop_group\"} == 7)",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "Non Brokered Session",
           "range": true,
-          "refId": "G"
+          "refId": "nonbrokeredsession",
+          "useBackend": false
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_catalog\"} == 8)",
+          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktop_group\"} == 8)",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "Other",
           "range": true,
-          "refId": "H"
+          "refId": "Other",
+          "useBackend": false
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_catalog\"} == 9)",
+          "expr": "count(ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktop_group\"} == 9)",
+          "fullMetaSearch": false,
           "hide": false,
+          "includeNullMetadata": true,
           "instant": false,
           "legendFormat": "Pending",
           "range": true,
-          "refId": "I"
+          "refId": "pending",
+          "useBackend": false
         }
       ],
       "title": "Sessions",
@@ -700,11 +786,11 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 9
+        "y": 10
       },
       "id": 60,
       "panels": [],
-      "title": "Total Catalog",
+      "title": "Details",
       "type": "row"
     },
     {
@@ -852,10 +938,10 @@
         ]
       },
       "gridPos": {
-        "h": 7,
-        "w": 12,
+        "h": 8,
+        "w": 19,
         "x": 0,
-        "y": 10
+        "y": 11
       },
       "id": 97,
       "options": {
@@ -869,12 +955,7 @@
           "show": false
         },
         "showHeader": true,
-        "sortBy": [
-          {
-            "desc": false,
-            "displayName": "Machine"
-          }
-        ]
+        "sortBy": []
       },
       "pluginVersion": "10.3.1",
       "targets": [
@@ -886,7 +967,7 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "ctx_session_connectionstate{machine_dnsname=~\"$machines_in_catalog\"}",
+          "expr": "ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktop_group\"}",
           "format": "table",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -923,8 +1004,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -937,35 +1017,8 @@
         "overrides": [
           {
             "matcher": {
-              "id": "byRegexp",
-              "options": "/.*/"
-            },
-            "properties": [
-              {
-                "id": "custom.hidden",
-                "value": true
-              }
-            ]
-          },
-          {
-            "matcher": {
               "id": "byName",
-              "options": "dnsname"
-            },
-            "properties": [
-              {
-                "id": "custom.hidden"
-              },
-              {
-                "id": "displayName",
-                "value": "Machine"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value #A"
+              "options": "currentregistrationstate"
             },
             "properties": [
               {
@@ -976,10 +1029,6 @@
                 "value": {
                   "type": "color-background"
                 }
-              },
-              {
-                "id": "displayName",
-                "value": "Registration State"
               },
               {
                 "id": "mappings",
@@ -1011,7 +1060,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Value #B"
+              "options": "Is In Maintenance"
             },
             "properties": [
               {
@@ -1022,12 +1071,12 @@
                 "value": [
                   {
                     "options": {
-                      "0": {
+                      "false": {
                         "color": "green",
                         "index": 1,
                         "text": "No"
                       },
-                      "1": {
+                      "true": {
                         "color": "red",
                         "index": 0,
                         "text": "Yes"
@@ -1042,17 +1091,13 @@
                 "value": {
                   "type": "color-background"
                 }
-              },
-              {
-                "id": "displayName",
-                "value": "In Maintenance"
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "Value #C"
+              "options": "Value #powerstate"
             },
             "properties": [
               {
@@ -1111,10 +1156,65 @@
               },
               {
                 "id": "custom.hidden"
-              },
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Machine"
+            },
+            "properties": [
               {
-                "id": "displayName",
-                "value": "Power State"
+                "id": "custom.width",
+                "value": 176
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value #D"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Registration State"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 167
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Power State"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 111
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Sessions"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 105
               }
             ]
           }
@@ -1122,9 +1222,9 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 11,
-        "x": 12,
-        "y": 10
+        "w": 19,
+        "x": 0,
+        "y": 19
       },
       "id": 96,
       "options": {
@@ -1140,12 +1240,7 @@
         },
         "frameIndex": 1,
         "showHeader": true,
-        "sortBy": [
-          {
-            "desc": true,
-            "displayName": "__name__"
-          }
-        ]
+        "sortBy": []
       },
       "pluginVersion": "10.3.1",
       "targets": [
@@ -1154,43 +1249,38 @@
             "type": "prometheus",
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "ctx_machine_currentregistrationstate{catalog_name=\"$catalog\", instance=\"$instance\"}",
+          "expr": "ctx_machine_currentpowerstate{desktopgroup_name=\"$desktopgroup_name\", instance=\"$instance\"}",
           "format": "table",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
-          "refId": "A"
+          "refId": "powerstate",
+          "useBackend": false
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "ctx_machine_isinmaintenancemode{catalog_name=\"$catalog\", instance=\"$instance\"}",
+          "expr": "label_replace(count by(machine_dnsname) (ctx_session_connectionstate{machine_dnsname=~\"$machines_in_desktop_group\"} != 3), \"dnsname\", \"$1\", \"machine_dnsname\", \"(.*)\")",
           "format": "table",
+          "fullMetaSearch": false,
           "hide": false,
-          "instant": true,
-          "range": false,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "ctx_machine_currentpowerstate{catalog_name=\"$catalog\",instance=\"$instance\"}",
-          "format": "table",
-          "hide": false,
+          "includeNullMetadata": true,
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
-          "refId": "C"
+          "refId": "D",
+          "useBackend": false
         }
       ],
       "title": "Machines",
@@ -1199,7 +1289,115 @@
           "id": "joinByField",
           "options": {
             "byField": "dnsname",
-            "mode": "outer"
+            "mode": "inner"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Time 2": true,
+              "Time 3": true,
+              "Time 4": true,
+              "Value #isinmaintenance": true,
+              "__name__": true,
+              "__name__ 1": true,
+              "__name__ 2": true,
+              "__name__ 3": true,
+              "catalog_allocationtype": true,
+              "catalog_allocationtype 2": true,
+              "catalog_allocationtype 3": true,
+              "catalog_ismachinephysical": true,
+              "catalog_ismachinephysical 2": true,
+              "catalog_ismachinephysical 3": true,
+              "catalog_name": true,
+              "catalog_name 2": true,
+              "catalog_name 3": true,
+              "catalog_persistentuserchanges": true,
+              "catalog_persistentuserchanges 2": true,
+              "catalog_persistentuserchanges 3": true,
+              "catalog_provisioningtype": true,
+              "catalog_provisioningtype 2": true,
+              "catalog_provisioningtype 3": true,
+              "catalog_sessionsupport": true,
+              "catalog_sessionsupport 2": true,
+              "catalog_sessionsupport 3": true,
+              "currentregistrationstate": false,
+              "currentregistrationstate 2": true,
+              "currentregistrationstate 3": true,
+              "desktopgroup_deliverytype": true,
+              "desktopgroup_deliverytype 2": true,
+              "desktopgroup_deliverytype 3": true,
+              "desktopgroup_desktopkind": true,
+              "desktopgroup_desktopkind 2": true,
+              "desktopgroup_desktopkind 3": true,
+              "desktopgroup_name": true,
+              "desktopgroup_name 2": true,
+              "desktopgroup_name 3": true,
+              "fqdn": true,
+              "fqdn 2": true,
+              "fqdn 3": true,
+              "hostedmachinename": true,
+              "hostedmachinename 2": true,
+              "hostedmachinename 3": true,
+              "hostingservername": false,
+              "hostingservername 2": true,
+              "instance": true,
+              "instance 2": true,
+              "instance 3": true,
+              "isinmaintenancemode": false,
+              "isinmaintenancemode 2": true,
+              "isinmaintenancemode 3": true,
+              "job": true,
+              "job 2": true,
+              "job 3": true,
+              "layer": true,
+              "layer 2": true,
+              "layer 3": true,
+              "machine_dnsname": true,
+              "role": true,
+              "role 2": true,
+              "role 3": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "Time": 2,
+              "Time 2": 4,
+              "Value #D": 1,
+              "Value #powerstate": 22,
+              "__name__": 23,
+              "catalog_allocationtype": 5,
+              "catalog_ismachinephysical": 6,
+              "catalog_name": 7,
+              "catalog_persistentuserchanges": 8,
+              "catalog_provisioningtype": 9,
+              "catalog_sessionsupport": 10,
+              "currentregistrationstate": 11,
+              "desktopgroup_deliverytype": 12,
+              "desktopgroup_desktopkind": 13,
+              "desktopgroup_name": 14,
+              "dnsname": 0,
+              "fqdn": 15,
+              "hostedmachinename": 16,
+              "hostingservername": 24,
+              "instance": 17,
+              "isinmaintenancemode": 18,
+              "job": 19,
+              "layer": 20,
+              "machine_dnsname": 3,
+              "role": 21
+            },
+            "renameByName": {
+              "Value #A": "Registration State",
+              "Value #B": "Is In Maintenance",
+              "Value #C": "Power State",
+              "Value #D": "Sessions",
+              "Value #powerstate": "Power State",
+              "currentregistrationstate": "Registration State",
+              "dnsname": "Machine",
+              "isinmaintenancemode": "Is In Maintenance"
+            }
           }
         }
       ],
@@ -1228,6 +1426,7 @@
         "name": "instance",
         "options": [],
         "query": {
+          "qryType": 1,
           "query": "label_values(ctx_machine_isinmaintenancemode,instance)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
@@ -1240,22 +1439,23 @@
       {
         "current": {
           "selected": false,
-          "text": "pool main pvs",
-          "value": "pool main pvs"
+          "text": "xa group a",
+          "value": "xa group a"
         },
         "datasource": {
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "label_values(ctx_machine_isinmaintenancemode{instance=\"$instance\"},catalog_name)",
+        "definition": "label_values(ctx_machine_isinmaintenancemode{instance=\"$instance\", catalog_sessionsupport=\"2\"},desktopgroup_name)",
         "hide": 0,
         "includeAll": false,
-        "label": "Catalog",
+        "label": "Desktop Group",
         "multi": false,
-        "name": "catalog",
+        "name": "desktopgroup_name",
         "options": [],
         "query": {
-          "query": "label_values(ctx_machine_isinmaintenancemode{instance=\"$instance\"},catalog_name)",
+          "qryType": 1,
+          "query": "label_values(ctx_machine_isinmaintenancemode{instance=\"$instance\", catalog_sessionsupport=\"2\"},desktopgroup_name)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -1278,76 +1478,15 @@
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "query_result(ctx_machine_currentregistrationstate != 1)",
+        "definition": "label_values(ctx_machine_isinmaintenancemode{desktopgroup_name=\"$desktopgroup_name\"},dnsname)",
         "hide": 2,
         "includeAll": true,
         "multi": true,
-        "name": "unregistered",
+        "name": "machines_in_desktop_group",
         "options": [],
         "query": {
-          "qryType": 3,
-          "query": "query_result(ctx_machine_currentregistrationstate != 1)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": ".*dnsname=\"(.*?)\".*",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      },
-      {
-        "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-        },
-        "definition": "query_result(ctx_machine_currentregistrationstate{instance=\"$instance\",catalog_name=\"$catalog\"} == 1)",
-        "hide": 2,
-        "includeAll": true,
-        "multi": true,
-        "name": "registered",
-        "options": [],
-        "query": {
-          "qryType": 3,
-          "query": "query_result(ctx_machine_currentregistrationstate{instance=\"$instance\",catalog_name=\"$catalog\"} == 1)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": "/.*dnsname=\"([^\"]+)\".*/",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      },
-      {
-        "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-        },
-        "definition": "label_values(ctx_machine_isinmaintenancemode{catalog_name=\"$catalog\"},dnsname)",
-        "hide": 2,
-        "includeAll": true,
-        "multi": true,
-        "name": "machines_in_catalog",
-        "options": [],
-        "query": {
-          "query": "label_values(ctx_machine_isinmaintenancemode{catalog_name=\"$catalog\"},dnsname)",
+          "qryType": 1,
+          "query": "label_values(ctx_machine_isinmaintenancemode{desktopgroup_name=\"$desktopgroup_name\"},dnsname)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -1359,13 +1498,13 @@
     ]
   },
   "time": {
-    "from": "now-2d",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
-  "title": "VDI Machine Catalog",
-  "uid": "f1fe685e-6e95-4bcb-913b-5f567577160c",
-  "version": 10,
+  "title": "VDA Delivery Group",
+  "uid": "ba8b8650-2456-4ac6-847e-75394417c614",
+  "version": 11,
   "weekStart": ""
 }

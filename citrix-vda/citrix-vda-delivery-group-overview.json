@@ -76,7 +76,7 @@
                 "value": [
                   {
                     "title": "",
-                    "url": "/d/ba8b8650-2456-4ac6-847e-75394417c614/vda-delivery-group?orgId=1&refresh=30s&var-instance=${instance}﻿&var-desktopgroup_name=${__data.fields.desktopgroup_name}&${__url_time_range}"
+                    "url": "/d/ba8b8650-2456-4ac6-847e-75394417c614/citrix-vda/citrix-vda-delivery-group-detail?orgId=1&refresh=30s&var-instance=${instance}&var-desktopgroup_name=${__data.fields.desktopgroup_name}&${__url_time_range}"
                   }
                 ]
               }
