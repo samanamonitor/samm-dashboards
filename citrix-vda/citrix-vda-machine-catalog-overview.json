@@ -78,7 +78,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Delivery Group"
+                "value": "Machine Catalog"
               },
               {
                 "id": "custom.filterable",
@@ -89,7 +89,7 @@
                 "value": [
                   {
                     "title": "",
-                    "url": "/d/ba8b8650-2456-4ac6-847e-75394417c614/vda-machine-catalog-detail?orgId=1&var-instance=${instance}&var-catalog_name=${__data.fields.catalog_name}&${__url_time_range}"
+                    "url": "/d/828cfd83-e439-4d80-923c-63f616517e1f/vda-machine-catalog-detail?orgId=1&var-instance=${instance}&var-catalog_name=${__data.fields.catalog_name}&${__url_time_range}"
                   }
                 ]
               }
