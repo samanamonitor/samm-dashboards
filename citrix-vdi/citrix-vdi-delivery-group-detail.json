@@ -1225,7 +1225,9 @@
   ],
   "refresh": "30s",
   "schemaVersion": 39,
-  "tags": [],
+  "tags": [
+    "vdi-delivery-group"
+  ],
   "templating": {
     "list": [
       {

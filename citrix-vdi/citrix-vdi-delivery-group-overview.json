@@ -382,7 +382,10 @@
   ],
   "refresh": "",
   "schemaVersion": 39,
-  "tags": [],
+  "tags": [
+    "vdi-overview",
+    "vdi-delivery-group"
+  ],
   "templating": {
     "list": [
       {
