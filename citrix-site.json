@@ -231,11 +231,11 @@
           "links": [
             {
               "title": "Machine Catalogs",
-              "url": "/d/a89835c6-8b11-41ca-b4b1-6c45cecb7a55/vdi-machine-catalog-overview?orgId=1"
+              "url": "/d/a89835c6-8b11-41ca-b4b1-6c45cecb7a55/vdi-machine-catalog-overview?orgId=1&${__url_time_range}"
             },
             {
               "title": "Delivery Groups",
-              "url": "/d/qwer35c6-8b11-41ca-b4b1-6c45cecb7a55/vdi-delivery-group-overview?orgId=1"
+              "url": "/d/qwer35c6-8b11-41ca-b4b1-6c45cecb7a55/vdi-delivery-group-overview?orgId=1&${__url_time_range}"
             }
           ],          "mappings": [],
           "noValue": "0",
@@ -538,7 +538,7 @@
           "links": [
             {
               "title": "Machine Catalogs",
-              "url": "/d/asdfec43-c073-47ad-bdc7-83f46ff26a61/vda-machine-catalog-overview?orgId=1${__url_time_range}"
+              "url": "/d/asdfec43-c073-47ad-bdc7-83f46ff26a61/vda-machine-catalog-overview?orgId=1&${__url_time_range}"
             },
             {
               "title": "Delivery Groups",
