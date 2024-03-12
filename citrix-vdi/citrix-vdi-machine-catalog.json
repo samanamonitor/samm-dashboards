@@ -30,7 +30,7 @@
       "title": "Catalog Overview",
       "tooltip": "",
       "type": "link",
-      "url": "/d/a89835c6-8b11-41ca-b4b1-6c45cecb7a55/vdi-machine-catalog-overview?orgId=1"
+      "url": "/d/a89835c6-8b11-41ca-b4b1-6c45cecb7a55/vdi-machine-catalog-overview?orgId=1&${__url_time_range}"
     },
     {
       "asDropdown": false,
@@ -42,7 +42,7 @@
       "title": "Citrix Site",
       "tooltip": "",
       "type": "link",
-      "url": "/d/80c4c491-5b8e-4719-b485-15480435437b/citrix-site?orgId=1"
+      "url": "/d/80c4c491-5b8e-4719-b485-15480435437b/citrix-site?orgId=1&${__url_time_range}"
     }
   ],
   "liveNow": false,

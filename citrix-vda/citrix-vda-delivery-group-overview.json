@@ -30,7 +30,7 @@
       "title": "Citrix Site",
       "tooltip": "",
       "type": "link",
-      "url": "/d/80c4c491-5b8e-4719-b485-15480435437b/citrix-site?orgId=1"
+      "url": "/d/80c4c491-5b8e-4719-b485-15480435437b/citrix-site?orgId=1&${__url_time_range}"
     }
   ],
   "liveNow": false,

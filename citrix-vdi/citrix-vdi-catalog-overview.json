@@ -30,7 +30,7 @@
       "title": "Citrix Site",
       "tooltip": "",
       "type": "link",
-      "url": "/d/80c4c491-5b8e-4719-b485-15480435437b/citrix-site?orgId=1"
+      "url": "/d/80c4c491-5b8e-4719-b485-15480435437b/citrix-site?orgId=1&${__url_time_range}"
     }
   ],
   "liveNow": false,
@@ -88,7 +88,7 @@
                 "value": [
                   {
                     "title": "",
-                    "url": "/d/f1fe685e-6e95-4bcb-913b-5f567577160c/vdi-machine-catalog?orgId=1&refresh=30s&var-instance=${instance}﻿&var-catalog=${__data.fields[\"catalog_name 1 (lastNotNull)\"]}"
+                    "url": "/d/f1fe685e-6e95-4bcb-913b-5f567577160c/vdi-machine-catalog?orgId=1&refresh=30s&var-instance=${instance}&${__url_time_range}&var-catalog=${__data.fields[\"catalog_name 1 (lastNotNull)\"]}"
                   }
                 ]
               }
