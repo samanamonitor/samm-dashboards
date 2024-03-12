@@ -34,15 +34,17 @@
     },
     {
       "asDropdown": false,
-      "icon": "dashboard",
+      "icon": "external link",
       "includeVars": false,
-      "keepTime": true,
-      "tags": [],
-      "targetBlank": false,
+      "keepTime": false,
+      "tags": [
+        "citrix-site"
+      ],
+      "targetBlank": true,
       "title": "Citrix Site",
       "tooltip": "",
-      "type": "link",
-      "url": "/d/80c4c491-5b8e-4719-b485-15480435437b/citrix-site?orgId=1&${__url_time_range}"
+      "type": "dashboards",
+      "url": ""
     }
   ],
   "liveNow": false,
