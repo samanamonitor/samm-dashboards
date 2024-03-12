@@ -1225,9 +1225,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "3tesla53a",
-          "value": "3tesla53a"
+          "selected": false
         },
         "datasource": {
           "type": "prometheus",
@@ -1251,9 +1249,7 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "pool main pvs",
-          "value": "pool main pvs"
+          "selected": false
         },
         "datasource": {
           "type": "prometheus",
@@ -1272,68 +1268,6 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      },
-      {
-        "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-        },
-        "definition": "query_result(ctx_machine_currentregistrationstate != 1)",
-        "hide": 2,
-        "includeAll": true,
-        "multi": true,
-        "name": "unregistered",
-        "options": [],
-        "query": {
-          "qryType": 3,
-          "query": "query_result(ctx_machine_currentregistrationstate != 1)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": ".*dnsname=\"(.*?)\".*",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      },
-      {
-        "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-        },
-        "definition": "query_result(ctx_machine_currentregistrationstate{instance=\"$instance\",catalog_name=\"$catalog\"} == 1)",
-        "hide": 2,
-        "includeAll": true,
-        "multi": true,
-        "name": "registered",
-        "options": [],
-        "query": {
-          "qryType": 3,
-          "query": "query_result(ctx_machine_currentregistrationstate{instance=\"$instance\",catalog_name=\"$catalog\"} == 1)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": "/.*dnsname=\"([^\"]+)\".*/",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
