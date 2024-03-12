@@ -77,7 +77,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Delivery Group Overview"
+                "value": "Delivery Group"
               },
               {
                 "id": "custom.filterable",
