@@ -19,7 +19,22 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 11,
-  "links": [],
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [
+        "citrix-site"
+      ],
+      "targetBlank": true,
+      "title": "Citrix Site",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    }
+  ],
   "liveNow": false,
   "panels": [
     {
@@ -1207,7 +1222,9 @@
   ],
   "refresh": "",
   "schemaVersion": 39,
-  "tags": [],
+  "tags": [
+    "citrix-failures"
+  ],
   "templating": {
     "list": [
       {

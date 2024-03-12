@@ -1727,7 +1727,9 @@
   ],
   "refresh": "",
   "schemaVersion": 39,
-  "tags": [],
+  "tags": [
+    "citrix-site"
+  ],
   "templating": {
     "list": [
       {

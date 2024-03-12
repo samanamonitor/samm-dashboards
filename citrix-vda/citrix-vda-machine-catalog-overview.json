@@ -385,7 +385,10 @@
   ],
   "refresh": "",
   "schemaVersion": 39,
-  "tags": [],
+  "tags": [
+        "vda-overview",
+        "vda-machine-catalog"
+      ],
   "templating": {
     "list": [
       {
