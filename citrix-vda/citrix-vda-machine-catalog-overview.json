@@ -73,7 +73,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "desktopgroup_name"
+              "options": "catalog_name"
             },
             "properties": [
               {
@@ -89,7 +89,7 @@
                 "value": [
                   {
                     "title": "",
-                    "url": "/d/ba8b8650-2456-4ac6-847e-75394417c614/vda-delivery-group?orgId=1&refresh=30s&var-instance=${instance}&var-desktopgroup_name=${__data.fields.desktopgroup_name}&${__url_time_range}"
+                    "url": "/d/ba8b8650-2456-4ac6-847e-75394417c614/vda-machine-catalog-detail?orgId=1&var-instance=${instance}&var-catalog_name=${__data.fields.catalog_name}&${__url_time_range}"
                   }
                 ]
               }
@@ -204,7 +204,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "ctx_machine_isinmaintenancemode{desktopgroup_name=~\"$desktopgroup\", instance=\"$instance\", catalog_sessionsupport=\"2\"}",
+          "expr": "ctx_machine_isinmaintenancemode{instance=\"$instance\", catalog_sessionsupport=\"2\"}",
           "format": "table",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -221,7 +221,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "ctx_machine_currentregistrationstate{desktopgroup_name=~\"$desktopgroup\", instance=\"$instance\", catalog_sessionsupport=\"2\"} == 1",
+          "expr": "ctx_machine_currentregistrationstate{instance=\"$instance\", catalog_sessionsupport=\"2\"} == 1",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -236,7 +236,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "ctx_machine_currentregistrationstate{desktopgroup_name=~\"$desktopgroup\", instance=\"$instance\", catalog_sessionsupport=\"2\"} != 1",
+          "expr": "ctx_machine_currentregistrationstate{instance=\"$instance\", catalog_sessionsupport=\"2\"} != 1",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -251,7 +251,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "ctx_machine_currentsessioncount{desktopgroup_name=~\"$desktopgroup\", instance=\"$instance\", catalog_sessionsupport=\"2\"}",
+          "expr": "ctx_machine_currentsessioncount{instance=\"$instance\", catalog_sessionsupport=\"2\"}",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -278,7 +278,7 @@
                 "Value #registered",
                 "Value #unregistered",
                 "Value #sessioncount",
-                "desktopgroup_name 1"
+                "catalog_name 1"
               ]
             }
           }
@@ -311,7 +311,7 @@
                 ],
                 "operation": "aggregate"
               },
-              "desktopgroup_name 1": {
+              "catalog_name 1": {
                 "aggregations": [],
                 "operation": "groupby"
               },
@@ -351,7 +351,7 @@
                 ],
                 "operation": "aggregate"
               },
-              "desktopgroup_name": {
+              "catalog_name": {
                 "aggregations": [],
                 "operation": "groupby"
               },
@@ -372,7 +372,7 @@
                     "value": "none"
                   }
                 },
-                "fieldName": "desktopgroup_name"
+                "fieldName": "catalog_name"
               }
             ],
             "match": "any",
@@ -407,37 +407,6 @@
         "query": {
           "qryType": 1,
           "query": "label_values(ctx_machine_isinmaintenancemode,instance)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      },
-      {
-        "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-        },
-        "definition": "label_values(ctx_machine_isinmaintenancemode,desktopgroup_name)",
-        "hide": 2,
-        "includeAll": true,
-        "multi": true,
-        "name": "desktopgroup",
-        "options": [],
-        "query": {
-          "qryType": 1,
-          "query": "label_values(ctx_machine_isinmaintenancemode,desktopgroup_name)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
