@@ -535,7 +535,16 @@
           "color": {
             "mode": "thresholds"
           },
-          "mappings": [],
+          "links": [
+            {
+              "title": "Machine Catalogs",
+              "url": "/d/asdfec43-c073-47ad-bdc7-83f46ff26a61/vda-machine-catalog-overview?orgId=1${__url_time_range}"
+            },
+            {
+              "title": "Delivery Groups",
+              "url": "/d/f37aec43-c073-47ad-bdc7-83f46ff26a61/vda-delivery-group-overview?orgId=1&${__url_time_range}"
+            }
+          ],          "mappings": [],
           "noValue": "0",
           "thresholds": {
             "mode": "absolute",
