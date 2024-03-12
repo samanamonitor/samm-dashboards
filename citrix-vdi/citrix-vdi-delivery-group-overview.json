@@ -77,7 +77,7 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Machine Catalog"
+                "value": "Delivery Group Overview"
               },
               {
                 "id": "custom.filterable",
@@ -88,7 +88,7 @@
                 "value": [
                   {
                     "title": "",
-                    "url": "/d/ad09a7a4-0c28-4f86-88ee-1d82f4a33f84/vdi-delivery-group-detail?orgId=1&var-instance=${instance}&${__url_time_range}&var-catalog=${__data.fields[\"desktopgroup_name 1 (lastNotNull)\"]}"
+                    "url": "/d/ad09a7a4-0c28-4f86-88ee-1d82f4a33f84/vdi-delivery-group-detail?orgId=1&var-instance=${instance}&${__url_time_range}&var-desktopgroup_name=${__data.fields[\"desktopgroup_name 1 (lastNotNull)\"]}"
                   }
                 ]
               }
