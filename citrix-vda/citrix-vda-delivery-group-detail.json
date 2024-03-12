@@ -30,7 +30,7 @@
       "title": "Delivery Group Overview",
       "tooltip": "",
       "type": "link",
-      "url": "/d/f37aec43-c073-47ad-bdc7-83f46ff26a61/citrix-vda/citrix-vda-delivery-group-overview?orgId=1&${__url_time_range}"
+      "url": "/d/f37aec43-c073-47ad-bdc7-83f46ff26a61/vda-delivery-group-overview?orgId=1&${__url_time_range}"
     }
   ],
   "liveNow": false,
