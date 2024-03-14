@@ -410,7 +410,8 @@
               "job": true,
               "layer": true,
               "role": true,
-              "servicetype": true
+              "servicetype": true,
+              "dn": true
             },
             "includeByName": {},
             "indexByName": {},
