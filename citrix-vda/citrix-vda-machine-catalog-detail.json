@@ -913,6 +913,16 @@
                 "id": "custom.hidden"
               },
               {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "Server Details",
+                    "url": "d/c96dd703-89d1-42e6-be4d-c9ccf02b7487/server-status?orgId=1&refresh=10s&var-fqdn=${__data.fields.machine_dnsname}"
+                  }
+                ]
+              },
+              {
                 "id": "displayName",
                 "value": "Machine"
               }
@@ -1522,6 +1532,6 @@
   "timezone": "",
   "title": "VDA Machine Catalog Detail",
   "uid": "828cfd83-e439-4d80-923c-63f616517e1f",
-  "version": 11,
+  "version": 12,
   "weekStart": ""
 }
