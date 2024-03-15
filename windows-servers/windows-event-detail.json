@@ -128,8 +128,8 @@
               "placement": {
                 "height": 189,
                 "left": 200,
-                "top": 203,
-                "width": 704
+                "top": 205,
+                "width": 620
               },
               "type": "metric-value"
             },
@@ -164,7 +164,7 @@
               "placement": {
                 "height": 50,
                 "left": 55,
-                "top": 203,
+                "top": 205,
                 "width": 129
               },
               "type": "text"
@@ -191,7 +191,7 @@
                 },
                 "size": 12,
                 "text": {
-                  "field": "ComputerName",
+                  "field": "SourceName",
                   "fixed": "",
                   "mode": "field"
                 },
@@ -201,12 +201,12 @@
                 "horizontal": "left",
                 "vertical": "top"
               },
-              "name": "ServerValue",
+              "name": "SourceValue",
               "placement": {
                 "height": 50,
                 "left": 200,
-                "top": 3,
-                "width": 314
+                "top": 155,
+                "width": 620
               },
               "type": "metric-value"
             },
@@ -229,7 +229,7 @@
                 },
                 "size": 16,
                 "text": {
-                  "fixed": "Server"
+                  "fixed": "Source Name"
                 },
                 "valign": "middle"
               },
@@ -237,47 +237,11 @@
                 "horizontal": "left",
                 "vertical": "top"
               },
-              "name": "ServerLabel",
+              "name": "SourceLabel",
               "placement": {
                 "height": 50,
                 "left": 55,
-                "top": 3,
-                "width": 129
-              },
-              "type": "text"
-            },
-            {
-              "background": {
-                "color": {
-                  "fixed": "transparent"
-                }
-              },
-              "border": {
-                "color": {
-                  "fixed": "dark-blue"
-                },
-                "width": 1
-              },
-              "config": {
-                "align": "right",
-                "color": {
-                  "fixed": "rgb(204, 204, 220)"
-                },
-                "size": 16,
-                "text": {
-                  "fixed": "Event Id"
-                },
-                "valign": "middle"
-              },
-              "constraint": {
-                "horizontal": "left",
-                "vertical": "top"
-              },
-              "name": "EventIdLabel",
-              "placement": {
-                "height": 50,
-                "left": 55,
-                "top": 103,
+                "top": 155,
                 "width": 129
               },
               "type": "text"
@@ -318,8 +282,8 @@
               "placement": {
                 "height": 50,
                 "left": 200,
-                "top": 103,
-                "width": 314
+                "top": 105,
+                "width": 620
               },
               "type": "metric-value"
             },
@@ -342,7 +306,7 @@
                 },
                 "size": 16,
                 "text": {
-                  "fixed": "Source Name"
+                  "fixed": "Event Id"
                 },
                 "valign": "middle"
               },
@@ -350,88 +314,11 @@
                 "horizontal": "left",
                 "vertical": "top"
               },
-              "name": "Element 7",
+              "name": "EventIdLabel",
               "placement": {
                 "height": 50,
                 "left": 55,
-                "top": 153,
-                "width": 129
-              },
-              "type": "text"
-            },
-            {
-              "background": {
-                "color": {
-                  "fixed": "transparent"
-                },
-                "image": {
-                  "fixed": "",
-                  "mode": "fixed"
-                }
-              },
-              "border": {
-                "color": {
-                  "fixed": "dark-green"
-                }
-              },
-              "config": {
-                "align": "left",
-                "color": {
-                  "fixed": "text"
-                },
-                "size": 12,
-                "text": {
-                  "field": "SourceName",
-                  "fixed": "",
-                  "mode": "field"
-                },
-                "valign": "middle"
-              },
-              "constraint": {
-                "horizontal": "left",
-                "vertical": "top"
-              },
-              "name": "Element 8",
-              "placement": {
-                "height": 50,
-                "left": 200,
-                "top": 153,
-                "width": 314
-              },
-              "type": "metric-value"
-            },
-            {
-              "background": {
-                "color": {
-                  "fixed": "transparent"
-                }
-              },
-              "border": {
-                "color": {
-                  "fixed": "dark-blue"
-                },
-                "width": 1
-              },
-              "config": {
-                "align": "right",
-                "color": {
-                  "fixed": "rgb(204, 204, 220)"
-                },
-                "size": 16,
-                "text": {
-                  "fixed": "Time"
-                },
-                "valign": "middle"
-              },
-              "constraint": {
-                "horizontal": "left",
-                "vertical": "top"
-              },
-              "name": "Element 9",
-              "placement": {
-                "height": 50,
-                "left": 55,
-                "top": 53,
+                "top": 105,
                 "width": 129
               },
               "type": "text"
@@ -468,14 +355,127 @@
                 "horizontal": "left",
                 "vertical": "top"
               },
-              "name": "Element 10",
+              "name": "TimeValue",
               "placement": {
                 "height": 50,
                 "left": 200,
-                "top": 53,
-                "width": 314
+                "top": 55,
+                "width": 620
               },
               "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-blue"
+                },
+                "width": 1
+              },
+              "config": {
+                "align": "right",
+                "color": {
+                  "fixed": "rgb(204, 204, 220)"
+                },
+                "size": 16,
+                "text": {
+                  "fixed": "Time"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "TimeLabel",
+              "placement": {
+                "height": 50,
+                "left": 55,
+                "top": 55,
+                "width": 129
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                },
+                "image": {
+                  "fixed": "",
+                  "mode": "fixed"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "left",
+                "color": {
+                  "fixed": "text"
+                },
+                "size": 12,
+                "text": {
+                  "field": "ComputerName",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "ServerValue",
+              "placement": {
+                "height": 50,
+                "left": 200,
+                "top": 5,
+                "width": 620
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-blue"
+                },
+                "width": 1
+              },
+              "config": {
+                "align": "right",
+                "color": {
+                  "fixed": "rgb(204, 204, 220)"
+                },
+                "size": 16,
+                "text": {
+                  "fixed": "Server"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "ServerLabel",
+              "placement": {
+                "height": 50,
+                "left": 55,
+                "top": 5,
+                "width": 129
+              },
+              "type": "text"
             }
           ],
           "name": "Element 1709662992248",
@@ -502,7 +502,7 @@
           "refId": "A"
         }
       ],
-      "title": "Panel Title",
+      "title": "Event Details",
       "transformations": [
         {
           "id": "extractFields",
@@ -538,16 +538,14 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "3tesla41a.pr.mmmhc.com",
-          "value": "3tesla41a.pr.mmmhc.com"
+          "selected": false
         },
         "datasource": {
           "type": "loki",
           "uid": "a3b388bb-5990-45ca-a5b5-0bca47387fe1"
         },
         "definition": "",
-        "hide": 0,
+        "hide": 2,
         "includeAll": false,
         "multi": false,
         "name": "instance",
@@ -566,16 +564,14 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "Citrix Delivery Services",
-          "value": "Citrix Delivery Services"
+          "selected": false
         },
         "datasource": {
           "type": "loki",
           "uid": "a3b388bb-5990-45ca-a5b5-0bca47387fe1"
         },
         "definition": "",
-        "hide": 0,
+        "hide": 2,
         "includeAll": false,
         "multi": false,
         "name": "logfile",
@@ -594,11 +590,9 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "11514423",
-          "value": "11514423"
+          "selected": false
         },
-        "hide": 0,
+        "hide": 2,
         "label": "RecordNumber",
         "name": "recordnumber",
         "options": [
