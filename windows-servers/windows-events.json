@@ -164,7 +164,7 @@
             "uid": "a3b388bb-5990-45ca-a5b5-0bca47387fe1"
           },
           "editorMode": "builder",
-          "expr": "{instance=~\"(?i)$instance\", type=~\"(?i)$type\", logfile=$\"(?i)$logfile\"}",
+          "expr": "{instance=~\"(?i)$instance\", type=~\"(?i)$type\", logfile=~$\"(?i)$logfile\"}",
           "queryType": "range",
           "refId": "A"
         }
