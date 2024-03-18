@@ -1858,6 +1858,34 @@
       },
       {
         "current": {
+          "isNone": true,
+          "selected": false,
+          "text": "None",
+          "value": ""
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        },
+        "definition": "label_values(ctx_machine_currentpowerstate{dnsname=\"$dnsname\"},desktopgroup_name)",
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "desktopgroup_name",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(ctx_machine_currentpowerstate{dnsname=\"$dnsname\"},desktopgroup_name)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
           "selected": false,
           "text": "cvad_sf",
           "value": "cvad_sf"
