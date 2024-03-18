@@ -90,7 +90,7 @@
                 "value": [
                   {
                     "title": "",
-                    "url": "/d/f1fe685e-6e95-4bcb-913b-5f567577160c/vdi-machine-catalog?orgId=1&refresh=30s&var-instance=${instance}&${__url_time_range}&var-catalog=${__data.fields[\"catalog_name 1 (lastNotNull)\"]}"
+                    "url": "/d/f1fe685e-6e95-4bcb-913b-5f567577160c/vdi-machine-catalog?orgId=1&refresh=30s&var-instance=${instance}&${__url_time_range}&var-catalog_name=${__data.fields[\"catalog_name 1 (lastNotNull)\"]}"
                   }
                 ]
               }
