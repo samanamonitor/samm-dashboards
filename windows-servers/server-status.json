@@ -49,7 +49,7 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "<table>\n<tr><th>Server Name</th><td>${instance}</td></tr>\n<tr><th>OS Name</th><td>${os_name}</td></tr>\n<tr><th>Layer</th>\n  <td>\n    <a href=\"/d/e28f7d21-1089-41a0-9786-265770929175/dashboard?orgId=1&var-layer=${layer}\">${selected_instance_layer}</a>\n  </td>\n</tr>\n<tr><th>Role</th>\n  <td>\n    ${role}\n  </td>\n</tr>\n<tr><th>Citrix Catalog</th>\n  <td>\n    <a href=\"/d/c50521b0-dd6a-49ed-9c6b-99978d02fdc8/machine-catalogs?orgId=1&refresh=30s&var-catalog_name=${catalog_name}\">${catalog_name}</a>\n  </td>\n</tr>\n<tr><th>FQDN</th>\n  <td>\n    ${dnsname}\n  </td>\n</tr>\n</table>\n",
+        "content": "<table>\n<tr><th>Server Name</th><td>${instance}</td></tr>\n<tr><th>OS Name</th><td>${os_name}</td></tr>\n<tr><th>Layer</th>\n  <td>\n    <a href=\"/d/e28f7d21-1089-41a0-9786-265770929175/dashboard?orgId=1&var-layer=${layer}\">${selected_instance_layer}</a>\n  </td>\n</tr>\n<tr><th>Role</th>\n  <td>\n    ${role}\n  </td>\n</tr>\n<tr><th>Citrix Catalog</th>\n  <td>\n    <a href=\"/d/828cfd83-e439-4d80-923c-63f616517e1f/vda-machine-catalog-detail?orgId=1&refresh=30s&var-catalog_name=${catalog_name}\">${catalog_name}</a>\n  </td>\n</tr>\n<tr><th>FQDN</th>\n  <td>\n    ${dnsname}\n  </td>\n</tr>\n</table>\n",
         "mode": "html"
       },
       "pluginVersion": "10.3.1",
