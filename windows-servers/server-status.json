@@ -486,7 +486,7 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "count(cim_perftssession_handlecount{fqdn=\"$fqdn\", name=~\"ica.*|rdp.*\"})",
+          "expr": "count(cim_perftssession_handlecount{fqdn=~\"(?i)$fqdn\", name=~\"(?i)ica.*|rdp.*\"})",
           "format": "table",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -503,7 +503,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "count(cim_perftssession_handlecount{fqdn=\"$fqdn\",name=~\".*disc.*\"})",
+          "expr": "count(cim_perftssession_handlecount{fqdn=~\"(?i)$fqdn\",name=~\"(?i).*disc.*\"})",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -1452,7 +1452,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "rate(cim_perfnic_bytesreceivedpersec{instance=\"$instance\", name!~\"isatap.*|teredo.*\"}[5m])",
+          "expr": "rate(cim_perfnic_bytesreceivedpersec{instance=\"$instance\", name!~\"(?i)isatap.*|teredo.*\"}[5m])",
           "instant": false,
           "interval": "90s",
           "legendFormat": "Rx_{{name}}",
@@ -1465,7 +1465,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "rate(cim_perfnic_bytessentpersec{instance=\"$instance\", name!~\"isatap.*|teredo.*\"}[5m])",
+          "expr": "rate(cim_perfnic_bytessentpersec{instance=\"$instance\", name!~\"(?i)isatap.*|teredo.*\"}[5m])",
           "hide": false,
           "instant": false,
           "interval": "90s",
@@ -1676,7 +1676,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "count by (instance) (cim_perftssession_handlecount{instance=\"$instance\",name=~\"ica.*|rdp.*\"})",
+          "expr": "count by (instance) (cim_perftssession_handlecount{instance=\"$instance\",name=~\"(?i)ica.*|rdp.*\"})",
           "instant": false,
           "interval": "",
           "legendFormat": "active_sessions_{{instance}}",
@@ -1689,7 +1689,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "count by (instance) (cim_perftssession_handlecount{instance=\"$instance\",name=~\".*disc\"})",
+          "expr": "count by (instance) (cim_perftssession_handlecount{instance=\"$instance\",name=~\"(?i).*disc\"})",
           "hide": false,
           "instant": false,
           "interval": "",
@@ -1842,7 +1842,7 @@
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "label_values(cim_os_lastbootuptime{fqdn=\"$fqdn\"},instance)",
+        "definition": "label_values(cim_os_lastbootuptime{fqdn=~\"(?i)$fqdn\"},instance)",
         "hide": 2,
         "includeAll": false,
         "label": "Server",
@@ -1851,7 +1851,7 @@
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(cim_os_lastbootuptime{fqdn=\"$fqdn\"},instance)",
+          "query": "label_values(cim_os_lastbootuptime{fqdn=~\"(?i)$fqdn\"},instance)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
