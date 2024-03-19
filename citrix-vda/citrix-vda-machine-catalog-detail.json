@@ -1450,9 +1450,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "3tesla53a",
-          "value": "3tesla53a"
+          "selected": false
         },
         "datasource": {
           "type": "prometheus",
