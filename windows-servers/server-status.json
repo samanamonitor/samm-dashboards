@@ -54,7 +54,7 @@
       "title": "Vcenter Host Detail",
       "tooltip": "",
       "type": "link",
-      "url": "http://192.168.250.217/sammvcenter/vmdetail?hostingservername=$hostingservername"
+      "url": "http://192.168.250.217/sammvcenter/hostdetail?hostingservername=$hostingservername"
     }
   ],
   "liveNow": false,
