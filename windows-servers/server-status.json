@@ -39,10 +39,22 @@
       "keepTime": false,
       "tags": [],
       "targetBlank": true,
-      "title": "Vcenter Detail",
+      "title": "Vcenter VM Detail",
       "tooltip": "",
       "type": "link",
       "url": "http://192.168.250.217/sammvcenter/vmdetail?hostedmachinename=$hostedmachinename"
+    },
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [],
+      "targetBlank": true,
+      "title": "Vcenter Host Detail",
+      "tooltip": "",
+      "type": "link",
+      "url": "http://192.168.250.217/sammvcenter/vmdetail?hostingservername=$hostingservername"
     }
   ],
   "liveNow": false,
@@ -2098,6 +2110,31 @@
         "query": {
           "qryType": 1,
           "query": "label_values(ctx_machine_currentpowerstate{dnsname=~\"(?i)$fqdn\"},hostedmachinename)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        },
+        "definition": "label_values(ctx_machine_currentpowerstate{dnsname=~\"(?i)$fqdn\"},hostingservername)",
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "hostingservername",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(ctx_machine_currentpowerstate{dnsname=~\"(?i)$fqdn\"},hostingservername)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
