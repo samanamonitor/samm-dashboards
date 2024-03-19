@@ -1375,6 +1375,7 @@
               "currentregistrationstate": false,
               "currentregistrationstate 2": true,
               "currentregistrationstate 3": true,
+              "currentpowerstate": true,
               "desktopgroup_deliverytype": true,
               "desktopgroup_deliverytype 2": true,
               "desktopgroup_deliverytype 3": true,
