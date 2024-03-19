@@ -1493,7 +1493,7 @@
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "label_values(ctx_machine_isinmaintenancemode{instance=\"$instance\", catalog_sessionsupport=\"2\"},desktopgroup_name)",
+        "definition": "label_values(ctx_machine_isinmaintenancemode{instance=\"$instance\", catalog_sessionsupport=\"2\", desktopgroup_name!~\"(?i)none\"},desktopgroup_name)",
         "hide": 0,
         "includeAll": false,
         "label": "Desktop Group",
