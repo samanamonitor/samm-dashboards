@@ -31,6 +31,18 @@
       "tooltip": "",
       "type": "link",
       "url": "/d/e28f7d21-1089-41a0-9786-265770929175/overview?orgId=1"
+    },
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [],
+      "targetBlank": true,
+      "title": "Vcenter Detail",
+      "tooltip": "",
+      "type": "link",
+      "url": "http://192.168.250.217/sammvcenter?hostedmachinename=$hostedmachinename"
     }
   ],
   "liveNow": false,
@@ -2061,6 +2073,31 @@
         "query": {
           "qryType": 1,
           "query": "label_values(up{fqdn=~\"(?i)$fqdn\"},address)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        },
+        "definition": "label_values(ctx_machine_currentpowerstate{dnsname=~\"(?i)$fqdn\"},hostedmachinename)",
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "hostedmachinename",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(ctx_machine_currentpowerstate{dnsname=~\"(?i)$fqdn\"},hostedmachinename)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
