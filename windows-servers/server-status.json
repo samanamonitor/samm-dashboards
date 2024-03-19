@@ -1010,7 +1010,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "1- (rate(cim_perfcpu_percentidletime{instance=\"$instance\", name=\"_total\"}[$__rate_interval]) / rate(cim_perfcpu_timestamp_sys100ns{instance=\"$instance\",name=\"_total\"}[$__rate_interval]))",
+          "expr": "1- (rate(cim_perfcpu_percentidletime{instance=\"$instance\", name=\"_Total\"}[$__rate_interval]) / rate(cim_perfcpu_timestamp_sys100ns{instance=\"$instance\",name=\"_Total\"}[$__rate_interval]))",
           "hide": false,
           "instant": false,
           "interval": "90s",
@@ -1564,7 +1564,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "rate(cim_perfdisk_avgdiskbytesperread{instance=\"$instance\",name=\"_total\"}[$__rate_interval]) / rate(cim_perfdisk_avgdisksecperread{instance=\"$instance\",name=\"_total\"}[$__rate_interval])",
+          "expr": "rate(cim_perfdisk_avgdiskbytesperread{instance=\"$instance\",name=\"_Total\"}[$__rate_interval]) / rate(cim_perfdisk_avgdisksecperread{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])",
           "instant": false,
           "interval": "90s",
           "legendFormat": "read",
@@ -1577,7 +1577,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "rate(cim_perfdisk_avgdiskbytesperwrite{instance=\"$instance\",name=\"_total\"}[$__rate_interval])/ rate(cim_perfdisk_avgdisksecperwrite{instance=\"$instance\",name=\"_total\"}[$__rate_interval])",
+          "expr": "rate(cim_perfdisk_avgdiskbytesperwrite{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])/ rate(cim_perfdisk_avgdisksecperwrite{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])",
           "hide": false,
           "instant": false,
           "interval": "90s",
