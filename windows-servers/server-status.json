@@ -42,7 +42,7 @@
       "title": "Vcenter Detail",
       "tooltip": "",
       "type": "link",
-      "url": "http://192.168.250.217/sammvcenter?hostedmachinename=$hostedmachinename"
+      "url": "http://192.168.250.217/sammvcenter/vmdetail?hostedmachinename=$hostedmachinename"
     }
   ],
   "liveNow": false,
