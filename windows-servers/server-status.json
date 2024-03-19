@@ -55,6 +55,18 @@
       "tooltip": "",
       "type": "link",
       "url": "http://192.168.250.217/sammvcenter/hostdetail?hostingservername=$hostingservername"
+    },
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [],
+      "targetBlank": true,
+      "title": "RDP",
+      "tooltip": "",
+      "type": "link",
+      "url": "http://192.168.250.217/sammvcenter/rdp?ip_address=$ip_address"
     }
   ],
   "liveNow": false,
