@@ -1862,9 +1862,7 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "microsoft windows server 2016 standard",
-          "value": "microsoft windows server 2016 standard"
+          "selected": false
         },
         "datasource": {
           "type": "prometheus",
@@ -1889,9 +1887,7 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "access",
-          "value": "access"
+          "selected": false
         },
         "datasource": {
           "type": "prometheus",
@@ -1942,9 +1938,7 @@
       {
         "current": {
           "isNone": true,
-          "selected": false,
-          "text": "None",
-          "value": ""
+          "selected": false
         },
         "datasource": {
           "type": "prometheus",
@@ -1970,9 +1964,7 @@
       {
         "current": {
           "isNone": true,
-          "selected": false,
-          "text": "None",
-          "value": ""
+          "selected": false
         },
         "datasource": {
           "type": "prometheus",
@@ -1997,9 +1989,7 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "cvad_sf",
-          "value": "cvad_sf"
+          "selected": false
         },
         "datasource": {
           "type": "prometheus",
