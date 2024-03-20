@@ -48,6 +48,7 @@
             "mode": "thresholds"
           },
           "mappings": [],
+          "noValue": "0",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -167,7 +168,7 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "sum(ctx_machine_currentsessioncount)",
+          "expr": "sum(ctx_machine_currentsessioncount{instance=\"$instance\"})",
           "format": "table",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -185,7 +186,7 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "count(ctx_machineinfail_faultstate)",
+          "expr": "count(ctx_machineinfail_faultstate{instance=\"$instance\", machine_desktopgroupid!~\"00000000-0000-0000-0000-000000000000\"})",
           "format": "table",
           "fullMetaSearch": false,
           "hide": false,
