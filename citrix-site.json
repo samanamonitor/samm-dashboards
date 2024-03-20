@@ -1675,7 +1675,7 @@
           "disableTextWrap": false,
           "editorMode": "builder",
           "exemplar": false,
-          "expr": "ctx_machineinfail_faultstate{instance=\"$instance\"}",
+          "expr": "ctx_machineinfail_faultstate{instance=\"$instance\", machine_desktopgroupid!~\"00000000-0000-0000-0000-000000000000\"}",
           "format": "table",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -1701,6 +1701,7 @@
               "layer": true,
               "machine_controllerdnsname": true,
               "machine_currentregistrationstate": true,
+              "machine_desktopgroupid": true,
               "machine_hostedmachinename": true,
               "role": true
             },
