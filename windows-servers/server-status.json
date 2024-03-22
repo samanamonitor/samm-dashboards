@@ -651,7 +651,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "max(1 - cim_disk_freespace{instance=\"$instance\"} / cim_disk_size{instance=\"$instance\"})",
+          "expr": "max(1 - cim_disk_freespace{instance=\"$instance\",drivetype=\"3\"} / cim_disk_size{instance=\"$instance\",drivetype=\"3\"})",
           "instant": false,
           "legendFormat": " ",
           "range": true,
@@ -1271,7 +1271,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "1 - cim_disk_freespace{instance=\"$instance\"} / cim_disk_size{instance=\"$instance\"}",
+          "expr": "1 - cim_disk_freespace{instance=\"$instance\",drivetype=\"3\"} / cim_disk_size{instance=\"$instance\",drivetype=\"3\"}",
           "instant": false,
           "legendFormat": "{{caption}}",
           "range": true,
