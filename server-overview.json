@@ -471,10 +471,10 @@
         "current": {
           "selected": true,
           "text": [
-            "All"
+            "control"
           ],
           "value": [
-            "$__all"
+            "control"
           ]
         },
         "datasource": {
