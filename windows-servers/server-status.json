@@ -1601,7 +1601,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "rate(cim_perfdisk_avgdiskbytesperread{instance=\"$instance\",name=\"_Total\"}[$__rate_interval]) / rate(cim_perfdisk_avgdisksecperread{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])",
+          "expr": "rate(cim_perfdisk_diskreadbytespersec{instance=\"$instance\",name=\"_Total\"}[$__rate_interval]) / rate(cim_perfdisk_timestamp_sys100ns{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])",
           "instant": false,
           "interval": "90s",
           "legendFormat": "read",
@@ -1614,7 +1614,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "rate(cim_perfdisk_avgdiskbytesperwrite{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])/ rate(cim_perfdisk_avgdisksecperwrite{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])",
+          "expr": "rate(cim_perfdisk_diskwritebytespersec{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])/ rate(cim_perfdisk_timestamp_sys100ns{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])",
           "hide": false,
           "instant": false,
           "interval": "90s",
@@ -1736,6 +1736,118 @@
         }
       ],
       "title": "Remote Sessions",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 77,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": 3600000,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ops",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 27
+      },
+      "id": 20,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "expr": "rate(cim_perfdisk_diskreadspersec{instance=\"$instance\",name=\"_Total\"}[$__rate_interval]) / rate(cim_perfdisk_timestamp_sys100ns{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])",
+          "instant": false,
+          "interval": "90s",
+          "legendFormat": "read",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "expr": "rate(cim_perfdisk_diskwritespersec{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])/ rate(cim_perfdisk_timestamp_sys100ns{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])",
+          "hide": false,
+          "instant": false,
+          "interval": "90s",
+          "legendFormat": "write",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Disk IOPS",
       "type": "timeseries"
     },
     {
