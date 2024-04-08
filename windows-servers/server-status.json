@@ -447,7 +447,8 @@
               "layer": true,
               "role": true,
               "servicetype": true,
-              "dn": true
+              "dn": true,
+              "storage": true
             },
             "includeByName": {},
             "indexByName": {},
