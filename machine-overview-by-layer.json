@@ -1,0 +1,479 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 61,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "color-background"
+            },
+            "inspect": false
+          },
+          "links": [
+            {
+              "title": "",
+              "url": "/d/c96dd703-89d1-42e6-be4d-c9ccf02b7487/server-status?orgId=1&refresh=10s&var-fqdn=${__data.fields.fqdn}"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 80
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percent",
+          "unitScale": true
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "fqdn"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "auto"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Uptime"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "s"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 604800
+                    },
+                    {
+                      "color": "red",
+                      "value": 1209600
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Cert expires"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "d"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "green",
+                      "value": 90
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 1,
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Cert expires"
+          }
+        ]
+      },
+      "pluginVersion": "10.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum by (fqdn,role,layer) ((1-rate(cim_perfcpu_percentidletime{name=\"_Total\",fqdn=~\"$fqdn\",layer=\"$layer\"}[$__rate_interval]) / rate(cim_perfcpu_timestamp_sys100ns {name=\"_Total\"}[$__rate_interval]))*100 > $cpu_threshold) ",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "90s",
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "CPU"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum by (fqdn,role,layer) ((1-(cim_os_freephysicalmemory{layer=\"$layer\"} / cim_os_totalvisiblememorysize))*100 > $ram_threshold)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "90s",
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "RAM"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(max by (fqdn,role,layer) (1 - cim_disk_freespace{drivetype=\"3\",layer=\"$layer\"} / cim_disk_size{drivetype=\"3\"})*100 > $disk_threshold)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "90s",
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "Disk"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum by (fqdn,role,layer) (time() - cim_os_lastbootuptime{layer=\"$layer\"} > $uptime_threshold)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "Uptime"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "min by (fqdn,role,layer) (cim_certificates_ssldaystoexpire{layer=\"$layer\"} < $cert_expire_days)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "Certs"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "fqdn",
+            "mode": "inner"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Time 1": true,
+              "Time 2": true,
+              "Time 3": true,
+              "Time 4": true,
+              "Time 5": true,
+              "desktopgroup_name": true,
+              "desktopgroup_name 2": true,
+              "desktopgroup_name 3": true,
+              "desktopgroup_name 4": true,
+              "layer": true,
+              "layer 2": true,
+              "layer 3": true,
+              "layer 4": true,
+              "layer 5": true,
+              "role": false,
+              "role 2": true,
+              "role 3": true,
+              "role 4": true,
+              "role 5": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "Time": 1,
+              "Time 2": 4,
+              "Time 3": 6,
+              "Time 4": 8,
+              "Value #CPU": 3,
+              "Value #Disk": 7,
+              "Value #RAM": 5,
+              "Value #Uptime": 9,
+              "fqdn": 0,
+              "role": 2
+            },
+            "renameByName": {
+              "Value #CPU": "CPU %",
+              "Value #Certs": "Cert expires",
+              "Value #Disk": "Disk Used %",
+              "Value #RAM": "RAM %",
+              "Value #Uptime": "Uptime",
+              "fqdn": "Machine",
+              "role": "Role"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "access",
+          "value": "access"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        },
+        "definition": "label_values(cim_os_lastbootuptime{layer!=\"resource\"},layer)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Layer",
+        "multi": false,
+        "name": "layer",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(cim_os_lastbootuptime{layer!=\"resource\"},layer)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": ".*",
+          "value": ".*"
+        },
+        "hide": 0,
+        "label": "Machine Name",
+        "name": "fqdn",
+        "options": [
+          {
+            "selected": true,
+            "text": ".*",
+            "value": ".*"
+          }
+        ],
+        "query": ".*",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "0",
+          "value": "0"
+        },
+        "hide": 0,
+        "label": "CPU% >",
+        "name": "cpu_threshold",
+        "options": [
+          {
+            "selected": true,
+            "text": "0",
+            "value": "0"
+          }
+        ],
+        "query": "0",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "0",
+          "value": "0"
+        },
+        "hide": 0,
+        "label": "RAM% >",
+        "name": "ram_threshold",
+        "options": [
+          {
+            "selected": false,
+            "text": "0",
+            "value": "0"
+          }
+        ],
+        "query": "0",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "0",
+          "value": "0"
+        },
+        "hide": 0,
+        "label": "Disk Used % >",
+        "name": "disk_threshold",
+        "options": [
+          {
+            "selected": true,
+            "text": "0",
+            "value": "0"
+          }
+        ],
+        "query": "0",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "9999",
+          "value": "9999"
+        },
+        "hide": 0,
+        "label": "Cert Expire(days) <",
+        "name": "cert_expire_days",
+        "options": [
+          {
+            "selected": true,
+            "text": "9999",
+            "value": "9999"
+          }
+        ],
+        "query": "9999",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "0",
+          "value": "0"
+        },
+        "hide": 0,
+        "label": "Uptime (Secs) >",
+        "name": "uptime_threshold",
+        "options": [
+          {
+            "selected": true,
+            "text": "0",
+            "value": "0"
+          }
+        ],
+        "query": "0",
+        "skipUrlSync": false,
+        "type": "textbox"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Machine Overview by Layer",
+  "uid": "1ef32c05-48af-42fa-9ed5-841a25110d0c",
+  "version": 20,
+  "weekStart": ""
+}
