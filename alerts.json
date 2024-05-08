@@ -468,7 +468,7 @@
             {
               "targetBlank": true,
               "title": "Show Details",
-              "url": "/d/b2062eb9-6027-43a3-9d71-fc3fe4781833/machine-overview?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&${cpu_threshold:queryparam}"
+              "url": "/d/a2b35c70-7470-4f91-a4bb-c669453654c9/machine-overview?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&${cpu_threshold:queryparam}"
             }
           ],
           "mappings": [],
@@ -555,7 +555,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "/d/b2062eb9-6027-43a3-9d71-fc3fe4781833/machine-overview?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&${ram_threshold:queryparam}"
+              "url": "/d/a2b35c70-7470-4f91-a4bb-c669453654c9/machine-overview?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&${ram_threshold:queryparam}"
             }
           ],
           "mappings": [],
@@ -642,7 +642,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "/d/b2062eb9-6027-43a3-9d71-fc3fe4781833/machine-overview?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&${disk_threshold:queryparam}"
+              "url": "/d/a2b35c70-7470-4f91-a4bb-c669453654c9/machine-overview?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&${disk_threshold:queryparam}"
             }
           ],
           "mappings": [],
@@ -817,7 +817,7 @@
             {
               "targetBlank": true,
               "title": "Show Details",
-              "url": "/d/b2062eb9-6027-43a3-9d71-fc3fe4781833/machine-overview?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&${cpu_threshold:queryparam}"
+              "url": "/d/a2b35c70-7470-4f91-a4bb-c669453654c9/machine-overview?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&${cpu_threshold:queryparam}"
             }
           ],
           "mappings": [],
@@ -903,7 +903,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "/d/b2062eb9-6027-43a3-9d71-fc3fe4781833/machine-overview?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&${ram_threshold:queryparam}"
+              "url": "/d/a2b35c70-7470-4f91-a4bb-c669453654c9/machine-overview?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&${ram_threshold:queryparam}"
             }
           ],
           "mappings": [],
@@ -990,7 +990,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "/d/b2062eb9-6027-43a3-9d71-fc3fe4781833/machine-overview?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&${disk_threshold:queryparam}"
+              "url": "/d/a2b35c70-7470-4f91-a4bb-c669453654c9/machine-overview?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&${disk_threshold:queryparam}"
             }
           ],
           "mappings": [],
