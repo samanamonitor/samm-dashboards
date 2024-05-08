@@ -294,8 +294,8 @@
       {
         "current": {
           "selected": false,
-          "text": "80",
-          "value": "80"
+          "text": "0",
+          "value": "0"
         },
         "hide": 0,
         "label": "RAM% >",
