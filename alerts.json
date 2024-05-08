@@ -1,0 +1,1178 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 47,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "${__field.labels.desktopgroup_name}",
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Show Details",
+              "url": "/d/d5f70b5e-dcad-4748-9218-0e1f2a6f3eaa/machine-overview-by-layer?orgId=1&var-layer=${__field.labels.layer}&${cpu_threshold:queryparam}"
+            }
+          ],
+          "mappings": [],
+          "noValue": "No Alerts",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 1
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id": 8,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 18,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "manual",
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count by (layer) ((rate(cim_perfcpu_percentidletime{name=\"_Total\",layer!=\"resource\"}[$__rate_interval]) / rate(cim_perfcpu_timestamp_sys100ns[$__rate_interval]) < (1-$cpu_threshold/100)) )",
+          "format": "time_series",
+          "instant": true,
+          "interval": "90s",
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Alerted by CPU",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "${__field.labels.layer}",
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "",
+              "url": "/d/d5f70b5e-dcad-4748-9218-0e1f2a6f3eaa/machine-overview-by-layer?orgId=1&var-layer=${__field.labels.layer}&${ram_threshold:queryparam}"
+            }
+          ],
+          "mappings": [],
+          "noValue": "No Alerts",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 5
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 4,
+        "y": 0
+      },
+      "id": 9,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 18,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "manual",
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sort_desc(count by (layer) (((cim_os_freephysicalmemory{layer!=\"resource\"} / cim_os_totalvisiblememorysize) < (1-$ram_threshold/100)) ))",
+          "format": "time_series",
+          "instant": true,
+          "interval": "90s",
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Alerted RAM",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "${__field.labels.layer}",
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "",
+              "url": "/d/d5f70b5e-dcad-4748-9218-0e1f2a6f3eaa/machine-overview-by-layer?orgId=1&var-layer=${__field.labels.layer}&${disk_threshold:queryparam}"
+            }
+          ],
+          "mappings": [],
+          "noValue": "No Alerts",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 5
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 9,
+        "y": 0
+      },
+      "id": 10,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 18,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "manual",
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sort_desc(count by (layer) ( ((cim_disk_freespace{drivetype=\"3\",layer!=\"resource\"} / cim_disk_size) < (1-$disk_threshold/100)) ))",
+          "format": "time_series",
+          "instant": true,
+          "interval": "90s",
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Alerted by Disk",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "${__field.labels.layer}",
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "",
+              "url": "/d/d5f70b5e-dcad-4748-9218-0e1f2a6f3eaa/machine-overview-by-layer?orgId=1&var-layer=${__field.labels.layer}&${uptime_threshold:queryparam}"
+            }
+          ],
+          "mappings": [],
+          "noValue": "No Alerts",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 5
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 14,
+        "y": 0
+      },
+      "id": 11,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 18,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "manual",
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count by (layer) (time() - cim_os_lastbootuptime{layer!=\"resource\"} > $uptime_threshold)",
+          "format": "time_series",
+          "instant": true,
+          "interval": "90s",
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Uptime > 2 weeks",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "${__field.labels.layer}",
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "",
+              "url": "/d/d5f70b5e-dcad-4748-9218-0e1f2a6f3eaa/machine-overview-by-layer?orgId=1&var-layer=${__field.labels.layer}&var-cert_expire_days=90"
+            }
+          ],
+          "mappings": [],
+          "noValue": "No Alerts",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 5
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 19,
+        "y": 0
+      },
+      "id": 13,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 18,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "manual",
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count by (layer) (min by (fqdn,layer) (cim_certificates_ssldaystoexpire{layer!=\"resource\"}) < $cert_expire_days)",
+          "format": "time_series",
+          "instant": true,
+          "interval": "90s",
+          "legendFormat": "{{label_name}}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Certs < 90 days",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "${__field.labels.desktopgroup_name}",
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Show Details",
+              "url": "/d/b2062eb9-6027-43a3-9d71-fc3fe4781833/machine-overview?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&${cpu_threshold:queryparam}"
+            }
+          ],
+          "mappings": [],
+          "noValue": "No Alerts",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 5
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 0,
+        "y": 3
+      },
+      "id": 6,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 18,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "manual",
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sort_desc(count by (desktopgroup_name) (((1 - rate(cim_perfcpu_percentidletime{name=\"_Total\"}[$__rate_interval]) / rate(cim_perfcpu_timestamp_sys100ns[$__rate_interval]))*100 > $cpu_threshold) + on (fqdn) group_left (desktopgroup_name) (label_replace(sum (ctx_machine_isinmaintenancemode{desktopgroup_name!=\"none\",catalog_sessionsupport=\"2\"} * 0) without (hostingservername), \"fqdn\", \"$1\", \"dnsname\", \"(.*)\"))))",
+          "format": "time_series",
+          "instant": true,
+          "interval": "90s",
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Alerted by CPU - VDA",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "${__field.labels.layer}",
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "",
+              "url": "/d/b2062eb9-6027-43a3-9d71-fc3fe4781833/machine-overview?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&${ram_threshold:queryparam}"
+            }
+          ],
+          "mappings": [],
+          "noValue": "No Alerts",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 5
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 6,
+        "y": 3
+      },
+      "id": 7,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 18,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "manual",
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sort_desc(count by (desktopgroup_name) (((1-(cim_os_freephysicalmemory / cim_os_totalvisiblememorysize))*100 > $ram_threshold) + on (fqdn) group_left (desktopgroup_name) (label_replace(sum (ctx_machine_isinmaintenancemode{desktopgroup_name!=\"none\",catalog_sessionsupport=\"2\"}) without (hostingservername) * 0, \"fqdn\", \"$1\", \"dnsname\", \"(.*)\"))))",
+          "format": "time_series",
+          "instant": true,
+          "interval": "90s",
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Alerted by RAM - VDA",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "${__field.labels.layer}",
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "",
+              "url": "/d/b2062eb9-6027-43a3-9d71-fc3fe4781833/machine-overview?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&${disk_threshold:queryparam}"
+            }
+          ],
+          "mappings": [],
+          "noValue": "No Alerts",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 5
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 12,
+        "y": 3
+      },
+      "id": 5,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 18,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "manual",
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sort_desc(count by (desktopgroup_name) (((1-(cim_disk_freespace{drivetype=\"3\"} / cim_disk_size))*100 > $disk_threshold) + on (fqdn) group_left (desktopgroup_name) (label_replace(sum (ctx_machine_isinmaintenancemode{desktopgroup_name!=\"none\",catalog_sessionsupport=\"2\"}) without (hostingservername) * 0, \"fqdn\", \"$1\", \"dnsname\", \"(.*)\"))))",
+          "format": "time_series",
+          "instant": true,
+          "interval": "90s",
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Alerted by Disk - VDA",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "${__field.labels.layer}",
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "",
+              "url": "/d/d5f70b5e-dcad-4748-9218-0e1f2a6f3eaa/machine-overview-by-layer?orgId=1&var-layer=${__field.labels.layer}&${disk_threshold:queryparam}"
+            }
+          ],
+          "mappings": [],
+          "noValue": "No Alerts",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 5
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 18,
+        "y": 3
+      },
+      "id": 12,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 18,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "manual",
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sort_desc(count by (desktopgroup_name) ((time() - cim_os_lastbootuptime > 172800) + on (fqdn) group_left (desktopgroup_name) (label_replace(sum (ctx_machine_isinmaintenancemode{desktopgroup_name!=\"none\",catalog_sessionsupport=\"2\"}) without (hostingservername) * 0, \"fqdn\", \"$1\", \"dnsname\", \"(.*)\"))))",
+          "format": "time_series",
+          "hide": false,
+          "instant": true,
+          "interval": "90s",
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Alerted by Uptime > 2 days- VDA",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "${__field.labels.desktopgroup_name}",
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Show Details",
+              "url": "/d/b2062eb9-6027-43a3-9d71-fc3fe4781833/machine-overview?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&${cpu_threshold:queryparam}"
+            }
+          ],
+          "mappings": [],
+          "noValue": "No Alerts",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 11
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 0,
+        "y": 9
+      },
+      "id": 2,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 18,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "manual",
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sort_desc(count by (desktopgroup_name) (((1 - rate(cim_perfcpu_percentidletime{name=\"_Total\"}[$__rate_interval]) / rate(cim_perfcpu_timestamp_sys100ns [$__rate_interval]))*100 > $cpu_threshold) + on (fqdn) group_left (desktopgroup_name) (label_replace(sum (ctx_machine_isinmaintenancemode{desktopgroup_name!=\"none\",catalog_sessionsupport=\"1\"} * 0) without (hostingservername), \"fqdn\", \"$1\", \"dnsname\", \"(.*)\"))))",
+          "format": "time_series",
+          "instant": true,
+          "interval": "90s",
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Alerted by CPU - VDI",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "",
+              "url": "/d/b2062eb9-6027-43a3-9d71-fc3fe4781833/machine-overview?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&${ram_threshold:queryparam}"
+            }
+          ],
+          "mappings": [],
+          "noValue": "No Alerts",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 11
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 8,
+        "y": 9
+      },
+      "id": 3,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 18,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "manual",
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sort_desc(count by (desktopgroup_name) (((1-(cim_os_freephysicalmemory / cim_os_totalvisiblememorysize))*100 > $ram_threshold) + on (fqdn) group_left (desktopgroup_name) (label_replace(sum (ctx_machine_isinmaintenancemode{desktopgroup_name!=\"none\",catalog_sessionsupport=\"1\"}) without (hostingservername) * 0, \"fqdn\", \"$1\", \"dnsname\", \"(.*)\"))))",
+          "format": "time_series",
+          "instant": true,
+          "interval": "90s",
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Alerted by RAM - VDI",
+      "transformations": [],
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "",
+              "url": "/d/b2062eb9-6027-43a3-9d71-fc3fe4781833/machine-overview?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&${disk_threshold:queryparam}"
+            }
+          ],
+          "mappings": [],
+          "noValue": "No Alerts",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 5
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 9
+      },
+      "id": 4,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 18,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "manual",
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sort_desc(count by (desktopgroup_name) (((1-(cim_disk_freespace{drivetype=\"3\"} / cim_disk_size))*100 > $disk_threshold) + on (fqdn) group_left (desktopgroup_name) (label_replace(sum (ctx_machine_isinmaintenancemode{desktopgroup_name!=\"none\",catalog_sessionsupport=\"1\"}) without (hostingservername) * 0, \"fqdn\", \"$1\", \"dnsname\", \"(.*)\"))))",
+          "format": "time_series",
+          "instant": true,
+          "interval": "90s",
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Alerted by Disk - VDI",
+      "type": "bargauge"
+    }
+  ],
+  "refresh": "1m",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "80",
+          "value": "80"
+        },
+        "hide": 2,
+        "name": "cpu_threshold",
+        "options": [
+          {
+            "selected": true,
+            "text": "80",
+            "value": "80"
+          }
+        ],
+        "query": "80",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "80",
+          "value": "80"
+        },
+        "hide": 2,
+        "name": "ram_threshold",
+        "options": [
+          {
+            "selected": true,
+            "text": "80",
+            "value": "80"
+          }
+        ],
+        "query": "80",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "80",
+          "value": "80"
+        },
+        "hide": 2,
+        "name": "disk_threshold",
+        "options": [
+          {
+            "selected": true,
+            "text": "80",
+            "value": "80"
+          }
+        ],
+        "query": "80",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "90",
+          "value": "90"
+        },
+        "hide": 2,
+        "name": "cert_expire_days",
+        "options": [
+          {
+            "selected": true,
+            "text": "90",
+            "value": "90"
+          }
+        ],
+        "query": "90",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "1296000",
+          "value": "1296000"
+        },
+        "hide": 2,
+        "name": "uptime_threshold",
+        "options": [
+          {
+            "selected": true,
+            "text": "1296000",
+            "value": "1296000"
+          }
+        ],
+        "query": "1296000",
+        "skipUrlSync": false,
+        "type": "textbox"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Alerts",
+  "uid": "d0331ba0-3a4a-498c-ad6c-43dde3fbfdec",
+  "version": 67,
+  "weekStart": ""
+}
