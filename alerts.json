@@ -1076,7 +1076,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "/d/a2b35c70-7470-4f91-a4bb-c669453654c9/machine-overview?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&var-register_filter=%3D%3D2&var-power_filter=%3D%3D3"
+              "url": "/d/f3221ee0-3f5b-4ff6-b5b9-209a256cb19e/citrix-failures?orgId=1"
             }
           ],
           "mappings": [],
