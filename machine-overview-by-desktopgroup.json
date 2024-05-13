@@ -112,6 +112,119 @@
                 }
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Registration State"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "Unknown"
+                      },
+                      "1": {
+                        "color": "green",
+                        "index": 1,
+                        "text": "Registered"
+                      },
+                      "2": {
+                        "color": "red",
+                        "index": 2,
+                        "text": "Unregistered"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value #Power"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "red",
+                        "index": 0,
+                        "text": "Unknown"
+                      },
+                      "1": {
+                        "color": "red",
+                        "index": 1,
+                        "text": "Unavailable"
+                      },
+                      "2": {
+                        "color": "red",
+                        "index": 2,
+                        "text": "Off"
+                      },
+                      "3": {
+                        "color": "green",
+                        "index": 3,
+                        "text": "On"
+                      },
+                      "4": {
+                        "color": "red",
+                        "index": 4,
+                        "text": "Suspended"
+                      },
+                      "5": {
+                        "color": "blue",
+                        "index": 5,
+                        "text": "Turning On"
+                      },
+                      "6": {
+                        "color": "orange",
+                        "index": 6,
+                        "text": "Turning Off"
+                      },
+                      "7": {
+                        "color": "orange",
+                        "index": 7,
+                        "text": "Suspending"
+                      },
+                      "8": {
+                        "color": "blue",
+                        "index": 8,
+                        "text": "Resuming"
+                      },
+                      "9": {
+                        "color": "purple",
+                        "index": 9,
+                        "text": "Unmanaged"
+                      },
+                      "10": {
+                        "color": "purple",
+                        "index": 10,
+                        "text": "Not Supported"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
@@ -200,6 +313,38 @@
           "legendFormat": "__auto",
           "range": false,
           "refId": "Uptime"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "label_replace(sum by (dnsname) (ctx_machine_currentregistrationstate{desktopgroup_name=\"$desktopgroup_name\"}), \"fqdn\", \"$1\", \"dnsname\", \"(.*)\") $register_filter",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "90s",
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "Registration"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "label_replace(sum by (dnsname) (ctx_machine_currentpowerstate{desktopgroup_name=\"$desktopgroup_name\"}), \"fqdn\", \"$1\", \"dnsname\", \"(.*)\") $power_filter",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "90s",
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "Power"
         }
       ],
       "transformations": [
@@ -218,17 +363,22 @@
               "Time 2": true,
               "Time 3": true,
               "Time 4": true,
+              "Time 5": true,
               "desktopgroup_name": true,
               "desktopgroup_name 2": true,
               "desktopgroup_name 3": true,
-              "desktopgroup_name 4": true
+              "desktopgroup_name 4": true,
+              "dnsname": true,
+              "dnsname 2": true
             },
             "includeByName": {},
             "indexByName": {},
             "renameByName": {
               "Value #CPU": "CPU %",
               "Value #Disk": "Disk Used %",
+              "Value #Power": "Power State",
               "Value #RAM": "RAM %",
+              "Value #Registration": "Registration State",
               "Value #Uptime": "Uptime",
               "fqdn": "Machine"
             }
@@ -350,6 +500,77 @@
         "query": ".*",
         "skipUrlSync": false,
         "type": "textbox"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": ">-1"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Register Filter",
+        "multi": false,
+        "name": "register_filter",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": ">-1"
+          },
+          {
+            "selected": false,
+            "text": "Unknown",
+            "value": "==0"
+          },
+          {
+            "selected": false,
+            "text": "Registered",
+            "value": "==1"
+          },
+          {
+            "selected": false,
+            "text": "Unregistered",
+            "value": "==2"
+          }
+        ],
+        "query": "All : >-1,Unknown : ==0,Registered : ==1,Unregistered : ==2",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": ">-1"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Power",
+        "multi": false,
+        "name": "power_filter",
+        "options": [
+          {
+            "selected": true,
+            "text": "All",
+            "value": ">-1"
+          },
+          {
+            "selected": false,
+            "text": "On",
+            "value": "==3"
+          },
+          {
+            "selected": false,
+            "text": "Not on",
+            "value": "!= 3"
+          }
+        ],
+        "query": "All : >-1,On : ==3,Not on : != 3",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },
