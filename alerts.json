@@ -304,6 +304,21 @@
           "legendFormat": "__auto",
           "range": false,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count (snmp_nsdisk_syshealthdiskperusage > $disk_threshold)",
+          "hide": false,
+          "instant": true,
+          "interval": "90s",
+          "legendFormat": "netscaler",
+          "range": false,
+          "refId": "B"
         }
       ],
       "title": "Alerted by Disk",
