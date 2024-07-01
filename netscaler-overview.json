@@ -373,9 +373,19 @@
             "selected": false,
             "text": "Secondary",
             "value": "secondary"
+          },
+          {
+            "selected": false,
+            "text": "Standalone",
+            "value": "standalone"
+          },
+          {
+            "selected": false,
+            "text": "Unknown",
+            "value": "unknown"
           }
         ],
-        "query": "Primary : primary, Secondary : secondary",
+        "query": "Primary : primary, Secondary : secondary, Standalone : standalone, Unknown : unknown",
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
