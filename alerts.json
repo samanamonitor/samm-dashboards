@@ -100,6 +100,21 @@
           "legendFormat": "__auto",
           "range": false,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count (snmp_nsstats_rescpuusage > $cpu_threshold)",
+          "hide": false,
+          "instant": true,
+          "interval": "90s",
+          "legendFormat": "netscalers",
+          "range": false,
+          "refId": "B"
         }
       ],
       "title": "Alerted by CPU",
@@ -187,6 +202,21 @@
           "legendFormat": "__auto",
           "range": false,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count(snmp_nsstats_resmemusage > $ram_threshold)",
+          "hide": false,
+          "instant": true,
+          "interval": "90s",
+          "legendFormat": "netscaler",
+          "range": false,
+          "refId": "B"
         }
       ],
       "title": "Alerted RAM",
@@ -455,11 +485,13 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
+          "exemplar": false,
           "expr": "count (snmp_nscertkey_ssldaystoexpire < $cert_expire_days)",
           "hide": false,
-          "instant": false,
+          "instant": true,
+          "interval": "90s",
           "legendFormat": "netscalers",
-          "range": true,
+          "range": false,
           "refId": "B"
         }
       ],
