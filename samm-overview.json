@@ -40,7 +40,7 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "# TODOs\n\n* recreate prometheus container and configure as auto-restart\n* recreate grafana container and configure as auto-restart\n* recreate grafana/loki container and configure as auto-restart\n* recreate sammvcenter and configure as auto-restart\n* make sure that after reboot, docker starts properly. docker socket will prevent it from starting when configured on the docker0 ip address\n",
+        "content": "# TODOs\n\n",
         "mode": "markdown"
       },
       "pluginVersion": "10.3.1",
@@ -71,7 +71,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 3,
         "x": 0,
         "y": 5
@@ -137,7 +137,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 11,
         "x": 3,
         "y": 5
@@ -218,7 +218,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 10,
         "x": 14,
         "y": 5
@@ -307,7 +307,7 @@
         "h": 3,
         "w": 6,
         "x": 0,
-        "y": 8
+        "y": 9
       },
       "id": 12,
       "options": {
@@ -382,7 +382,7 @@
         "h": 3,
         "w": 18,
         "x": 6,
-        "y": 8
+        "y": 9
       },
       "id": 13,
       "options": {
@@ -486,7 +486,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 11
+        "y": 12
       },
       "id": 6,
       "options": {
@@ -585,7 +585,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 11
+        "y": 12
       },
       "id": 2,
       "options": {
@@ -711,7 +711,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 19
+        "y": 20
       },
       "id": 3,
       "options": {
@@ -811,7 +811,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 19
+        "y": 20
       },
       "id": 4,
       "options": {
@@ -911,7 +911,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 27
+        "y": 28
       },
       "id": 1,
       "options": {
@@ -1008,7 +1008,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 27
+        "y": 28
       },
       "id": 11,
       "options": {
@@ -1109,7 +1109,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 35
+        "y": 36
       },
       "id": 14,
       "options": {
@@ -1209,7 +1209,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 35
+        "y": 36
       },
       "id": 10,
       "options": {
