@@ -448,6 +448,19 @@
           "legendFormat": "{{label_name}}",
           "range": false,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "expr": "count (snmp_nscertkey_ssldaystoexpire < $cert_expire_days)",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "netscalers",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "Certs < 90 days",
@@ -799,7 +812,7 @@
           "refId": "A"
         }
       ],
-      "title": "Alerted by Uptime > 1 month- VDA",
+      "title": "Alerted by Uptime > 2 days - VDA",
       "type": "bargauge"
     },
     {
