@@ -57,7 +57,26 @@
           },
           "unitScale": true
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "Netscaler"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "",
+                    "url": "/d/d328e5a7-7275-47dd-9923-d974226944f5/netscaler-overview?orgId=1&${cpu_threshold:queryparam}"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 3,
@@ -99,7 +118,7 @@
           "interval": "90s",
           "legendFormat": "__auto",
           "range": false,
-          "refId": "A"
+          "refId": "Windows"
         },
         {
           "datasource": {
@@ -114,7 +133,7 @@
           "interval": "90s",
           "legendFormat": "netscalers",
           "range": false,
-          "refId": "B"
+          "refId": "Netscaler"
         }
       ],
       "title": "Alerted by CPU",
@@ -159,7 +178,26 @@
           },
           "unitScale": true
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "Netscaler"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "",
+                    "url": "/d/d328e5a7-7275-47dd-9923-d974226944f5/netscaler-overview?orgId=1&${ram_threshold:queryparam}"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 3,
@@ -201,7 +239,7 @@
           "interval": "90s",
           "legendFormat": "__auto",
           "range": false,
-          "refId": "A"
+          "refId": "Windows"
         },
         {
           "datasource": {
@@ -216,7 +254,7 @@
           "interval": "90s",
           "legendFormat": "netscaler",
           "range": false,
-          "refId": "B"
+          "refId": "Netscaler"
         }
       ],
       "title": "Alerted RAM",
@@ -261,7 +299,26 @@
           },
           "unitScale": true
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "Netscaler"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "",
+                    "url": "/d/d328e5a7-7275-47dd-9923-d974226944f5/netscaler-overview?orgId=1&${disk_threshold:queryparam}"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 3,
@@ -303,7 +360,7 @@
           "interval": "90s",
           "legendFormat": "__auto",
           "range": false,
-          "refId": "A"
+          "refId": "Windows"
         },
         {
           "datasource": {
@@ -318,7 +375,7 @@
           "interval": "90s",
           "legendFormat": "netscaler",
           "range": false,
-          "refId": "B"
+          "refId": "Netscaler"
         }
       ],
       "title": "Alerted by Disk",
@@ -450,7 +507,26 @@
           },
           "unitScale": true
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "Netscaler"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "",
+                    "url": "/d/d328e5a7-7275-47dd-9923-d974226944f5/netscaler-overview?orgId=1&var-cert_expire_days=90"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 3,
@@ -492,7 +568,7 @@
           "interval": "90s",
           "legendFormat": "{{label_name}}",
           "range": false,
-          "refId": "A"
+          "refId": "Windows"
         },
         {
           "datasource": {
@@ -507,7 +583,7 @@
           "interval": "90s",
           "legendFormat": "netscalers",
           "range": false,
-          "refId": "B"
+          "refId": "Netscaler"
         }
       ],
       "title": "Certs < 90 days",
