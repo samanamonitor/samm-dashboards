@@ -87,6 +87,10 @@
               {
                 "id": "unit",
                 "value": "percent"
+              },
+              {
+                "id": "custom.width",
+                "value": 112
               }
             ]
           },
@@ -163,6 +167,10 @@
               {
                 "id": "unit",
                 "value": "percent"
+              },
+              {
+                "id": "custom.width",
+                "value": 160
               }
             ]
           },
@@ -197,6 +205,34 @@
               {
                 "id": "unit",
                 "value": "d"
+              },
+              {
+                "id": "custom.width",
+                "value": 157
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Instance"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 191
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "HA State"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 162
               }
             ]
           }
@@ -230,7 +266,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "snmp_nsstats_rescpuusage{instance=~\"$instance\",syshighavailabilitymode=~\"$ha_state\"} >= $cpu_threshold",
+          "expr": "snmp_ns_stats_rescpuusage{instance=~\"$instance\"} >= $cpu_threshold",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -282,6 +318,21 @@
           "legendFormat": "__auto",
           "range": false,
           "refId": "Certs"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "snmp_ns_info_syscurmappedipcount{instance=~\"$instance\",syshighavailabilitymode=~\"$ha_state\"}",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "HA"
         }
       ],
       "transformations": [
@@ -300,20 +351,54 @@
               "Time 2": true,
               "Time 3": true,
               "Time 4": true,
+              "Value #HA": true,
+              "__name__": true,
               "__name__ 1": true,
               "__name__ 2": true,
               "job": true,
               "job 2": true,
-              "syshighavailabilitymode 2": true
+              "sysbuildversion": false,
+              "syscustomid": true,
+              "sysgateway": true,
+              "syshardwareserialnumber": true,
+              "syshardwareversiondesc": true,
+              "syshighavailabilitymode 2": true,
+              "sysipaddress": true,
+              "sysmodelid": true,
+              "sysnetmask": true
             },
             "includeByName": {},
-            "indexByName": {},
+            "indexByName": {
+              "Time": 2,
+              "Time 2": 6,
+              "Time 3": 8,
+              "Time 4": 10,
+              "Value #CPU": 5,
+              "Value #Certs": 9,
+              "Value #Disk": 7,
+              "Value #HA": 21,
+              "__name__ 1": 3,
+              "__name__ 2": 11,
+              "instance": 0,
+              "job": 4,
+              "job 2": 12,
+              "sysbuildversion": 13,
+              "syscustomid": 14,
+              "sysgateway": 15,
+              "syshardwareserialnumber": 16,
+              "syshardwareversiondesc": 17,
+              "syshighavailabilitymode": 1,
+              "sysipaddress": 18,
+              "sysmodelid": 19,
+              "sysnetmask": 20
+            },
             "renameByName": {
               "Value #CPU": "CPU %",
               "Value #Certs": "CertExpires",
               "Value #Disk": "Disk Used %",
               "Value #RAM": "RAM %",
               "instance": "Instance",
+              "sysbuildversion": "Version",
               "syshighavailabilitymode": "HA State"
             }
           }
@@ -353,42 +438,27 @@
           "text": "All",
           "value": "$__all"
         },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        },
+        "definition": "label_values(snmp_ns_info_syscurmappedipcount,syshighavailabilitymode)",
         "hide": 0,
         "includeAll": true,
         "label": "HA State",
         "multi": false,
         "name": "ha_state",
-        "options": [
-          {
-            "selected": true,
-            "text": "All",
-            "value": "$__all"
-          },
-          {
-            "selected": false,
-            "text": "Primary",
-            "value": "primary"
-          },
-          {
-            "selected": false,
-            "text": "Secondary",
-            "value": "secondary"
-          },
-          {
-            "selected": false,
-            "text": "Standalone",
-            "value": "standalone"
-          },
-          {
-            "selected": false,
-            "text": "Unknown",
-            "value": "unknown"
-          }
-        ],
-        "query": "Primary : primary, Secondary : secondary, Standalone : standalone, Unknown : unknown",
-        "queryValue": "",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(snmp_ns_info_syscurmappedipcount,syshighavailabilitymode)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
         "skipUrlSync": false,
-        "type": "custom"
+        "sort": 0,
+        "type": "query"
       },
       {
         "current": {
