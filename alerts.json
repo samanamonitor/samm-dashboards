@@ -354,7 +354,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sort_desc(count by (layer) ( ((cim_disk_freespace{drivetype=\"3\",layer!=\"resource\"} / cim_disk_size) < (1-$disk_threshold/100)) ))",
+          "expr": "sort_desc(count by (layer) ( max by (instance,layer) ((cim_disk_freespace{drivetype=\"3\",layer!=\"resource\"} / cim_disk_size) < (1-$disk_threshold/100)) ))",
           "format": "time_series",
           "instant": true,
           "interval": "90s",
