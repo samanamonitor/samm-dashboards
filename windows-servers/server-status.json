@@ -439,6 +439,7 @@
               "Time": true,
               "__name__": true,
               "caption": true,
+              "dn": true,
               "filter": false,
               "filter service-filter": false,
               "fqdn": true,
@@ -447,7 +448,6 @@
               "layer": true,
               "role": true,
               "servicetype": true,
-              "dn": true,
               "storage": true
             },
             "includeByName": {},
@@ -1413,14 +1413,14 @@
           },
           "custom": {
             "axisBorderShow": false,
-            "axisCenteredZero": false,
+            "axisCenteredZero": true,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 100,
-            "gradientMode": "opacity",
+            "fillOpacity": 77,
+            "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
@@ -1434,7 +1434,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": false,
+            "spanNulls": 3600000,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -1444,7 +1444,6 @@
             }
           },
           "mappings": [],
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1458,18 +1457,18 @@
               }
             ]
           },
-          "unit": "Bps",
+          "unit": "ops",
           "unitScale": true
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 7,
         "w": 12,
         "x": 0,
         "y": 22
       },
-      "id": 5,
+      "id": 20,
       "options": {
         "legend": {
           "calcs": [],
@@ -1489,10 +1488,10 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "rate(cim_perfnic_bytesreceivedpersec{instance=\"$instance\", name!~\"(?i)isatap.*|teredo.*\"}[5m])",
+          "expr": "rate(cim_perfdisk_diskreadspersec{instance=\"$instance\",name=\"_Total\"}[$__rate_interval]) ",
           "instant": false,
-          "interval": "90s",
-          "legendFormat": "Rx_{{name}}",
+          "interval": "300s",
+          "legendFormat": "read",
           "range": true,
           "refId": "A"
         },
@@ -1502,16 +1501,16 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "rate(cim_perfnic_bytessentpersec{instance=\"$instance\", name!~\"(?i)isatap.*|teredo.*\"}[5m])",
+          "expr": "-rate(cim_perfdisk_diskwritespersec{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])",
           "hide": false,
           "instant": false,
-          "interval": "90s",
-          "legendFormat": "Tx_{{name}}",
+          "interval": "300s",
+          "legendFormat": "write",
           "range": true,
           "refId": "B"
         }
       ],
-      "title": "Network Transfer",
+      "title": "Disk IOPS",
       "type": "timeseries"
     },
     {
@@ -1526,7 +1525,7 @@
           },
           "custom": {
             "axisBorderShow": false,
-            "axisCenteredZero": false,
+            "axisCenteredZero": true,
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
@@ -1576,7 +1575,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 7,
         "w": 12,
         "x": 12,
         "y": 22
@@ -1601,9 +1600,9 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "rate(cim_perfdisk_diskreadbytespersec{instance=\"$instance\",name=\"_Total\"}[$__rate_interval]) / rate(cim_perfdisk_timestamp_sys100ns{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])",
+          "expr": "rate(cim_perfdisk_diskreadbytespersec{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])",
           "instant": false,
-          "interval": "90s",
+          "interval": "300s",
           "legendFormat": "read",
           "range": true,
           "refId": "A"
@@ -1614,10 +1613,10 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "rate(cim_perfdisk_diskwritebytespersec{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])/ rate(cim_perfdisk_timestamp_sys100ns{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])",
+          "expr": "-rate(cim_perfdisk_diskwritebytespersec{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])",
           "hide": false,
           "instant": false,
-          "interval": "90s",
+          "interval": "300s",
           "legendFormat": "write",
           "range": true,
           "refId": "B"
@@ -1625,6 +1624,193 @@
       ],
       "title": "Disk transfer",
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": true,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "Bps",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 29
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "expr": "rate(cim_perfnic_bytesreceivedpersec{instance=\"$instance\", name!~\"(?i)isatap.*|teredo.*\"}[$__rate_interval])",
+          "instant": false,
+          "interval": "300s",
+          "legendFormat": "Rx_{{name}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "expr": "-rate(cim_perfnic_bytessentpersec{instance=\"$instance\", name!~\"(?i)isatap.*|teredo.*\"}[$__rate_interval])",
+          "hide": false,
+          "instant": false,
+          "interval": "300s",
+          "legendFormat": "Tx_{{name}}",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Network Transfer",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 30
+              },
+              {
+                "color": "green",
+                "value": 80
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 29
+      },
+      "id": 18,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 300,
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "builder",
+          "expr": "cim_certificates_ssldaystoexpire{instance=\"$instance\"}",
+          "instant": false,
+          "legendFormat": "{{sslcertkeyname}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "SSL Certificates",
+      "type": "bargauge"
     },
     {
       "datasource": {
@@ -1691,7 +1877,7 @@
         "h": 5,
         "w": 12,
         "x": 0,
-        "y": 27
+        "y": 36
       },
       "id": 7,
       "options": {
@@ -1737,193 +1923,6 @@
       ],
       "title": "Remote Sessions",
       "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 77,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": 3600000,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "ops",
-          "unitScale": true
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 12,
-        "x": 12,
-        "y": 27
-      },
-      "id": 20,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "editorMode": "code",
-          "expr": "rate(cim_perfdisk_diskreadspersec{instance=\"$instance\",name=\"_Total\"}[$__rate_interval]) / rate(cim_perfdisk_timestamp_sys100ns{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])",
-          "instant": false,
-          "interval": "90s",
-          "legendFormat": "read",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "editorMode": "code",
-          "expr": "rate(cim_perfdisk_diskwritespersec{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])/ rate(cim_perfdisk_timestamp_sys100ns{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])",
-          "hide": false,
-          "instant": false,
-          "interval": "90s",
-          "legendFormat": "write",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "Disk IOPS",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 30
-              },
-              {
-                "color": "green",
-                "value": 80
-              }
-            ]
-          },
-          "unitScale": true
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 12,
-        "x": 12,
-        "y": 27
-      },
-      "id": 18,
-      "options": {
-        "displayMode": "gradient",
-        "maxVizHeight": 300,
-        "minVizHeight": 10,
-        "minVizWidth": 0,
-        "namePlacement": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true,
-        "sizing": "auto",
-        "valueMode": "color"
-      },
-      "pluginVersion": "10.3.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "editorMode": "builder",
-          "expr": "cim_certificates_ssldaystoexpire{instance=\"$instance\"}",
-          "instant": false,
-          "legendFormat": "{{sslcertkeyname}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "SSL Certificates",
-      "type": "bargauge"
     }
   ],
   "refresh": "10s",
@@ -1956,7 +1955,7 @@
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
-      },
+      },1
       {
         "current": {
           "selected": false
