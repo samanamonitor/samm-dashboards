@@ -1955,7 +1955,7 @@
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
-      },1
+      },
       {
         "current": {
           "selected": false
