@@ -85,7 +85,7 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "<table>\n<tr><th>Server Name</th><td>${instance}</td></tr>\n<tr><th>OS Name</th><td>${os_name}</td></tr>\n<tr><th>Layer</th>\n  <td>\n    <a href=\"/d/e28f7d21-1089-41a0-9786-265770929175/dashboard?orgId=1&var-layer=${layer}\">${selected_instance_layer}</a>\n  </td>\n</tr>\n<tr><th>Role</th>\n  <td>\n    ${role}\n  </td>\n</tr>\n<tr><th>Citrix Catalog</th>\n  <td>\n    <a href=\"/d/828cfd83-e439-4d80-923c-63f616517e1f/vda-machine-catalog-detail?orgId=1&refresh=30s&var-catalog_name=${catalog_name}\">${catalog_name}</a>\n  </td>\n</tr>\n<tr><th>Citrix Delivery Group</th>\n  <td>\n    <a href=\"/d/ba8b8650-2456-4ac6-847e-75394417c614/vda-delivery-group?orgId=1&refresh=30s&var-desktopgroup_name=${desktopgroup_name}\">${desktopgroup_name}</a>\n  </td>\n</tr>\n<tr><th>FQDN</th>\n  <td>\n    ${dnsname}\n  </td>\n</tr>\n<tr><th>IP Address</th>\n  <td>\n    ${ip_address}\n  </td>\n</tr>\n</table>\n",
+        "content": "<table>\n<tr><th>Server Name</th><td>${instance}</td></tr>\n<tr><th>OS Name</th><td>${os_name}</td></tr>\n<tr><th>Layer</th>\n  <td>\n    <a href=\"/d/e28f7d21-1089-41a0-9786-265770929175/dashboard?orgId=1&var-layer=${layer}\">${selected_instance_layer}</a>\n  </td>\n</tr>\n<tr><th>Role</th>\n  <td>\n    ${role}\n  </td>\n</tr>\n<tr><th>Citrix Catalog</th>\n  <td>\n    <a href=\"/d/828cfd83-e439-4d80-923c-63f616517e1f/vda-machine-catalog-detail?orgId=1&refresh=30s&var-catalog_name=${catalog_name}\">${catalog_name}</a>\n  </td>\n</tr>\n<tr><th>Citrix Delivery Group</th>\n  <td>\n    <a href=\"/d/ba8b8650-2456-4ac6-847e-75394417c614/vda-delivery-group?orgId=1&refresh=30s&var-desktopgroup_name=${desktopgroup_name}\">${desktopgroup_name}</a>\n  </td>\n</tr>\n<tr><th>FQDN</th>\n  <td>\n    ${dnsname}\n  </td>\n</tr>\n<tr><th>IP Address</th>\n  <td>\n    ${ip_address}\n  </td>\n</tr>\n<tr><th>RAM</th>\n  <td>\n    ${totalram} KB\n  </td>\n</tr>\n<tr><th>Page File Size</th>\n  <td>\n    ${pagefilesize} MB\n  </td>\n</tr>\n</table>\n",
         "mode": "html"
       },
       "pluginVersion": "10.3.1",
@@ -1747,7 +1747,10 @@
           "color": {
             "mode": "thresholds"
           },
+          "fieldMinMax": false,
           "mappings": [],
+          "max": 90,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -1765,7 +1768,8 @@
               }
             ]
           },
-          "unitScale": true
+          "unit": "d",
+          "unitScale": false
         },
         "overrides": []
       },
@@ -1777,8 +1781,8 @@
       },
       "id": 18,
       "options": {
-        "displayMode": "gradient",
-        "maxVizHeight": 300,
+        "displayMode": "basic",
+        "maxVizHeight": 30,
         "minVizHeight": 10,
         "minVizWidth": 0,
         "namePlacement": "auto",
@@ -1791,7 +1795,7 @@
           "values": false
         },
         "showUnfilled": true,
-        "sizing": "auto",
+        "sizing": "manual",
         "valueMode": "color"
       },
       "pluginVersion": "10.3.1",
@@ -1803,9 +1807,10 @@
           },
           "editorMode": "builder",
           "expr": "cim_certificates_ssldaystoexpire{instance=\"$instance\"}",
-          "instant": false,
+          "format": "table",
+          "instant": true,
           "legendFormat": "{{sslcertkeyname}}",
-          "range": true,
+          "range": false,
           "refId": "A"
         }
       ],
@@ -2163,8 +2168,8 @@
       {
         "current": {
           "selected": true,
-          "text": "citrix_sf",
-          "value": "(?i).*(citrix|world wide web).*"
+          "text": "all",
+          "value": ".*"
         },
         "hide": 0,
         "includeAll": false,
@@ -2263,6 +2268,60 @@
         },
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "6399",
+          "value": "6399"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        },
+        "definition": "query_result(cim_pagefile_allocatedbasesize{instance=\"$instance\"})",
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "pagefilesize",
+        "options": [],
+        "query": {
+          "qryType": 3,
+          "query": "query_result(cim_pagefile_allocatedbasesize{instance=\"$instance\"})",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "/.*} ([^ ]+).*/",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "25165300",
+          "value": "25165300"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        },
+        "definition": "query_result(cim_os_totalvisiblememorysize{instance=\"$instance\"})",
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "totalram",
+        "options": [],
+        "query": {
+          "qryType": 3,
+          "query": "query_result(cim_os_totalvisiblememorysize{instance=\"$instance\"})",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "/.*} ([^ ]+).*/",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
