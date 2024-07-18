@@ -319,7 +319,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "rate(snmp_ns_stats_systotconfigchanges{instance=\"$instance\"}[1d])",
+          "expr": "round(delta(snmp_ns_stats_systotconfigchanges{instance=\"$instance\"}[1d]), 1)",
           "instant": false,
           "legendFormat": "Changes",
           "range": true,
@@ -331,7 +331,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "rate(snmp_ns_stats_systotsaveconfigs{instance=\"3amtrak04a\"}[1d])",
+          "expr": "round(delta(snmp_ns_stats_systotsaveconfigs{instance=\"$instance\"}[1d]), 1)",
           "hide": false,
           "instant": false,
           "legendFormat": "Saves",
@@ -431,7 +431,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "rate(snmp_ns_stats_haerrsyncfailure{instance=\"$instance\"}[1d])",
+          "expr": "round(delta(snmp_ns_stats_haerrsyncfailure{instance=\"$instance\"}[1d]), 1)",
           "instant": false,
           "legendFormat": "SyncFail Today",
           "range": true,
