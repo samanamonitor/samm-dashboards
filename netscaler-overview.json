@@ -39,6 +39,13 @@
             },
             "inspect": false
           },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "",
+              "url": "/d/01c8fe02-4b27-495b-945e-d133dc478767/netscaler-status?orgId=1&var-instance=${__data.fields.Instance}"
+            }
+          ],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
