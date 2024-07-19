@@ -375,7 +375,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "snmp_ns_info_syscurmappedipcount{instance=~\"$instance\",syshighavailabilitymode=~\"$ha_state\"}",
+          "expr": "label_replace(snmp_ns_info_syscurmappedipcount{instance=~\"$instance\", syshighavailabilitymode=~\"$ha_state\"}, \"nsversion\", \"$1-$2\", \"sysbuildversion\", \"[^ ]+ ([^ :]+):? [^ ]+ ([^ ]+).*\")",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -421,7 +421,7 @@
               "__name__ 2": true,
               "job": true,
               "job 2": true,
-              "sysbuildversion": false,
+              "sysbuildversion": true,
               "syscustomid": true,
               "sysgateway": true,
               "syshardwareserialnumber": true,
@@ -473,7 +473,7 @@
               "Value #RAM": "RAM %",
               "instance": "Instance",
               "job 2": "",
-              "sysbuildversion": "Version",
+              "nsversion": "Version",
               "syshighavailabilitymode": "HA State"
             }
           }
