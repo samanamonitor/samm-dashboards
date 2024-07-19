@@ -246,6 +246,44 @@
                 "value": 120
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Last HA Transition"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "s"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 14400
+                    },
+                    {
+                      "color": "green",
+                      "value": 86400
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
           }
         ]
       },
@@ -344,6 +382,21 @@
           "legendFormat": "__auto",
           "range": false,
           "refId": "HA"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum by (instance) (snmp_ns_stats_hatimeoflaststatetransition / 100)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "LASTHATRANSITION"
         }
       ],
       "transformations": [
@@ -385,19 +438,24 @@
               "Time 3": 9,
               "Time 4": 11,
               "Time 5": 23,
+              "Time 6": 29,
               "Value #CPU": 5,
               "Value #Certs": 10,
               "Value #Disk": 8,
               "Value #HA": 22,
+              "Value #LASTHATRANSITION": 14,
               "Value #RAM": 6,
               "__name__ 1": 3,
               "__name__ 2": 12,
               "__name__ 3": 24,
+              "hacurstate": 26,
               "instance": 0,
               "job": 4,
               "job 2": 13,
               "job 3": 25,
-              "sysbuildversion": 14,
+              "numpes": 27,
+              "sslcards": 28,
+              "sysbuildversion": 30,
               "syscustomid": 15,
               "sysgateway": 16,
               "syshardwareserialnumber": 17,
@@ -411,8 +469,10 @@
               "Value #CPU": "CPU %",
               "Value #Certs": "CertExpires",
               "Value #Disk": "Disk Used %",
+              "Value #LASTHATRANSITION": "Last HA Transition",
               "Value #RAM": "RAM %",
               "instance": "Instance",
+              "job 2": "",
               "sysbuildversion": "Version",
               "syshighavailabilitymode": "HA State"
             }
