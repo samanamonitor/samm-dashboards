@@ -390,8 +390,12 @@
                       "value": null
                     },
                     {
+                      "color": "#EAB839",
+                      "value": 14400
+                    },
+                    {
                       "color": "green",
-                      "value": 3600
+                      "value": 86400
                     }
                   ]
                 }
