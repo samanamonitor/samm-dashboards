@@ -27,6 +27,18 @@
       "keepTime": false,
       "tags": [],
       "targetBlank": true,
+      "title": "Netscaler Overview",
+      "tooltip": "",
+      "type": "link",
+      "url": "/d/d328e5a7-7275-47dd-9923-d974226944f5/netscaler-overview?orgId=1"
+    },
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": false,
+      "tags": [],
+      "targetBlank": true,
       "title": "Console",
       "tooltip": "",
       "type": "link",
