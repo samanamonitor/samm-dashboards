@@ -1005,66 +1005,6 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum by (vsvrname, vsvrtype) (snmp_ns_vserverstats_vsvrcurservicesdown{instance=\"$instance\"})",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "SVCDOWN"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "count by (vsvrname) (snmp_ns_vserverstats_vsvrcurservicesunknown{instance=\"$instance\"})",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "SVCUNKNOWN"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "count by (vsvrname) (snmp_ns_vserverstats_vsvrcurservicesup{instance=\"$instance\"})",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "SVCUP"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum by (vsvrname) (snmp_ns_vserverstats_vsvrcurservicesoutofsvc{instance=\"$instance\"})",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "SVCOOS"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "editorMode": "code",
-          "exemplar": false,
           "expr": "sum by (vsvrname) (snmp_ns_vserverstats_vsvrcurclntconnections{instance=\"$instance\"})",
           "format": "table",
           "hide": false,
@@ -1127,7 +1067,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum by (vsvrname) (snmp_ns_vserverstats_vsvrhealth{instance=\"$instance\"})",
+          "expr": "sum by (vsvrname, vsvrtype, vsvrstate) (snmp_ns_vserverstats_vsvrhealth{instance=\"$instance\"})",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -1159,25 +1099,26 @@
             },
             "includeByName": {},
             "indexByName": {
-              "Time": 4,
-              "Time 2": 6,
-              "Time 3": 8,
-              "Time 4": 9,
-              "Time 5": 11,
-              "Time 6": 13,
-              "Time 7": 15,
-              "Time 8": 17,
-              "Time 9": 19,
-              "Value #CLTCONN": 12,
-              "Value #HEALTH": 2,
-              "Value #SRVCONN": 14,
-              "Value #SVCDOWN": 5,
-              "Value #SVCOOS": 10,
-              "Value #SVCUNKNOWN": 7,
-              "Value #SVCUP": 3,
-              "Value #TOTREQ": 16,
-              "Value #TOTRES": 18,
+              "Time": 5,
+              "Time 2": 7,
+              "Time 3": 9,
+              "Time 4": 10,
+              "Time 5": 12,
+              "Time 6": 14,
+              "Time 7": 16,
+              "Time 8": 18,
+              "Time 9": 20,
+              "Value #CLTCONN": 13,
+              "Value #HEALTH": 3,
+              "Value #SRVCONN": 15,
+              "Value #SVCDOWN": 6,
+              "Value #SVCOOS": 11,
+              "Value #SVCUNKNOWN": 8,
+              "Value #SVCUP": 4,
+              "Value #TOTREQ": 17,
+              "Value #TOTRES": 19,
               "vsvrname": 0,
+              "vsvrstate": 2,
               "vsvrtype": 1
             },
             "renameByName": {
@@ -1193,6 +1134,7 @@
               "Value #TOTREQ": "Req/s",
               "Value #TOTRES": "Res/s",
               "vsvrname": "Name",
+              "vsvrstate": "State",
               "vsvrtype": "Type"
             }
           }
