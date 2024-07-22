@@ -1093,7 +1093,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": 3600000,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -1155,6 +1155,7 @@
           "editorMode": "code",
           "expr": "1 - cim_os_freephysicalmemory{instance=\"$instance\"} / cim_os_totalvisiblememorysize{instance=\"$instance\"}",
           "instant": false,
+          "interval": "90s",
           "legendFormat": "{{instance}}",
           "range": true,
           "refId": "A"
@@ -1196,7 +1197,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": true,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -1274,6 +1275,7 @@
           "editorMode": "code",
           "expr": "1 - cim_disk_freespace{instance=\"$instance\",drivetype=\"3\"} / cim_disk_size{instance=\"$instance\",drivetype=\"3\"}",
           "instant": false,
+          "interval": "90s",
           "legendFormat": "{{caption}}",
           "range": true,
           "refId": "A"
@@ -1315,7 +1317,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": true,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -1393,6 +1395,7 @@
           "editorMode": "code",
           "expr": "cim_pagefile_currentusage{instance=\"$instance\"} / cim_pagefile_allocatedbasesize",
           "instant": false,
+          "interval": "90s",
           "legendFormat": "{{name}}",
           "range": true,
           "refId": "A"
@@ -1434,7 +1437,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": 3600000,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -1490,7 +1493,7 @@
           "editorMode": "code",
           "expr": "rate(cim_perfdisk_diskreadspersec{instance=\"$instance\",name=\"_Total\"}[$__rate_interval]) ",
           "instant": false,
-          "interval": "300s",
+          "interval": "600s",
           "legendFormat": "read",
           "range": true,
           "refId": "A"
@@ -1504,7 +1507,7 @@
           "expr": "-rate(cim_perfdisk_diskwritespersec{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])",
           "hide": false,
           "instant": false,
-          "interval": "300s",
+          "interval": "600s",
           "legendFormat": "write",
           "range": true,
           "refId": "B"
@@ -1546,7 +1549,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": 3600000,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -1602,7 +1605,7 @@
           "editorMode": "code",
           "expr": "rate(cim_perfdisk_diskreadbytespersec{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])",
           "instant": false,
-          "interval": "300s",
+          "interval": "600s",
           "legendFormat": "read",
           "range": true,
           "refId": "A"
@@ -1616,7 +1619,7 @@
           "expr": "-rate(cim_perfdisk_diskwritebytespersec{instance=\"$instance\",name=\"_Total\"}[$__rate_interval])",
           "hide": false,
           "instant": false,
-          "interval": "300s",
+          "interval": "600s",
           "legendFormat": "write",
           "range": true,
           "refId": "B"
@@ -1714,7 +1717,7 @@
           "editorMode": "code",
           "expr": "rate(cim_perfnic_bytesreceivedpersec{instance=\"$instance\", name!~\"(?i)isatap.*|teredo.*\"}[$__rate_interval])",
           "instant": false,
-          "interval": "300s",
+          "interval": "600s",
           "legendFormat": "Rx_{{name}}",
           "range": true,
           "refId": "A"
@@ -1728,7 +1731,7 @@
           "expr": "-rate(cim_perfnic_bytessentpersec{instance=\"$instance\", name!~\"(?i)isatap.*|teredo.*\"}[$__rate_interval])",
           "hide": false,
           "instant": false,
-          "interval": "300s",
+          "interval": "600s",
           "legendFormat": "Tx_{{name}}",
           "range": true,
           "refId": "B"
