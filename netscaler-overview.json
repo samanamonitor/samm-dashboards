@@ -284,11 +284,49 @@
                 }
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time since Reboot"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "s"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "yellow",
+                      "value": 43200
+                    },
+                    {
+                      "color": "green",
+                      "value": 86400
+                    }
+                  ]
+                }
+              }
+            ]
           }
         ]
       },
       "gridPos": {
-        "h": 18,
+        "h": 12,
         "w": 24,
         "x": 0,
         "y": 0
@@ -397,6 +435,25 @@
           "legendFormat": "__auto",
           "range": false,
           "refId": "LASTHATRANSITION"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "snmp_ns_stats_sysuptime{instance=~\"$instance\"} / 100",
+          "format": "table",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "LASTBOOT",
+          "useBackend": false
         }
       ],
       "transformations": [
@@ -415,12 +472,15 @@
               "Time 2": true,
               "Time 3": true,
               "Time 4": true,
+              "Time 7": true,
               "Value #HA": true,
               "__name__": true,
               "__name__ 1": true,
               "__name__ 2": true,
+              "__name__ 4": true,
               "job": true,
               "job 2": true,
+              "job 4": true,
               "sysbuildversion": true,
               "syscustomid": true,
               "sysgateway": true,
@@ -437,42 +497,48 @@
               "Time 2": 7,
               "Time 3": 9,
               "Time 4": 11,
-              "Time 5": 23,
-              "Time 6": 29,
+              "Time 5": 24,
+              "Time 6": 30,
+              "Time 7": 33,
               "Value #CPU": 5,
               "Value #Certs": 10,
               "Value #Disk": 8,
-              "Value #HA": 22,
+              "Value #HA": 23,
+              "Value #LASTBOOT": 15,
               "Value #LASTHATRANSITION": 14,
               "Value #RAM": 6,
               "__name__ 1": 3,
               "__name__ 2": 12,
-              "__name__ 3": 24,
-              "hacurstate": 26,
+              "__name__ 3": 25,
+              "hacurstate": 27,
               "instance": 0,
               "job": 4,
               "job 2": 13,
-              "job 3": 25,
-              "numpes": 27,
-              "sslcards": 28,
-              "sysbuildversion": 30,
-              "syscustomid": 15,
-              "sysgateway": 16,
-              "syshardwareserialnumber": 17,
-              "syshardwareversiondesc": 18,
+              "job 3": 26,
+              "job 4": 34,
+              "nsversion": 32,
+              "numpes": 28,
+              "sslcards": 29,
+              "sysbuildversion": 31,
+              "syscustomid": 16,
+              "sysgateway": 17,
+              "syshardwareserialnumber": 18,
+              "syshardwareversiondesc": 19,
               "syshighavailabilitymode": 1,
-              "sysipaddress": 19,
-              "sysmodelid": 20,
-              "sysnetmask": 21
+              "sysipaddress": 20,
+              "sysmodelid": 21,
+              "sysnetmask": 22
             },
             "renameByName": {
               "Value #CPU": "CPU %",
               "Value #Certs": "CertExpires",
               "Value #Disk": "Disk Used %",
+              "Value #LASTBOOT": "Time since Reboot",
               "Value #LASTHATRANSITION": "Last HA Transition",
               "Value #RAM": "RAM %",
               "instance": "Instance",
               "job 2": "",
+              "job 4": "",
               "nsversion": "Version",
               "syshighavailabilitymode": "HA State"
             }
