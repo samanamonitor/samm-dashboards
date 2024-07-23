@@ -405,7 +405,7 @@
         "sortBy": [
           {
             "desc": false,
-            "displayName": "State"
+            "displayName": "Display Name"
           }
         ]
       },
