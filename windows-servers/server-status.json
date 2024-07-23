@@ -2174,31 +2174,41 @@
           "text": "all",
           "value": ".*"
         },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "fe37eb96-e778-4098-b04d-bf73e9683d48"
+        },
+        "definition": "samm-config- (infinity) json",
         "hide": 0,
         "includeAll": false,
         "multi": false,
         "name": "service_filter",
-        "options": [
-          {
-            "selected": false,
-            "text": "citrix_ddc",
-            "value": "(?i).*(citrix|spooler).*"
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [],
+            "filterExpression": "name =~ \"$role|all\"",
+            "filters": [],
+            "format": "table",
+            "parser": "backend",
+            "refId": "variable",
+            "root_selector": "",
+            "source": "url",
+            "type": "json",
+            "url": "http://172.17.0.1/service-filter.json",
+            "url_options": {
+              "data": "",
+              "method": "GET"
+            }
           },
-          {
-            "selected": true,
-            "text": "citrix_sf",
-            "value": "(?i).*(citrix|world wide web).*"
-          },
-          {
-            "selected": false,
-            "text": "all",
-            "value": ".*"
-          }
-        ],
-        "query": "citrix_ddc : (?i).*(citrix|spooler).*, citrix_sf : (?i).*(citrix|world wide web).*, all : .*",
-        "queryValue": "",
+          "query": "",
+          "queryType": "infinity"
+        },
+        "refresh": 1,
+        "regex": "",
         "skipUrlSync": false,
-        "type": "custom"
+        "sort": 0,
+        "type": "query"
       },
       {
         "current": {
