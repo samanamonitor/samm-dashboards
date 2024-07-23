@@ -2171,15 +2171,43 @@
       {
         "current": {
           "selected": true,
-          "text": "all",
-          "value": ".*"
+          "text": "by role",
+          "value": ""
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Service Filter",
+        "multi": false,
+        "name": "service_filter2",
+        "options": [
+          {
+            "selected": true,
+            "text": "by role",
+            "value": ""
+          },
+          {
+            "selected": false,
+            "text": "all",
+            "value": "all"
+          }
+        ],
+        "query": "by role : $role, all : all",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "yesoreyeram-infinity-datasource",
           "uid": "fe37eb96-e778-4098-b04d-bf73e9683d48"
         },
-        "definition": "samm-config- (infinity) json",
-        "hide": 0,
+        "definition": "SAMM-CONFIG- (infinity) json",
+        "hide": 2,
         "includeAll": false,
         "multi": false,
         "name": "service_filter",
@@ -2187,7 +2215,7 @@
         "query": {
           "infinityQuery": {
             "columns": [],
-            "filterExpression": "name =~ \"$role|all\"",
+            "filterExpression": "name =~ \"$service_filter2\"",
             "filters": [],
             "format": "table",
             "parser": "backend",
