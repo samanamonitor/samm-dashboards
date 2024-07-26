@@ -63,8 +63,7 @@
               }
             ]
           },
-          "unit": "percent",
-          "unitScale": true
+          "unit": "percent"
         },
         "overrides": [
           {
@@ -140,6 +139,42 @@
                 }
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Role"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 120
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CPU %"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 119
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "RAM %"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 147
+              }
+            ]
           }
         ]
       },
@@ -169,7 +204,7 @@
           }
         ]
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -287,6 +322,9 @@
               "Value #Info": true,
               "__name__": true,
               "caption": true,
+              "ctx_fas_cluster": true,
+              "ctx_pvs_cluster": true,
+              "ctx_site": true,
               "desktopgroup_name": true,
               "desktopgroup_name 2": true,
               "desktopgroup_name 3": true,
@@ -294,6 +332,7 @@
               "instance": true,
               "job": true,
               "layer": true,
+              "layer 1": true,
               "layer 2": true,
               "layer 3": true,
               "layer 4": true,
@@ -301,25 +340,52 @@
               "layer 6": true,
               "osarchitecture": true,
               "role": false,
+              "role 1": false,
               "role 2": true,
               "role 3": true,
               "role 4": true,
               "role 5": true,
               "role 6": true,
+              "server_group": true,
               "status": true
             },
             "includeByName": {},
             "indexByName": {
-              "Time": 1,
-              "Time 2": 4,
-              "Time 3": 6,
-              "Time 4": 8,
-              "Value #CPU": 3,
-              "Value #Disk": 7,
-              "Value #RAM": 5,
-              "Value #Uptime": 9,
+              "Time 1": 9,
+              "Time 2": 3,
+              "Time 3": 5,
+              "Time 4": 7,
+              "Time 5": 17,
+              "Time 6": 21,
+              "Value #CPU": 2,
+              "Value #Certs": 20,
+              "Value #Disk": 6,
+              "Value #Info": 34,
+              "Value #RAM": 4,
+              "Value #Uptime": 8,
+              "__name__": 22,
+              "caption": 23,
+              "ctx_fas_cluster": 30,
+              "ctx_pvs_cluster": 31,
+              "ctx_site": 33,
               "fqdn": 0,
-              "role": 2
+              "instance": 24,
+              "job": 25,
+              "layer 1": 10,
+              "layer 2": 11,
+              "layer 3": 13,
+              "layer 4": 15,
+              "layer 5": 18,
+              "layer 6": 26,
+              "osarchitecture": 27,
+              "role 1": 1,
+              "role 2": 12,
+              "role 3": 14,
+              "role 4": 16,
+              "role 5": 19,
+              "role 6": 28,
+              "server_group": 32,
+              "status": 29
             },
             "renameByName": {
               "Value #CPU": "CPU %",
@@ -328,7 +394,8 @@
               "Value #RAM": "RAM %",
               "Value #Uptime": "Uptime",
               "fqdn": "Machine",
-              "role": "Role"
+              "role": "Role",
+              "role 1": "Role"
             }
           }
         }
