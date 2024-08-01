@@ -871,67 +871,25 @@
             "uid": "a3b388bb-5990-45ca-a5b5-0bca47387fe1"
           },
           "editorMode": "code",
-          "expr": "{instance=~\"(?i)$fqdn\"} | json",
-          "queryType": "range",
+          "expr": "count by(type, logfile) (rate({instance=~\"(?i)$fqdn\"} | json | type != `Information` [$__auto]))",
+          "queryType": "instant",
           "refId": "A"
         }
       ],
       "title": "Windows Events",
       "transformations": [
         {
-          "id": "extractFields",
-          "options": {
-            "source": "labels"
-          }
-        },
-        {
-          "id": "groupBy",
-          "options": {
-            "fields": {
-              "ComputerName": {
-                "aggregations": [
-                  "count"
-                ],
-                "operation": "aggregate"
-              },
-              "Logfile": {
-                "aggregations": [],
-                "operation": "groupby"
-              },
-              "Type": {
-                "aggregations": [],
-                "operation": "groupby"
-              }
-            }
-          }
-        },
-        {
           "id": "organize",
           "options": {
-            "excludeByName": {},
+            "excludeByName": {
+              "Time": true
+            },
+            "includeByName": {},
             "indexByName": {},
             "renameByName": {
-              "ComputerName (count)": "Events Count",
-              "Type": "Event Type"
+              "Value #A": "Events Count",
+              "type": "Event Type"
             }
-          }
-        },
-        {
-          "id": "filterByValue",
-          "options": {
-            "filters": [
-              {
-                "config": {
-                  "id": "equal",
-                  "options": {
-                    "value": "Information"
-                  }
-                },
-                "fieldName": "Event Type"
-              }
-            ],
-            "match": "any",
-            "type": "exclude"
           }
         }
       ],
