@@ -54,8 +54,7 @@
                 "value": 1
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": [
           {
@@ -103,7 +102,7 @@
         "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -175,8 +174,7 @@
                 "value": 5
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": [
           {
@@ -224,7 +222,7 @@
         "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -296,8 +294,7 @@
                 "value": 5
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": [
           {
@@ -345,7 +342,7 @@
         "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -417,8 +414,7 @@
                 "value": 5
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": []
       },
@@ -447,7 +443,7 @@
         "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -504,8 +500,7 @@
                 "value": 5
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": [
           {
@@ -553,7 +548,7 @@
         "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -625,8 +620,7 @@
                 "value": 5
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": []
       },
@@ -655,7 +649,7 @@
         "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -712,8 +706,7 @@
                 "value": 5
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": []
       },
@@ -742,7 +735,7 @@
         "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -799,8 +792,7 @@
                 "value": 5
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": []
       },
@@ -829,7 +821,7 @@
         "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -886,8 +878,7 @@
                 "value": 5
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": []
       },
@@ -916,7 +907,7 @@
         "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -974,8 +965,7 @@
                 "value": 11
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": []
       },
@@ -1004,7 +994,7 @@
         "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -1060,8 +1050,7 @@
                 "value": 11
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": []
       },
@@ -1090,7 +1079,7 @@
         "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -1109,7 +1098,6 @@
         }
       ],
       "title": "Alerted by RAM - VDI",
-      "transformations": [],
       "type": "bargauge"
     },
     {
@@ -1147,8 +1135,7 @@
                 "value": 5
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": []
       },
@@ -1177,7 +1164,7 @@
         "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -1233,8 +1220,7 @@
                 "value": 5
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": []
       },
@@ -1263,7 +1249,7 @@
         "sizing": "manual",
         "valueMode": "color"
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -1331,19 +1317,19 @@
       {
         "current": {
           "selected": false,
-          "text": "80",
-          "value": "80"
+          "text": "90",
+          "value": "90"
         },
         "hide": 2,
         "name": "disk_threshold",
         "options": [
           {
             "selected": true,
-            "text": "80",
-            "value": "80"
+            "text": "90",
+            "value": "90"
           }
         ],
-        "query": "80",
+        "query": "90",
         "skipUrlSync": false,
         "type": "textbox"
       },
