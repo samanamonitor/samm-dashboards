@@ -2354,7 +2354,7 @@
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "query_result(count(cim_perfcpu_percentidletime{instance=\"$instance\", name!=\"_Total\"}))",
+        "definition": "query_result(cim_computer_numberoflogicalprocessors{fqdn=\"$fqdn\"})",
         "hide": 2,
         "includeAll": false,
         "multi": false,
@@ -2362,7 +2362,7 @@
         "options": [],
         "query": {
           "qryType": 3,
-          "query": "query_result(count(cim_perfcpu_percentidletime{instance=\"$instance\", name!=\"_Total\"}))",
+          "query": "query_result(cim_computer_numberoflogicalprocessors{fqdn=\"$fqdn\"})",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
