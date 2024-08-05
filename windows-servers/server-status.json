@@ -739,7 +739,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "max(cim_pagefile_currentusage{instance=\"$instance\"} / cim_pagefile_allocatedbasesize{instance=\"$instance\"})",
+          "expr": "max(cim_pagefile_currentusage{fqdn=\"$fqdn\"} / cim_pagefile_allocatedbasesize)",
           "instant": false,
           "legendFormat": "{{name}}",
           "range": true,
