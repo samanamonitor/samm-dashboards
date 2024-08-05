@@ -230,7 +230,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "1- (rate(cim_perfcpu_percentidletime{instance=\"$instance\", name=\"_Total\"}[$__rate_interval]) / rate(cim_perfcpu_timestamp_sys100ns{instance=\"$instance\",name=\"_Total\"}[$__rate_interval]))",
+          "expr": "1- (rate(cim_perfcpu_percentidletime{fqdn=\"$fqdn\", name=\"_Total\"}[$__rate_interval]) / rate(cim_perfcpu_timestamp_sys100ns[$__rate_interval]))",
           "instant": true,
           "interval": "90s",
           "range": false,
