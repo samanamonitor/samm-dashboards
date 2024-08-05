@@ -650,7 +650,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "max(1 - cim_disk_freespace{instance=\"$instance\",drivetype=\"3\"} / cim_disk_size{instance=\"$instance\",drivetype=\"3\"})",
+          "expr": "max(1 - cim_disk_freespace{fqdn=\"$fqdn\",drivetype=\"3\"} / cim_disk_size)",
           "instant": false,
           "legendFormat": " ",
           "range": true,
