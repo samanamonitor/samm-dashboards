@@ -380,7 +380,7 @@
           "id": "joinByField",
           "options": {
             "byField": "fqdn",
-            "mode": "outer"
+            "mode": "inner"
           }
         },
         {
