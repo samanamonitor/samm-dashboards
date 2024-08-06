@@ -1282,7 +1282,8 @@
           "text": "80",
           "value": "80"
         },
-        "hide": 2,
+        "hide": 0,
+        "label": "CPU Threshold",
         "name": "cpu_threshold",
         "options": [
           {
@@ -1301,7 +1302,8 @@
           "text": "80",
           "value": "80"
         },
-        "hide": 2,
+        "hide": 0,
+        "label": "RAM Threshold",
         "name": "ram_threshold",
         "options": [
           {
@@ -1320,13 +1322,14 @@
           "text": "90",
           "value": "90"
         },
-        "hide": 2,
+        "hide": 0,
+        "label": "Disk Threshold",
         "name": "disk_threshold",
         "options": [
           {
             "selected": true,
-            "text": "90",
-            "value": "90"
+            "text": "80",
+            "value": "80"
           }
         ],
         "query": "90",
