@@ -72,25 +72,334 @@
   "liveNow": false,
   "panels": [
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": false,
+            "inspect": false
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Details"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "Show Details",
+                    "url": "${__data.fields.link}${__data.fields.Text}"
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 140
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "link"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Title"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 180
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Details"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 80
+              }
+            ]
+          }
+        ]
+      },
       "gridPos": {
-        "h": 6,
+        "h": 8,
         "w": 9,
         "x": 0,
         "y": 0
       },
-      "id": 13,
+      "id": 23,
       "options": {
-        "code": {
-          "language": "html",
-          "showLineNumbers": false,
-          "showMiniMap": false
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
         },
-        "content": "<table>\n<tr><th>Server Name</th><td>${instance}</td></tr>\n<tr><th>OS Name</th><td>${os_name}</td></tr>\n<tr><th>Layer</th>\n  <td>\n    <a href=\"/d/1ef32c05-48af-42fa-9ed5-841a25110d0c/machine-overview-by-layer?orgId=1&var-layer=${layer}\">${selected_instance_layer}</a>\n  </td>\n</tr>\n<tr><th>Role</th>\n  <td>\n    ${role}\n  </td>\n</tr>\n<tr><th>Citrix Catalog</th>\n  <td>\n    <a href=\"/d/828cfd83-e439-4d80-923c-63f616517e1f/vda-machine-catalog-detail?orgId=1&refresh=30s&var-catalog_name=${catalog_name}\">${catalog_name}</a>\n  </td>\n</tr>\n<tr><th>Citrix Delivery Group</th>\n  <td>\n    <a href=\"/d/ba8b8650-2456-4ac6-847e-75394417c614/vda-delivery-group?orgId=1&refresh=30s&var-desktopgroup_name=${desktopgroup_name}\">${desktopgroup_name}</a>\n  </td>\n</tr>\n<tr><th>FQDN</th>\n  <td>\n    ${dnsname}\n  </td>\n</tr>\n<tr><th>IP Address</th>\n  <td>\n    ${ip_address}\n  </td>\n</tr>\n<tr><th>Number of Cores</th>\n  <td>\n    ${numcores}\n  </td>\n</tr>\n<tr><th>RAM</th>\n  <td>\n    ${totalram} GB\n  </td>\n</tr>\n<tr><th>Page File Size</th>\n  <td>\n    ${pagefilesize} GB\n  </td>\n</tr>\n</table>\n",
-        "mode": "html"
+        "frameIndex": 0,
+        "showHeader": false,
+        "sortBy": []
       },
       "pluginVersion": "11.1.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "label_replace(\r\n  label_replace(sum by (instance) (up{fqdn=\"$fqdn\"}),\r\n    \"Text\", \"$1\", \"instance\", \"(.*)\"),\r\n  \"Title\", \"Server Name\", \"__name__\", \"(.*)\")",
+          "format": "time_series",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "server_name"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      sum by (caption) (cim_os_lastbootuptime{fqdn=\"$fqdn\"}),\r\n      \"Text\", \"$1\", \"caption\", \"(.*)\"\r\n    ), \"Title\", \"OS Name\", \"__name__\", \"(.*)\"\r\n  ), \"link\", \"/os_name_link\", \"__name__\", \".*\"\r\n)",
+          "format": "time_series",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "os_name"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(\r\n        sum by (layer) (up{fqdn=\"$fqdn\"}),\r\n        \"Text\", \"$1\", \"layer\", \"(.*)\"\r\n      ), \"Title\", \"Layer\", \"__name__\", \".*\"\r\n    ), \"link\", \"/d/1ef32c05-48af-42fa-9ed5-841a25110d0c/machine-overview-by-layer?orgId=1&var-layer=\", \"__name__\", \".*\"\r\n  ), \"Details\", \"Go ->\", \"caption\", \".*\"\r\n)",
+          "format": "time_series",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "layer"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "label_replace(\r\n  label_replace(sum by (role) (up{fqdn=\"$fqdn\"}),\r\n    \"Text\", \"$1\", \"role\", \"(.*)\"),\r\n  \"Title\", \"Role\", \"__name__\", \"(.*)\")",
+          "format": "time_series",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "role"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(\r\n        sum by (catalog_name) (ctx_machine_currentpowerstate{dnsname=\"$fqdn\"}),\r\n        \"Text\", \"$1\", \"catalog_name\", \"(.*)\"\r\n      ), \"Title\", \"Citrix Machine Catalog\", \"__name__\", \"(.*)\"\r\n    ), \"link\", \"/d/828cfd83-e439-4d80-923c-63f616517e1f/vda-machine-catalog-detail?orgId=1&refresh=30s&var-catalog_name=\", \"__name__\", \".*\"\r\n  ), \"Details\", \"Go ->\", \"caption\", \".*\"\r\n)",
+          "format": "time_series",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "catalog_name"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(\r\n        sum by (desktopgroup_name) (ctx_machine_currentpowerstate{dnsname=\"$fqdn\"}),\r\n        \"Text\", \"$1\", \"desktopgroup_name\", \"(.*)\"\r\n      ),\"Title\", \"Citrix Delivery Group\", \"__name__\", \"(.*)\"\r\n    ), \"link\", \"/d/ba8b8650-2456-4ac6-847e-75394417c614/vda-delivery-group?orgId=1&refresh=30s&var-desktopgroup_name=\", \"__name__\", \".*\"\r\n  ), \"Details\", \"Go ->\", \"caption\", \".*\"\r\n)",
+          "format": "time_series",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "desktopgroup_name"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "label_replace(\r\n  label_replace(sum by (fqdn) (up{fqdn=\"$fqdn\"}),\r\n    \"Text\", \"$1\", \"fqdn\", \"(.*)\"),\r\n  \"Title\", \"FQDN\", \"__name__\", \"(.*)\")",
+          "format": "time_series",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "fqdn"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "label_replace(\r\n  label_replace(sum by (address) (up{fqdn=\"$fqdn\"}),\r\n    \"Text\", \"$1\", \"address\", \"(.*)\"),\r\n  \"Title\", \"IP Address\", \"__name__\", \"(.*)\")",
+          "format": "time_series",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "ipaddress"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "label_replace(\r\n  label_replace(sum by (address) (up{fqdn=\"$fqdn\"}),\r\n    \"Text\", \"$numcores\", \"address\", \"(.*)\"),\r\n  \"Title\", \"Number of cores\", \"__name__\", \"(.*)\")",
+          "format": "time_series",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "numcores"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "label_replace(\r\n  label_replace(sum by (address) (up{fqdn=\"$fqdn\"}),\r\n    \"Text\", \"$totalram GB\", \"address\", \"(.*)\"),\r\n  \"Title\", \"RAM\", \"__name__\", \"(.*)\")",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "totalram"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "label_replace(\r\n  label_replace(sum by (address) (up{fqdn=\"$fqdn\"}),\r\n    \"Text\", \"$pagefilesize GB\", \"address\", \"(.*)\"),\r\n  \"Title\", \"Page File Size\", \"__name__\", \"(.*)\")",
+          "format": "time_series",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "pagefilesize"
+        }
+      ],
       "title": "Server Info",
-      "type": "text"
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {}
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "format": "auto",
+            "replace": true,
+            "source": "Metric"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "address": true,
+              "caption": true,
+              "catalog_name": true,
+              "desktopgroup_name": true,
+              "fqdn": true,
+              "instance": true,
+              "layer": true,
+              "link": false,
+              "role": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "Text": 1,
+              "Title": 0,
+              "address": 9,
+              "caption": 3,
+              "catalog_name": 6,
+              "desktopgroup_name": 7,
+              "fqdn": 8,
+              "instance": 2,
+              "layer": 4,
+              "role": 5
+            },
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
     },
     {
       "datasource": {
@@ -436,6 +745,7 @@
               "Time": true,
               "__name__": true,
               "caption": true,
+              "ctx_pvs_cluster": true,
               "ctx_site": true,
               "dn": true,
               "filter": false,
@@ -450,7 +760,21 @@
               "storage": true
             },
             "includeByName": {},
-            "indexByName": {},
+            "indexByName": {
+              "Time": 2,
+              "Value": 1,
+              "__name__": 3,
+              "caption": 4,
+              "ctx_pvs_cluster": 5,
+              "displayname": 0,
+              "fqdn": 6,
+              "instance": 7,
+              "job": 8,
+              "layer": 9,
+              "role": 10,
+              "server_group": 11,
+              "servicetype": 12
+            },
             "renameByName": {
               "Value": "State",
               "displayname": "Display Name"
@@ -842,7 +1166,7 @@
         "h": 5,
         "w": 12,
         "x": 0,
-        "y": 6
+        "y": 8
       },
       "id": 17,
       "options": {
@@ -904,7 +1228,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 11
+        "y": 13
       },
       "id": 21,
       "options": {
@@ -924,7 +1248,7 @@
         },
         "viewMode": "list"
       },
-      "title": "Panel Title",
+      "title": "Alerts",
       "type": "alertlist"
     },
     {
@@ -933,7 +1257,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 18
+        "y": 20
       },
       "id": 16,
       "panels": [],
@@ -1010,7 +1334,7 @@
         "h": 5,
         "w": 12,
         "x": 0,
-        "y": 19
+        "y": 21
       },
       "id": 1,
       "options": {
@@ -1115,7 +1439,7 @@
         "h": 5,
         "w": 12,
         "x": 12,
-        "y": 19
+        "y": 21
       },
       "id": 10,
       "options": {
@@ -1234,7 +1558,7 @@
         "h": 5,
         "w": 12,
         "x": 0,
-        "y": 24
+        "y": 26
       },
       "id": 3,
       "options": {
@@ -1353,7 +1677,7 @@
         "h": 5,
         "w": 12,
         "x": 12,
-        "y": 24
+        "y": 26
       },
       "id": 12,
       "options": {
@@ -1450,7 +1774,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 29
+        "y": 31
       },
       "id": 20,
       "options": {
@@ -1561,7 +1885,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 29
+        "y": 31
       },
       "id": 6,
       "options": {
@@ -1672,7 +1996,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 36
+        "y": 38
       },
       "id": 5,
       "options": {
@@ -1758,7 +2082,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 36
+        "y": 38
       },
       "id": 18,
       "options": {
@@ -1846,8 +2170,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1862,7 +2185,7 @@
         "h": 5,
         "w": 12,
         "x": 0,
-        "y": 43
+        "y": 45
       },
       "id": 7,
       "options": {
@@ -1949,32 +2272,6 @@
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "label_values(cim_os_lastbootuptime{fqdn=\"$fqdn\"},layer)",
-        "hide": 2,
-        "includeAll": true,
-        "label": "Layer",
-        "multi": false,
-        "name": "layer",
-        "options": [],
-        "query": {
-          "qryType": 1,
-          "query": "label_values(cim_os_lastbootuptime{fqdn=\"$fqdn\"},layer)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      },
-      {
-        "current": {
-          "selected": false
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-        },
         "definition": "label_values(cim_os_lastbootuptime{fqdn=~\"(?i)$fqdn\"},instance)",
         "hide": 2,
         "includeAll": false,
@@ -2001,56 +2298,6 @@
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "label_values(cim_os_lastbootuptime{instance=\"$instance\"},caption)",
-        "hide": 2,
-        "includeAll": false,
-        "multi": false,
-        "name": "os_name",
-        "options": [],
-        "query": {
-          "qryType": 1,
-          "query": "label_values(cim_os_lastbootuptime{instance=\"$instance\"},caption)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      },
-      {
-        "current": {
-          "selected": false
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-        },
-        "definition": "label_values(cim_os_lastbootuptime{instance=\"$instance\"},layer)",
-        "hide": 2,
-        "includeAll": false,
-        "multi": false,
-        "name": "selected_instance_layer",
-        "options": [],
-        "query": {
-          "qryType": 1,
-          "query": "label_values(cim_os_lastbootuptime{instance=\"$instance\"},layer)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      },
-      {
-        "current": {
-          "selected": false
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-        },
         "definition": "label_values(cim_os_lastbootuptime{instance=\"$instance\"},fqdn)",
         "hide": 2,
         "includeAll": false,
@@ -2060,58 +2307,6 @@
         "query": {
           "qryType": 1,
           "query": "label_values(cim_os_lastbootuptime{instance=\"$instance\"},fqdn)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      },
-      {
-        "current": {
-          "isNone": true,
-          "selected": false
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-        },
-        "definition": "label_values(ctx_machine_currentpowerstate{dnsname=\"$dnsname\"},catalog_name)",
-        "hide": 2,
-        "includeAll": false,
-        "multi": false,
-        "name": "catalog_name",
-        "options": [],
-        "query": {
-          "qryType": 1,
-          "query": "label_values(ctx_machine_currentpowerstate{dnsname=\"$dnsname\"},catalog_name)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      },
-      {
-        "current": {
-          "isNone": true,
-          "selected": false
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-        },
-        "definition": "label_values(ctx_machine_currentpowerstate{dnsname=\"$dnsname\"},desktopgroup_name)",
-        "hide": 2,
-        "includeAll": false,
-        "multi": false,
-        "name": "desktopgroup_name",
-        "options": [],
-        "query": {
-          "qryType": 1,
-          "query": "label_values(ctx_machine_currentpowerstate{dnsname=\"$dnsname\"},desktopgroup_name)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
