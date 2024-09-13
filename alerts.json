@@ -1258,7 +1258,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sort_desc(count by (desktopgroup_name) ((ctx_machine_currentpowerstate{desktopgroup_name!=\"none\"} * 10 + ctx_machine_currentregistrationstate) == 32))",
+          "expr": "sort_desc(count by (desktopgroup_name) ((ctx_machine_isinmaintenancemode * 100 + ctx_machine_currentpowerstate{desktopgroup_name!=\"none\"} * 10 + ctx_machine_currentregistrationstate) == 32))",
           "format": "time_series",
           "instant": true,
           "interval": "90s",
