@@ -39,16 +39,16 @@
   "panels": [
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        "type": "mssql",
+        "uid": "${datasource}"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
           "mappings": [],
-          "noValue": "0",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -63,7 +63,274 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Power State"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "Unknown"
+                      },
+                      "1": {
+                        "index": 1,
+                        "text": "Unavailable"
+                      },
+                      "2": {
+                        "index": 2,
+                        "text": "Off"
+                      },
+                      "3": {
+                        "index": 3,
+                        "text": "On"
+                      },
+                      "4": {
+                        "index": 4,
+                        "text": "Suspended"
+                      },
+                      "5": {
+                        "index": 5,
+                        "text": "TurningOn"
+                      },
+                      "6": {
+                        "index": 6,
+                        "text": "TurningOff"
+                      },
+                      "7": {
+                        "index": 7,
+                        "text": "Suspending"
+                      },
+                      "8": {
+                        "index": 8,
+                        "text": "Resuming"
+                      },
+                      "9": {
+                        "index": 9,
+                        "text": "Unmanaged"
+                      },
+                      "10": {
+                        "index": 10,
+                        "text": "NotSupported"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Registration State"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "Unknown"
+                      },
+                      "1": {
+                        "index": 1,
+                        "text": "Registered"
+                      },
+                      "2": {
+                        "index": 2,
+                        "text": "Unregistered"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Last Error Code"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "AgentShutdown"
+                      },
+                      "1": {
+                        "index": 1,
+                        "text": "AgentSuspended"
+                      },
+                      "2": {
+                        "index": 2,
+                        "text": "AgentRequested"
+                      },
+                      "100": {
+                        "index": 3,
+                        "text": "IncompatibleVersion"
+                      },
+                      "101": {
+                        "index": 4,
+                        "text": "AgentAddressResolutionFailed"
+                      },
+                      "102": {
+                        "index": 5,
+                        "text": "AgentNotContactable"
+                      },
+                      "103": {
+                        "index": 6,
+                        "text": "AgentWrongActiveDirectoryOU"
+                      },
+                      "104": {
+                        "index": 7,
+                        "text": "EmptyRegistrationRequest"
+                      },
+                      "105": {
+                        "index": 8,
+                        "text": "MissingRegistrationCapabilities"
+                      },
+                      "106": {
+                        "index": 9,
+                        "text": "MissingAgentVersion"
+                      },
+                      "107": {
+                        "index": 10,
+                        "text": "InconsistentRegistrationCapabilities"
+                      },
+                      "108": {
+                        "index": 11,
+                        "text": "NotLicensedForFeature"
+                      },
+                      "109": {
+                        "index": 12,
+                        "text": "UnsupportedCredentialSecurityVersion"
+                      },
+                      "110": {
+                        "index": 13,
+                        "text": "InvalidRegistrationRequest"
+                      },
+                      "111": {
+                        "index": 14,
+                        "text": "SingleMultiSessionMismatch"
+                      },
+                      "112": {
+                        "index": 15,
+                        "text": "FunctionalLevelTooLowForCatalog"
+                      },
+                      "113": {
+                        "index": 16,
+                        "text": "FunctionalLevelTooLowForDesktopGroup"
+                      },
+                      "114": {
+                        "index": 17,
+                        "text": "OSNotCompatibleWithDdc"
+                      },
+                      "115": {
+                        "index": 18,
+                        "text": "VMNotCompatibleWithDdc"
+                      },
+                      "200": {
+                        "index": 19,
+                        "text": "PowerOff"
+                      },
+                      "201": {
+                        "index": 20,
+                        "text": "DesktopRestart"
+                      },
+                      "202": {
+                        "index": 21,
+                        "text": "DesktopRemoved"
+                      },
+                      "203": {
+                        "index": 22,
+                        "text": "AgentRejectedSettingsUpdate"
+                      },
+                      "204": {
+                        "index": 23,
+                        "text": "SendSettingsFailure"
+                      },
+                      "205": {
+                        "index": 24,
+                        "text": "SessionAuditFailure"
+                      },
+                      "206": {
+                        "index": 25,
+                        "text": "SessionPrepareFailure"
+                      },
+                      "207": {
+                        "index": 26,
+                        "text": "ContactLost"
+                      },
+                      "208": {
+                        "index": 27,
+                        "text": "SettingsCreationFailure"
+                      },
+                      "300": {
+                        "index": 28,
+                        "text": "SettingsCreationFailure"
+                      },
+                      "301": {
+                        "index": 29,
+                        "text": "BrokerRegistrationLimitReached"
+                      },
+                      "400": {
+                        "index": 30,
+                        "text": "None"
+                      },
+                      "401": {
+                        "index": 31,
+                        "text": "HypervisorReportedFailure"
+                      },
+                      "402": {
+                        "index": 32,
+                        "text": "HypervisorRateLimitExceeded"
+                      },
+                      "1000": {
+                        "index": 33,
+                        "text": "HardRegistrationPending"
+                      },
+                      "1001": {
+                        "index": 34,
+                        "text": "SoftRegistered"
+                      },
+                      "1002": {
+                        "index": 35,
+                        "text": "Unknown"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Last Error Date"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "dateTimeFromNow"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 5,
@@ -71,7 +338,7 @@
         "x": 0,
         "y": 0
       },
-      "id": 6,
+      "id": 8,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -93,21 +360,31 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+            "type": "mssql",
+            "uid": "${datasource}"
           },
-          "disableTextWrap": false,
           "editorMode": "code",
-          "exemplar": false,
-          "expr": "count  (ctx_machine_isinmaintenancemode{desktopgroup_name!=\"none\",instance=\"$instance\"} * 100 + ctx_machine_currentpowerstate * 10 + ctx_machine_currentregistrationstate == 32)",
           "format": "table",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n  COUNT(*) as Value\r\nFROM\r\n  CitrixMMMMonitoring.MonitorData.Machine m,\r\n  CitrixMMMMonitoring.MonitorData.DesktopGroup dg\r\nWHERE\r\n  (\r\n    CurrentRegistrationState = 2\r\n    AND CurrentPowerState = 3\r\n    AND m.IsInMaintenanceMode = 0\r\n    AND DesktopGroupId IS NOT NULL\r\n    AND dg.id = m.DesktopGroupId\r\n    AND DateDiff(hour, LastDeregisteredDate, getdate()) > 1\r\n  )",
           "refId": "A",
-          "useBackend": false
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
         }
       ],
       "title": "Machines ON but not Registered",
@@ -115,9 +392,10 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        "type": "mssql",
+        "uid": "${datasource}"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -145,7 +423,282 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Power State"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "Unknown"
+                      },
+                      "1": {
+                        "index": 1,
+                        "text": "Unavailable"
+                      },
+                      "2": {
+                        "index": 2,
+                        "text": "Off"
+                      },
+                      "3": {
+                        "index": 3,
+                        "text": "On"
+                      },
+                      "4": {
+                        "index": 4,
+                        "text": "Suspended"
+                      },
+                      "5": {
+                        "index": 5,
+                        "text": "TurningOn"
+                      },
+                      "6": {
+                        "index": 6,
+                        "text": "TurningOff"
+                      },
+                      "7": {
+                        "index": 7,
+                        "text": "Suspending"
+                      },
+                      "8": {
+                        "index": 8,
+                        "text": "Resuming"
+                      },
+                      "9": {
+                        "index": 9,
+                        "text": "Unmanaged"
+                      },
+                      "10": {
+                        "index": 10,
+                        "text": "NotSupported"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 103
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Registration State"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "Unknown"
+                      },
+                      "1": {
+                        "index": 1,
+                        "text": "Registered"
+                      },
+                      "2": {
+                        "index": 2,
+                        "text": "Unregistered"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 143
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Last Error Code"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "AgentShutdown"
+                      },
+                      "1": {
+                        "index": 1,
+                        "text": "AgentSuspended"
+                      },
+                      "2": {
+                        "index": 2,
+                        "text": "AgentRequested"
+                      },
+                      "100": {
+                        "index": 3,
+                        "text": "IncompatibleVersion"
+                      },
+                      "101": {
+                        "index": 4,
+                        "text": "AgentAddressResolutionFailed"
+                      },
+                      "102": {
+                        "index": 5,
+                        "text": "AgentNotContactable"
+                      },
+                      "103": {
+                        "index": 6,
+                        "text": "AgentWrongActiveDirectoryOU"
+                      },
+                      "104": {
+                        "index": 7,
+                        "text": "EmptyRegistrationRequest"
+                      },
+                      "105": {
+                        "index": 8,
+                        "text": "MissingRegistrationCapabilities"
+                      },
+                      "106": {
+                        "index": 9,
+                        "text": "MissingAgentVersion"
+                      },
+                      "107": {
+                        "index": 10,
+                        "text": "InconsistentRegistrationCapabilities"
+                      },
+                      "108": {
+                        "index": 11,
+                        "text": "NotLicensedForFeature"
+                      },
+                      "109": {
+                        "index": 12,
+                        "text": "UnsupportedCredentialSecurityVersion"
+                      },
+                      "110": {
+                        "index": 13,
+                        "text": "InvalidRegistrationRequest"
+                      },
+                      "111": {
+                        "index": 14,
+                        "text": "SingleMultiSessionMismatch"
+                      },
+                      "112": {
+                        "index": 15,
+                        "text": "FunctionalLevelTooLowForCatalog"
+                      },
+                      "113": {
+                        "index": 16,
+                        "text": "FunctionalLevelTooLowForDesktopGroup"
+                      },
+                      "114": {
+                        "index": 17,
+                        "text": "OSNotCompatibleWithDdc"
+                      },
+                      "115": {
+                        "index": 18,
+                        "text": "VMNotCompatibleWithDdc"
+                      },
+                      "200": {
+                        "index": 19,
+                        "text": "PowerOff"
+                      },
+                      "201": {
+                        "index": 20,
+                        "text": "DesktopRestart"
+                      },
+                      "202": {
+                        "index": 21,
+                        "text": "DesktopRemoved"
+                      },
+                      "203": {
+                        "index": 22,
+                        "text": "AgentRejectedSettingsUpdate"
+                      },
+                      "204": {
+                        "index": 23,
+                        "text": "SendSettingsFailure"
+                      },
+                      "205": {
+                        "index": 24,
+                        "text": "SessionAuditFailure"
+                      },
+                      "206": {
+                        "index": 25,
+                        "text": "SessionPrepareFailure"
+                      },
+                      "207": {
+                        "index": 26,
+                        "text": "ContactLost"
+                      },
+                      "208": {
+                        "index": 27,
+                        "text": "SettingsCreationFailure"
+                      },
+                      "300": {
+                        "index": 28,
+                        "text": "SettingsCreationFailure"
+                      },
+                      "301": {
+                        "index": 29,
+                        "text": "BrokerRegistrationLimitReached"
+                      },
+                      "400": {
+                        "index": 30,
+                        "text": "None"
+                      },
+                      "401": {
+                        "index": 31,
+                        "text": "HypervisorReportedFailure"
+                      },
+                      "402": {
+                        "index": 32,
+                        "text": "HypervisorRateLimitExceeded"
+                      },
+                      "1000": {
+                        "index": 33,
+                        "text": "HardRegistrationPending"
+                      },
+                      "1001": {
+                        "index": 34,
+                        "text": "SoftRegistered"
+                      },
+                      "1002": {
+                        "index": 35,
+                        "text": "Unknown"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Last Error Date"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "dateTimeFromNow"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 5,
@@ -153,7 +706,7 @@
         "x": 8,
         "y": 0
       },
-      "id": 5,
+      "id": 9,
       "options": {
         "cellHeight": "sm",
         "footer": {
@@ -164,48 +717,46 @@
           ],
           "show": false
         },
-        "showHeader": true
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Last Error Date"
+          }
+        ]
       },
       "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+            "type": "mssql",
+            "uid": "${datasource}"
           },
           "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum by (dnsname, desktopgroup_name) (ctx_machine_isinmaintenancemode{desktopgroup_name!=\"none\",instance=\"$instance\"} * 100 + ctx_machine_currentpowerstate * 10 + ctx_machine_currentregistrationstate) == 32",
           "format": "table",
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "A"
-        }
-      ],
-      "title": "Machines ON but not Registered",
-      "transformations": [
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {
-              "Time": true,
-              "Value": true
-            },
-            "includeByName": {},
-            "indexByName": {
-              "Time": 0,
-              "Value": 3,
-              "desktopgroup_name": 2,
-              "dnsname": 1
-            },
-            "renameByName": {
-              "desktopgroup_name": "Delivery Group",
-              "dnsname": "Machine"
-            }
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n  TOP(50) DnsName as Machine,\r\n  CurrentPowerState as \"Power State\",\r\n  m.IsInMaintenanceMode as \"Is In Maintenance\",\r\n  CurrentRegistrationState as \"Registration State\",\r\n  LastDeregisteredCode as \"Last Error Code\",\r\n  LastDeregisteredDate as \"Last Error Date\",\r\n  dg.Name as \"Delivery Group\"\r\nFROM\r\n  CitrixMMMMonitoring.MonitorData.Machine m,\r\n  CitrixMMMMonitoring.MonitorData.DesktopGroup dg\r\nWHERE\r\n  (\r\n    CurrentRegistrationState = 2\r\n    AND CurrentPowerState = 3\r\n    AND m.IsInMaintenanceMode = 0\r\n    AND DesktopGroupId IS NOT NULL\r\n    AND dg.id = m.DesktopGroupId\r\n    AND DateDiff(hour, LastDeregisteredDate, getdate()) > 1\r\n  )",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
           }
         }
       ],
+      "title": "Machines ON but not Registered",
       "type": "table"
     },
     {
@@ -1423,6 +1974,24 @@
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "citrix-monitor",
+          "value": "bdu45n9oxm7eob"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "mssql",
+        "queryValue": "",
+        "refresh": 1,
+        "regex": "/^citrix-monitor/",
+        "skipUrlSync": false,
+        "type": "datasource"
       }
     ]
   },
