@@ -1187,8 +1187,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        "type": "mssql",
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1243,7 +1243,7 @@
             "lastNotNull"
           ],
           "fields": "",
-          "values": false
+          "values": true
         },
         "showUnfilled": true,
         "sizing": "manual",
@@ -1252,19 +1252,33 @@
       "pluginVersion": "11.1.1",
       "targets": [
         {
+          "dataset": "CitrixMMMLogging",
           "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+            "type": "mssql",
+            "uid": "${datasource}"
           },
           "editorMode": "code",
-          "exemplar": false,
-          "expr": "sort_desc(count by (desktopgroup_name) ((ctx_machine_isinmaintenancemode * 100 + ctx_machine_currentpowerstate{desktopgroup_name!=\"none\"} * 10 + ctx_machine_currentregistrationstate) == 32))",
-          "format": "time_series",
-          "instant": true,
-          "interval": "90s",
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "A"
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n  dg.Name, COUNT(*)\r\nFROM\r\n  CitrixMMMMonitoring.MonitorData.Machine m,\r\n  CitrixMMMMonitoring.MonitorData.DesktopGroup dg\r\nWHERE\r\n  (\r\n    CurrentRegistrationState = 2\r\n    AND CurrentPowerState = 3\r\n    AND m.IsInMaintenanceMode = 0\r\n    AND DesktopGroupId IS NOT NULL\r\n    AND dg.id = m.DesktopGroupId\r\n    AND DateDiff(hour, LastDeregisteredDate, getdate()) > 1\r\n  )\r\nGROUP BY (dg.Name)",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
         }
       ],
       "title": "Unregistered",
@@ -1373,6 +1387,23 @@
         "query": "2592000",
         "skipUrlSync": false,
         "type": "textbox"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "citrix-monitor",
+          "value": "bdu45n9oxm7eob"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "mssql",
+        "refresh": 1,
+        "regex": "/^citrix-monitor/",
+        "skipUrlSync": false,
+        "type": "datasource"
       }
     ]
   },
