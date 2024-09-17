@@ -39,30 +39,6 @@
       "keepTime": false,
       "tags": [],
       "targetBlank": true,
-      "title": "Vcenter VM Detail",
-      "tooltip": "",
-      "type": "link",
-      "url": "https://192.168.250.217/sammvcenter/vmdetail?hostedmachinename=$hostedmachinename"
-    },
-    {
-      "asDropdown": false,
-      "icon": "external link",
-      "includeVars": false,
-      "keepTime": false,
-      "tags": [],
-      "targetBlank": true,
-      "title": "Vcenter Host Detail",
-      "tooltip": "",
-      "type": "link",
-      "url": "https://192.168.250.217/sammvcenter/hostdetail?hostingservername=$hostingservername"
-    },
-    {
-      "asDropdown": false,
-      "icon": "external link",
-      "includeVars": false,
-      "keepTime": false,
-      "tags": [],
-      "targetBlank": true,
       "title": "RDP",
       "tooltip": "",
       "type": "link",
@@ -352,6 +328,34 @@
           "legendFormat": "__auto",
           "range": false,
           "refId": "pagefilesize"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(\r\n        sum by (hostingservername) (ctx_machine_currentpowerstate{dnsname=\"$fqdn\"}),\r\n        \"Text\", \"$1\", \"hostingservername\", \"(.*)\"\r\n      ),\"Title\", \"Host\", \"__name__\", \"(.*)\"\r\n    ), \"link\", \"https://192.168.250.217/sammvcenter/hostdetail?hostingservername=$1\", \"hostingservername\", \".*\"\r\n  ), \"Details\", \"Go ->\", \"caption\", \".*\"\r\n)",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "host"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(\r\n        sum by (hostedmachinename) (ctx_machine_currentpowerstate{dnsname=\"$fqdn\"}),\r\n        \"Text\", \"$1\", \"hostedmachinename\", \"(.*)\"\r\n      ),\"Title\", \"VM Details\", \"__name__\", \"(.*)\"\r\n    ), \"link\", \"https://192.168.250.217/sammvcenter/vmdetail?hostedmachinename=$1\", \"hostedmachinename\", \".*\"\r\n  ), \"Details\", \"Go ->\", \"caption\", \".*\"\r\n)",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "vm"
         }
       ],
       "title": "Server Info",
@@ -377,6 +381,8 @@
               "catalog_name": true,
               "desktopgroup_name": true,
               "fqdn": true,
+              "hostedmachinename": true,
+              "hostingservername": true,
               "instance": true,
               "layer": true,
               "link": false,
