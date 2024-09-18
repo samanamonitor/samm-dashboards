@@ -630,20 +630,13 @@
       "title": "VDA",
       "transformations": [
         {
-          "id": "joinByField",
-          "options": {
-            "byField": "Time",
-            "mode": "outer"
-          }
-        },
-        {
           "id": "calculateField",
           "options": {
             "alias": "Percent InMaintenance",
             "binary": {
-              "left": "Value #inmaintenance",
+              "left": "IsInMaintenanceMode",
               "operator": "/",
-              "right": "Value #total"
+              "right": "Machines"
             },
             "mode": "binary",
             "reduce": {
@@ -656,9 +649,9 @@
           "options": {
             "alias": "Percent UnRegistered",
             "binary": {
-              "left": "Value #unregistered",
+              "left": "Unregistered",
               "operator": "/",
-              "right": "Value #total"
+              "right": "Machines"
             },
             "mode": "binary",
             "reduce": {
@@ -670,20 +663,21 @@
           "id": "organize",
           "options": {
             "excludeByName": {
+              "IsInMaintenanceMode": true,
+              "Unregistered": true,
               "Value #inmaintenance": true,
               "Value #unregistered": true
             },
             "includeByName": {},
             "indexByName": {
-              "Percent InMaintenance": 8,
-              "Percent UnRegistered": 5,
-              "Time": 0,
-              "Value #inmaintenance": 7,
-              "Value #loadindex": 3,
-              "Value #registered": 4,
-              "Value #sessions": 2,
-              "Value #total": 1,
-              "Value #unregistered": 6
+              "IsInMaintenanceMode": 7,
+              "Load Index": 2,
+              "Machines": 0,
+              "Percent InMaintenance": 5,
+              "Percent UnRegistered": 4,
+              "Registered": 3,
+              "Sessions": 1,
+              "Unregistered": 6
             },
             "renameByName": {
               "Value #available": "Available",
