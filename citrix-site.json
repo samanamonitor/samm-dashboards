@@ -61,8 +61,7 @@
                 "value": 80
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": [
           {
@@ -147,6 +146,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -158,7 +158,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -253,7 +253,8 @@
               "title": "Delivery Groups",
               "url": "/d/eca44171-24b3-4858-af9c-786bd6dbe841/vdi-delivery-group-overview?orgId=1&${__url_time_range}"
             }
-          ],          "mappings": [],
+          ],
+          "mappings": [],
           "noValue": "0",
           "thresholds": {
             "mode": "absolute",
@@ -271,8 +272,7 @@
                 "value": 5
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": [
           {
@@ -357,6 +357,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -368,7 +369,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -560,7 +561,8 @@
               "title": "Delivery Groups",
               "url": "/d/f37aec43-c073-47ad-bdc7-83f46ff26a61/vda-delivery-group-overview?orgId=1&${__url_time_range}"
             }
-          ],          "mappings": [],
+          ],
+          "mappings": [],
           "noValue": "0",
           "thresholds": {
             "mode": "absolute",
@@ -578,8 +580,7 @@
                 "value": 5
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": [
           {
@@ -696,6 +697,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -707,7 +709,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -925,8 +927,7 @@
                 "value": 80
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": [
           {
@@ -1096,7 +1097,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -1350,8 +1351,7 @@
                 "value": 80
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": [
           {
@@ -1666,7 +1666,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "10.3.1",
+      "pluginVersion": "11.1.1",
       "targets": [
         {
           "datasource": {
@@ -1834,6 +1834,23 @@
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "citrix-monitor",
+          "value": "bdu45n9oxm7eob"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "mssql",
+        "refresh": 1,
+        "regex": "/^citrix-monitor/",
+        "skipUrlSync": false,
+        "type": "datasource"
       }
     ]
   },
