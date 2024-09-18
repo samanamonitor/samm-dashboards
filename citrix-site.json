@@ -694,8 +694,8 @@
     },
     {
       "datasource": {
-        "type": "loki",
-        "uid": "a3b388bb-5990-45ca-a5b5-0bca47387fe1"
+        "type": "mssql",
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -890,230 +890,47 @@
           ],
           "show": false
         },
-        "showHeader": true
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Time"
+          }
+        ]
       },
       "pluginVersion": "11.1.1",
       "targets": [
         {
+          "dataset": "CitrixMMMLogging",
           "datasource": {
-            "type": "loki",
-            "uid": "a3b388bb-5990-45ca-a5b5-0bca47387fe1"
+            "type": "mssql",
+            "uid": "${datasource}"
           },
-          "editorMode": "builder",
-          "expr": "{event_type=\"loginfail\"}",
-          "queryType": "range",
-          "refId": "A"
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n  TOP(50) cf.FailureDate Time, u.Upn 'User', m.DnsName 'Machine', cf.ConnectionFailureEnumValue \"Exit Code\"\r\nFROM\r\n  CitrixMMMMonitoring.MonitorData.ConnectionFailureLog cf,\r\n  CitrixMMMMonitoring.MonitorData.[User] u,\r\n  CitrixMMMMonitoring.MonitorData.Machine m\r\nWHERE\r\n  cf.UserId = u.Id AND\r\n  cf.MachineId = m.Id AND\r\n  $__timeFilter(cf.FailureDate)",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
         }
       ],
       "title": "Session Failures",
-      "transformations": [
-        {
-          "id": "extractFields",
-          "options": {
-            "replace": true,
-            "source": "Line"
-          }
-        },
-        {
-          "id": "extractFields",
-          "options": {
-            "source": "User"
-          }
-        },
-        {
-          "id": "extractFields",
-          "options": {
-            "source": "Machine"
-          }
-        },
-        {
-          "id": "calculateField",
-          "options": {
-            "alias": "Timestamp",
-            "binary": {
-              "left": "StartDate",
-              "operator": "*",
-              "right": "1000"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "sum"
-            },
-            "replaceFields": false
-          }
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {
-              "AgentVersion": true,
-              "ApplicationInstances": true,
-              "AssociatedUserFullNames": true,
-              "AssociatedUserNames": true,
-              "AssociatedUserUPNs": true,
-              "Catalog": true,
-              "CatalogId": true,
-              "ConnectionState": true,
-              "ConnectionStateChangeDate": true,
-              "Connections": true,
-              "ControllerDnsName": true,
-              "CreatedDate": true,
-              "CreatedDate 2": true,
-              "CreatedDate 3": true,
-              "CurrentConnection": true,
-              "CurrentConnectionId": true,
-              "CurrentLoadIndex": true,
-              "CurrentLoadIndexId": true,
-              "CurrentPowerState": true,
-              "CurrentRegistrationState": true,
-              "CurrentSessionCount": true,
-              "DesktopGroup": true,
-              "DesktopGroupId": true,
-              "Domain": true,
-              "EndDate": true,
-              "Failure": true,
-              "FailureDate": true,
-              "FailureDate 2": true,
-              "FaultState": true,
-              "FunctionalLevel": true,
-              "Hash": true,
-              "HostedMachineId": true,
-              "HostedMachineName": true,
-              "Hypervisor": true,
-              "HypervisorId": true,
-              "IPAddress": true,
-              "Id 1": true,
-              "Id 2": true,
-              "IsAnonymous": true,
-              "IsAssigned": true,
-              "IsInMaintenanceMode": true,
-              "IsPendingUpdate": true,
-              "IsPreparing": true,
-              "LastDeregisteredCode": true,
-              "LastDeregisteredDate": true,
-              "LifecycleState": true,
-              "LifecycleState 2": true,
-              "LoadIndex": true,
-              "LogOnDuration": true,
-              "Machine": true,
-              "MachineFailures": true,
-              "MachineHotfixLogs": true,
-              "MachineId": true,
-              "MachineRole": true,
-              "ModifiedDate": true,
-              "ModifiedDate 2": true,
-              "ModifiedDate 3": true,
-              "Name": true,
-              "OSType": true,
-              "PowerStateChangeDate": true,
-              "PoweredOnDate": true,
-              "RegistrationStateChangeDate": true,
-              "SessionKey": true,
-              "SessionType": true,
-              "Sessions": true,
-              "Sessions 2": true,
-              "Sid 1": true,
-              "Sid 2": true,
-              "StartDate": true,
-              "User": true,
-              "UserId": true,
-              "UserName": true,
-              "WindowsConnectionSetting": true
-            },
-            "includeByName": {},
-            "indexByName": {
-              "AgentVersion": 44,
-              "ApplicationInstances": 22,
-              "AssociatedUserFullNames": 45,
-              "AssociatedUserNames": 46,
-              "AssociatedUserUPNs": 47,
-              "Catalog": 71,
-              "CatalogId": 64,
-              "ConnectionState": 12,
-              "ConnectionStateChangeDate": 13,
-              "Connections": 23,
-              "ControllerDnsName": 54,
-              "CreatedDate": 20,
-              "CreatedDate 2": 31,
-              "CreatedDate 3": 69,
-              "CurrentConnection": 24,
-              "CurrentConnectionId": 15,
-              "CurrentLoadIndex": 72,
-              "CurrentLoadIndexId": 63,
-              "CurrentPowerState": 52,
-              "CurrentRegistrationState": 48,
-              "CurrentSessionCount": 53,
-              "DesktopGroup": 73,
-              "DesktopGroupId": 65,
-              "DnsName": 4,
-              "Domain": 30,
-              "EndDate": 10,
-              "ExitCode": 3,
-              "Failure": 25,
-              "FailureDate": 11,
-              "FailureDate 2": 58,
-              "FaultState": 61,
-              "FullName": 2,
-              "FunctionalLevel": 57,
-              "Hash": 67,
-              "HostedMachineId": 39,
-              "HostedMachineName": 40,
-              "HostingServerName": 5,
-              "Hypervisor": 74,
-              "HypervisorId": 66,
-              "IPAddress": 38,
-              "Id 1": 27,
-              "Id 2": 34,
-              "IsAnonymous": 19,
-              "IsAssigned": 41,
-              "IsInMaintenanceMode": 42,
-              "IsPendingUpdate": 43,
-              "IsPreparing": 60,
-              "LastDeregisteredCode": 50,
-              "LastDeregisteredDate": 51,
-              "LifecycleState": 14,
-              "LifecycleState 2": 37,
-              "LoadIndex": 75,
-              "LogOnDuration": 9,
-              "Machine": 26,
-              "MachineFailures": 76,
-              "MachineHotfixLogs": 77,
-              "MachineId": 17,
-              "MachineRole": 68,
-              "ModifiedDate": 21,
-              "ModifiedDate 2": 32,
-              "ModifiedDate 3": 70,
-              "Name": 36,
-              "OSType": 62,
-              "PowerStateChangeDate": 56,
-              "PoweredOnDate": 55,
-              "RegistrationStateChangeDate": 49,
-              "SessionKey": 8,
-              "SessionType": 18,
-              "Sessions": 33,
-              "Sessions 2": 78,
-              "Sid 1": 28,
-              "Sid 2": 35,
-              "StartDate": 6,
-              "Timestamp": 1,
-              "Upn": 0,
-              "User": 7,
-              "UserId": 16,
-              "UserName": 29,
-              "WindowsConnectionSetting": 59
-            },
-            "renameByName": {
-              "DnsName": "Machine",
-              "ExitCode": "Exit Code",
-              "FullName": "Full Name",
-              "HostingServerName": "Hosting Server",
-              "StartDate": "",
-              "Timestamp": "Time",
-              "Upn": "User"
-            }
-          }
-        }
-      ],
       "type": "table"
     },
     {
