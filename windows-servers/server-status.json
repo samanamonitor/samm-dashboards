@@ -42,7 +42,7 @@
       "title": "RDP",
       "tooltip": "",
       "type": "link",
-      "url": "https://192.168.250.217/sammvcenter/rdp?ip_address=$ip_address"
+      "url": "${sammurl}/sammvcenter/rdp?ip_address=$ip_address"
     }
   ],
   "liveNow": false,
@@ -336,7 +336,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(\r\n        sum by (hostingservername) (ctx_machine_currentpowerstate{dnsname=\"$fqdn\"}),\r\n        \"Text\", \"$1\", \"hostingservername\", \"(.*)\"\r\n      ),\"Title\", \"Host\", \"__name__\", \"(.*)\"\r\n    ), \"link\", \"https://192.168.250.217/sammvcenter/hostdetail?hostingservername=$1\", \"hostingservername\", \".*\"\r\n  ), \"Details\", \"Go ->\", \"caption\", \".*\"\r\n)",
+          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(\r\n        sum by (hostingservername) (ctx_machine_currentpowerstate{dnsname=\"$fqdn\"}),\r\n        \"Text\", \"$1\", \"hostingservername\", \"(.*)\"\r\n      ),\"Title\", \"Host\", \"__name__\", \"(.*)\"\r\n    ), \"link\", \"${sammurl}/sammvcenter/hostdetail?hostingservername=$1\", \"hostingservername\", \".*\"\r\n  ), \"Details\", \"Go ->\", \"caption\", \".*\"\r\n)",
           "hide": false,
           "instant": true,
           "legendFormat": "__auto",
@@ -350,7 +350,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(\r\n        sum by (hostedmachinename) (ctx_machine_currentpowerstate{dnsname=\"$fqdn\"}),\r\n        \"Text\", \"$1\", \"hostedmachinename\", \"(.*)\"\r\n      ),\"Title\", \"VM Details\", \"__name__\", \"(.*)\"\r\n    ), \"link\", \"https://192.168.250.217/sammvcenter/vmdetail?hostedmachinename=$1\", \"hostedmachinename\", \".*\"\r\n  ), \"Details\", \"Go ->\", \"caption\", \".*\"\r\n)",
+          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(\r\n        sum by (hostedmachinename) (ctx_machine_currentpowerstate{dnsname=\"$fqdn\"}),\r\n        \"Text\", \"$1\", \"hostedmachinename\", \"(.*)\"\r\n      ),\"Title\", \"VM Details\", \"__name__\", \"(.*)\"\r\n    ), \"link\", \"${sammurl}/sammvcenter/vmdetail?hostedmachinename=$1\", \"hostedmachinename\", \".*\"\r\n  ), \"Details\", \"Go ->\", \"caption\", \".*\"\r\n)",
           "hide": false,
           "instant": true,
           "legendFormat": "__auto",
@@ -2810,6 +2810,53 @@
         "name": "Filters",
         "skipUrlSync": false,
         "type": "adhoc"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "https://samm.pr.mmmhc.com",
+          "value": "https://samm.pr.mmmhc.com"
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "fe37eb96-e778-4098-b04d-bf73e9683d48"
+        },
+        "definition": "SAMM-CONFIG- (infinity) json",
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "sammurl",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [
+              {
+                "selector": "sammurl",
+                "text": "",
+                "type": "string"
+              }
+            ],
+            "filters": [],
+            "format": "table",
+            "parser": "backend",
+            "refId": "variable",
+            "root_selector": "",
+            "source": "url",
+            "type": "json",
+            "url": "https://s3.amazonaws.com/samm.samana.cloud/${__org.name}/config.json",
+            "url_options": {
+              "data": "",
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
       }
     ]
   },
