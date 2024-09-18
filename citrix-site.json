@@ -39,8 +39,8 @@
   "panels": [
     {
       "datasource": {
-        "type": "datasource",
-        "uid": "-- Mixed --"
+        "type": "mssql",
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -143,7 +143,7 @@
       "id": 6,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
         "percentChangeColorMode": "standard",
@@ -161,76 +161,36 @@
       "pluginVersion": "11.1.1",
       "targets": [
         {
+          "dataset": "CitrixMMMLogging",
           "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "exemplar": false,
-          "expr": "sum(ctx_machine_currentsessioncount{instance=\"$instance\"})",
-          "format": "table",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "TotalSessions",
-          "useBackend": false
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "exemplar": false,
-          "expr": "count(ctx_machineinfail_faultstate{instance=\"$instance\", machine_desktopgroupid!~\"00000000-0000-0000-0000-000000000000\"})",
-          "format": "table",
-          "fullMetaSearch": false,
-          "hide": false,
-          "includeNullMetadata": true,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "MachinesInFailure",
-          "useBackend": false
-        },
-        {
-          "datasource": {
-            "type": "loki",
-            "uid": "a3b388bb-5990-45ca-a5b5-0bca47387fe1"
+            "type": "mssql",
+            "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "count(rate({event_type=\"loginfail\"} [$__auto]))",
-          "hide": false,
-          "queryType": "instant",
-          "refId": "SessionFailures"
-        }
-      ],
-      "title": "Panel Title",
-      "transformations": [
-        {
-          "id": "joinByField",
-          "options": {}
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {
-              "Time": true
-            },
-            "includeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "Value #MachinesInFailure": "Machines In Failure",
-              "Value #SessionFailures": "Failed Sessions",
-              "Value #TotalSessions": "Total Sessions"
-            }
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n  TOP(50)\r\n  COUNT(*) as 'Total Sessions',\r\n  NULL as 'Machines In Failure',\r\n  NULL as 'Failed Sessions'\r\nFROM\r\n  CitrixMMMMonitoring.MonitorData.Session\r\nWHERE\r\n  EndDate IS NULL\r\nGROUP BY\r\n  IsAnonymous\r\nUNION\r\nSELECT\r\n  TOP(50)\r\n  NULL as 'Total Sessions',\r\n  COUNT(*) as 'Machines In Failure',\r\n  NULL as 'Failed Sessions'\r\nFROM\r\n  CitrixMMMMonitoring.MonitorData.MachineFailureLog\r\nWHERE\r\n  FailureEndDate IS NULL\r\nUNION\r\nSELECT\r\n  TOP(50)\r\n  NULL as 'Total Sessions',\r\n  NULL as 'Machines In Failure',\r\n  COUNT(*) as 'Failed Sessions'\r\nFROM\r\n  CitrixMMMMonitoring.MonitorData.ConnectionFailureLog\r\nWHERE\r\n  $__timeFilter(FailureDate)",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
           }
         }
       ],
+      "title": "Panel Title",
       "type": "stat"
     },
     {
