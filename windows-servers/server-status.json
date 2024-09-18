@@ -2629,7 +2629,7 @@
             "root_selector": "",
             "source": "url",
             "type": "json",
-            "url": "http://172.17.0.1/service-filter.json",
+            "url": "https://s3.amazonaws.com/samm.samana.cloud/global/service-filter.json",
             "url_options": {
               "data": "",
               "method": "GET"
