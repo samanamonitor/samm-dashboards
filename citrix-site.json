@@ -195,8 +195,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        "type": "mssql",
+        "uid": "${datasource}"
       },
       "description": "",
       "fieldConfig": {
@@ -332,120 +332,45 @@
       "pluginVersion": "11.1.1",
       "targets": [
         {
+          "dataset": "CitrixMMMLogging",
           "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+            "type": "mssql",
+            "uid": "${datasource}"
           },
           "editorMode": "code",
-          "exemplar": false,
-          "expr": "count(ctx_machine_isinmaintenancemode{instance=\"$instance\",catalog_sessionsupport=\"1\"})",
           "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "total"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "count(ctx_machine_currentsessioncount{instance=\"$instance\",catalog_sessionsupport=\"1\"} == 0)",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "available"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "count(ctx_machine_currentsessioncount{instance=\"$instance\",catalog_sessionsupport=\"1\"} > 0)",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "inuse"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "disableTextWrap": false,
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "count(ctx_machine_currentregistrationstate{instance=\"$instance\",catalog_sessionsupport=\"1\"} == 1)",
-          "format": "table",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "registered",
-          "useBackend": false
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "count(ctx_machine_currentregistrationstate{instance=\"$instance\",catalog_sessionsupport=\"1\"} != 1)",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "unregistered"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "disableTextWrap": false,
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "count(ctx_machine_isinmaintenancemode{instance=\"$instance\",catalog_sessionsupport=\"1\"} == 1)",
-          "format": "table",
-          "fullMetaSearch": false,
-          "hide": false,
-          "includeNullMetadata": true,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "inmaintenance",
-          "useBackend": false
+          "rawQuery": true,
+          "rawSql": "SELECT (\r\n  SELECT\r\n    COUNT(*) \r\n  FROM\r\n    CitrixMMMMonitoring.MonitorData.Machine m,\r\n    CitrixMMMMonitoring.MonitorData.Catalog c\r\n  WHERE\r\n    m.CatalogId = c.Id AND\r\n    m.LifecycleState = 0 AND\r\n    c.SessionSupport = 1\r\n) 'Machines',\r\n(\r\n  SELECT\r\n    COUNT(*) \r\n  FROM\r\n    CitrixMMMMonitoring.MonitorData.Machine m,\r\n    CitrixMMMMonitoring.MonitorData.Catalog c\r\n  WHERE\r\n    m.CatalogId = c.Id AND\r\n    m.LifecycleState = 0 AND\r\n    c.SessionSupport = 1 AND\r\n    m.CurrentSessionCount > 0\r\n) 'Sessions',\r\n(\r\n  SELECT\r\n    COUNT(*)\r\n  FROM\r\n    CitrixMMMMonitoring.MonitorData.Machine m,\r\n    CitrixMMMMonitoring.MonitorData.Catalog c\r\n  WHERE\r\n    m.CatalogId = c.Id AND\r\n    m.LifecycleState = 0 AND\r\n    c.SessionSupport = 1 AND\r\n    m.CurrentSessionCount = 0\r\n) 'Available',\r\n(\r\n  SELECT\r\n    COUNT(*)\r\n  FROM\r\n    CitrixMMMMonitoring.MonitorData.Machine m,\r\n    CitrixMMMMonitoring.MonitorData.Catalog c\r\n  WHERE\r\n    m.CatalogId = c.Id AND\r\n    m.LifecycleState = 0 AND\r\n    c.SessionSupport = 1 AND\r\n    m.CurrentRegistrationState = 1\r\n) 'Registered',\r\n(\r\n  SELECT\r\n    COUNT(*)\r\n  FROM\r\n    CitrixMMMMonitoring.MonitorData.Machine m,\r\n    CitrixMMMMonitoring.MonitorData.Catalog c\r\n  WHERE\r\n    m.CatalogId = c.Id AND\r\n    m.LifecycleState = 0 AND\r\n    c.SessionSupport = 1 AND\r\n    m.CurrentRegistrationState <> 1\r\n) 'Unregistered',\r\n(\r\n  SELECT\r\n    COUNT(*)\r\n  FROM\r\n    CitrixMMMMonitoring.MonitorData.Machine m,\r\n    CitrixMMMMonitoring.MonitorData.Catalog c\r\n  WHERE\r\n    m.CatalogId = c.Id AND\r\n    m.LifecycleState = 0 AND\r\n    c.SessionSupport = 1 AND\r\n    m.IsInMaintenanceMode = 1\r\n) 'IsInMaintenanceMode'",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
         }
       ],
       "title": "VDI",
       "transformations": [
         {
-          "id": "joinByField",
-          "options": {
-            "byField": "Time",
-            "mode": "outer"
-          }
-        },
-        {
           "id": "calculateField",
           "options": {
             "alias": "Percent InMaintenance",
             "binary": {
-              "left": "Value #inmaintenance",
+              "left": "IsInMaintenanceMode",
               "operator": "/",
-              "right": "Value #total"
+              "right": "Machines"
             },
             "mode": "binary",
             "reduce": {
@@ -458,9 +383,9 @@
           "options": {
             "alias": "Percent UnRegistered",
             "binary": {
-              "left": "Value #unregistered",
+              "left": "Unregistered",
               "operator": "/",
-              "right": "Value #total"
+              "right": "Machines"
             },
             "mode": "binary",
             "reduce": {
@@ -472,21 +397,22 @@
           "id": "organize",
           "options": {
             "excludeByName": {
+              "IsInMaintenanceMode": true,
               "Percent InMaintenance": false,
+              "Unregistered": true,
               "Value #inmaintenance": true,
               "Value #unregistered": true
             },
             "includeByName": {},
             "indexByName": {
-              "Percent InMaintenance": 8,
-              "Percent UnRegistered": 5,
-              "Time": 0,
-              "Value #available": 3,
-              "Value #inmaintenance": 7,
-              "Value #inuse": 2,
-              "Value #registered": 4,
-              "Value #total": 1,
-              "Value #unregistered": 6
+              "Available": 2,
+              "IsInMaintenanceMode": 7,
+              "Machines": 0,
+              "Percent InMaintenance": 5,
+              "Percent UnRegistered": 4,
+              "Registered": 3,
+              "Sessions": 1,
+              "Unregistered": 6
             },
             "renameByName": {
               "Value #available": "Available",
