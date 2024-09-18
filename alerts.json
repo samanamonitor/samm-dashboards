@@ -1195,6 +1195,7 @@
           "color": {
             "mode": "thresholds"
           },
+          "displayName": "${__field.labels.name}",
           "links": [
             {
               "targetBlank": true,
