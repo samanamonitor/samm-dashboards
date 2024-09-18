@@ -935,8 +935,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        "type": "mssql",
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -974,7 +974,11 @@
             "properties": [
               {
                 "id": "custom.width",
-                "value": 195
+                "value": 145
+              },
+              {
+                "id": "unit",
+                "value": "dateTimeFromNow"
               }
             ]
           },
@@ -1187,6 +1191,10 @@
                     "type": "value"
                   }
                 ]
+              },
+              {
+                "id": "custom.width",
+                "value": 170
               }
             ]
           },
@@ -1255,6 +1263,30 @@
                 "value": 107
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Machine"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 248
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Assigned User"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 176
+              }
+            ]
           }
         ]
       },
@@ -1281,76 +1313,36 @@
       "pluginVersion": "11.1.1",
       "targets": [
         {
+          "dataset": "CitrixMMMLogging",
           "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+            "type": "mssql",
+            "uid": "${datasource}"
           },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "exemplar": false,
-          "expr": "ctx_machineinfail_faultstate{instance=\"$instance\", machine_desktopgroupid!~\"00000000-0000-0000-0000-000000000000\"}",
+          "editorMode": "code",
           "format": "table",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
+          "rawQuery": true,
+          "rawSql": "SELECT\r\n  TOP(50) \r\n  f.FailureStartDate 'Time',\r\n  m.DnsName Machine,\r\n  m.AssociatedUserUpns 'Assigned User',\r\n  f.FaultState 'Fault State',\r\n  f.LastDeregisteredCode 'Last Deregistration Code',\r\n  m.CurrentPowerState 'Power State',\r\n  m.HostingServerName 'Hosting Server'\r\nFROM\r\n  CitrixMMMMonitoring.MonitorData.MachineFailureLog f,\r\n  CitrixMMMMonitoring.MonitorData.Machine m\r\nWHERE\r\n  f.MachineId = m.Id AND\r\n  FailureEndDate IS NULL",
           "refId": "A",
-          "useBackend": false
-        }
-      ],
-      "title": "Failed Machines",
-      "transformations": [
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {
-              "Time": true,
-              "Value": true,
-              "__name__": true,
-              "fqdn": true,
-              "instance": true,
-              "job": true,
-              "layer": true,
-              "machine_controllerdnsname": true,
-              "machine_currentregistrationstate": true,
-              "machine_desktopgroupid": true,
-              "machine_hostedmachinename": true,
-              "role": true
-            },
-            "includeByName": {},
-            "indexByName": {
-              "Time": 7,
-              "Value": 16,
-              "__name__": 8,
-              "faultstate": 2,
-              "fqdn": 9,
-              "instance": 10,
-              "job": 11,
-              "lastderegisteredcode": 3,
-              "layer": 12,
-              "machine_associateduserupns": 1,
-              "machine_controllerdnsname": 13,
-              "machine_currentpowerstate": 4,
-              "machine_currentregistrationstate": 5,
-              "machine_dnsname": 0,
-              "machine_hostedmachinename": 14,
-              "machine_hostingservername": 6,
-              "role": 15
-            },
-            "renameByName": {
-              "Time": "",
-              "faultstate": "Fault State",
-              "lastderegisteredcode": "Last Deregistration Code",
-              "machine_associateduserupns": "Assigned User",
-              "machine_currentpowerstate": "Power State",
-              "machine_currentregistrationstate": "Registration State",
-              "machine_dnsname": "Machine",
-              "machine_hostingservername": "Hosting Server"
-            }
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
           }
         }
       ],
+      "title": "Failed Machines",
       "type": "table"
     }
   ],
