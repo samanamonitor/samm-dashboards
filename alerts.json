@@ -1395,7 +1395,7 @@
           "text": "citrix-monitor",
           "value": "bdu45n9oxm7eob"
         },
-        "hide": 0,
+        "hide": 2,
         "includeAll": false,
         "multi": false,
         "name": "datasource",
