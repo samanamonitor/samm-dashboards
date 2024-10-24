@@ -202,7 +202,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(\r\n        sum by (layer) (up{fqdn=\"$fqdn\"}),\r\n        \"Text\", \"$1\", \"layer\", \"(.*)\"\r\n      ), \"Title\", \"Layer\", \"__name__\", \".*\"\r\n    ), \"link\", \"/d/1ef32c05-48af-42fa-9ed5-841a25110d0c/machine-overview-by-layer?orgId=1&var-layer=\", \"__name__\", \".*\"\r\n  ), \"Details\", \"Go ->\", \"caption\", \".*\"\r\n)",
+          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(\r\n        sum by (layer) (up{fqdn=\"$fqdn\"}),\r\n        \"Text\", \"$1\", \"layer\", \"(.*)\"\r\n      ), \"Title\", \"Layer\", \"__name__\", \".*\"\r\n    ), \"link\", \"/grafana/d/1ef32c05-48af-42fa-9ed5-841a25110d0c/machine-overview-by-layer?orgId=1&var-layer=\", \"__name__\", \".*\"\r\n  ), \"Details\", \"Go ->\", \"caption\", \".*\"\r\n)",
           "format": "time_series",
           "hide": false,
           "instant": true,
