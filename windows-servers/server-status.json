@@ -375,20 +375,13 @@
         {
           "id": "organize",
           "options": {
-            "excludeByName": {
-              "address": true,
-              "caption": true,
-              "catalog_name": true,
-              "desktopgroup_name": true,
-              "fqdn": true,
-              "hostedmachinename": true,
-              "hostingservername": true,
-              "instance": true,
-              "layer": true,
-              "link": false,
-              "role": true
+            "excludeByName": {},
+            "includeByName": {
+              "Title": true,
+              "Text": true,
+              "link": true,
+              "Details": true
             },
-            "includeByName": {},
             "indexByName": {
               "Text": 1,
               "Title": 0,
