@@ -318,7 +318,7 @@
               "Value #CPU": true,
               "Value #RAM": true,
               "Value #Disk": true,
-              "Value #Certs": true,
+              "Value #Certs": true
             },
             "indexByName": {
               "fqdn": 0,
