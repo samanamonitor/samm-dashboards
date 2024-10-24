@@ -30,7 +30,7 @@
       "title": "Overview",
       "tooltip": "",
       "type": "link",
-      "url": "/d/1ef32c05-48af-42fa-9ed5-841a25110d0c/machine-overview-by-layer?orgId=1"
+      "url": "/grafana/d/1ef32c05-48af-42fa-9ed5-841a25110d0c/machine-overview-by-layer?orgId=1"
     },
     {
       "asDropdown": false,
@@ -232,7 +232,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(\r\n        sum by (catalog_name) (ctx_machine_currentpowerstate{dnsname=\"$fqdn\"}),\r\n        \"Text\", \"$1\", \"catalog_name\", \"(.*)\"\r\n      ), \"Title\", \"Citrix Machine Catalog\", \"__name__\", \"(.*)\"\r\n    ), \"link\", \"/d/828cfd83-e439-4d80-923c-63f616517e1f/vda-machine-catalog-detail?orgId=1&refresh=30s&var-catalog_name=\", \"__name__\", \".*\"\r\n  ), \"Details\", \"Go ->\", \"caption\", \".*\"\r\n)",
+          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(\r\n        sum by (catalog_name) (ctx_machine_currentpowerstate{dnsname=\"$fqdn\"}),\r\n        \"Text\", \"$1\", \"catalog_name\", \"(.*)\"\r\n      ), \"Title\", \"Citrix Machine Catalog\", \"__name__\", \"(.*)\"\r\n    ), \"link\", \"/grafana/d/828cfd83-e439-4d80-923c-63f616517e1f/vda-machine-catalog-detail?orgId=1&refresh=30s&var-catalog_name=\", \"__name__\", \".*\"\r\n  ), \"Details\", \"Go ->\", \"caption\", \".*\"\r\n)",
           "format": "time_series",
           "hide": false,
           "instant": true,
@@ -247,7 +247,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(\r\n        sum by (desktopgroup_name) (ctx_machine_currentpowerstate{dnsname=\"$fqdn\"}),\r\n        \"Text\", \"$1\", \"desktopgroup_name\", \"(.*)\"\r\n      ),\"Title\", \"Citrix Delivery Group\", \"__name__\", \"(.*)\"\r\n    ), \"link\", \"/d/ba8b8650-2456-4ac6-847e-75394417c614/vda-delivery-group?orgId=1&refresh=30s&var-desktopgroup_name=\", \"__name__\", \".*\"\r\n  ), \"Details\", \"Go ->\", \"caption\", \".*\"\r\n)",
+          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(\r\n        sum by (desktopgroup_name) (ctx_machine_currentpowerstate{dnsname=\"$fqdn\"}),\r\n        \"Text\", \"$1\", \"desktopgroup_name\", \"(.*)\"\r\n      ),\"Title\", \"Citrix Delivery Group\", \"__name__\", \"(.*)\"\r\n    ), \"link\", \"/grafana/d/ba8b8650-2456-4ac6-847e-75394417c614/vda-delivery-group?orgId=1&refresh=30s&var-desktopgroup_name=\", \"__name__\", \".*\"\r\n  ), \"Details\", \"Go ->\", \"caption\", \".*\"\r\n)",
           "format": "time_series",
           "hide": false,
           "instant": true,
