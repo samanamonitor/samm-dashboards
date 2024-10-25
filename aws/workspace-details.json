@@ -216,7 +216,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(\r\n        sum by (layer) (up{fqdn=\"$fqdn\"}),\r\n        \"Text\", \"$1\", \"layer\", \"(.*)\"\r\n      ), \"Title\", \"Layer\", \"__name__\", \".*\"\r\n    ), \"link\", \"/grafana/d/1ef32c05-48af-42fa-9ed5-841a25110d0c/machine-overview-by-layer?orgId=1&var-layer=\", \"__name__\", \".*\"\r\n  ), \"Details\", \"Go ->\", \"caption\", \".*\"\r\n)",
+          "expr": "label_replace(\r\n  label_replace(\r\n    sum by (layer) (up{fqdn=\"$fqdn\"}),\r\n    \"Text\", \"$1\", \"layer\", \"(.*)\"\r\n  ), \"Title\", \"Layer\", \"__name__\", \".*\"\r\n)",
           "format": "time_series",
           "hide": false,
           "instant": true,
@@ -231,43 +231,13 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "label_replace(\r\n  label_replace(sum by (role) (up{fqdn=\"$fqdn\"}),\r\n    \"Text\", \"$1\", \"role\", \"(.*)\"),\r\n  \"Title\", \"Role\", \"__name__\", \"(.*)\")",
+          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(sum by (role) (up{fqdn=\"$fqdn\"}),\r\n    \"Text\", \"$1\", \"role\", \"(.*)\"),\r\n  \"Title\", \"Role\", \"__name__\", \"(.*)\"), \"link\", \"${grafanaurl}/d/248a36a7-1e83-4460-9341-ae917e0dcc50/workspaces-overview?orgId=1&var-username=All\", \"__name__\", \".*\"\r\n  ), \"Details\", \"Go ->\", \"caption\", \".*\"\r\n)",
           "format": "time_series",
           "hide": false,
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
           "refId": "role"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(\r\n        sum by (catalog_name) (ctx_machine_currentpowerstate{dnsname=\"$fqdn\"}),\r\n        \"Text\", \"$1\", \"catalog_name\", \"(.*)\"\r\n      ), \"Title\", \"Citrix Machine Catalog\", \"__name__\", \"(.*)\"\r\n    ), \"link\", \"/grafana/d/828cfd83-e439-4d80-923c-63f616517e1f/vda-machine-catalog-detail?orgId=1&refresh=30s&var-catalog_name=\", \"__name__\", \".*\"\r\n  ), \"Details\", \"Go ->\", \"caption\", \".*\"\r\n)",
-          "format": "time_series",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "catalog_name"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(\r\n        sum by (desktopgroup_name) (ctx_machine_currentpowerstate{dnsname=\"$fqdn\"}),\r\n        \"Text\", \"$1\", \"desktopgroup_name\", \"(.*)\"\r\n      ),\"Title\", \"Citrix Delivery Group\", \"__name__\", \"(.*)\"\r\n    ), \"link\", \"/grafana/d/ba8b8650-2456-4ac6-847e-75394417c614/vda-delivery-group?orgId=1&refresh=30s&var-desktopgroup_name=\", \"__name__\", \".*\"\r\n  ), \"Details\", \"Go ->\", \"caption\", \".*\"\r\n)",
-          "format": "time_series",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "desktopgroup_name"
         },
         {
           "datasource": {
@@ -342,34 +312,6 @@
           "legendFormat": "__auto",
           "range": false,
           "refId": "pagefilesize"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(\r\n        sum by (hostingservername) (ctx_machine_currentpowerstate{dnsname=\"$fqdn\"}),\r\n        \"Text\", \"$1\", \"hostingservername\", \"(.*)\"\r\n      ),\"Title\", \"Host\", \"__name__\", \"(.*)\"\r\n    ), \"link\", \"${sammurl}/sammvcenter/hostdetail?hostingservername=$1\", \"hostingservername\", \".*\"\r\n  ), \"Details\", \"Go ->\", \"caption\", \".*\"\r\n)",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "host"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(\r\n        sum by (hostedmachinename) (ctx_machine_currentpowerstate{dnsname=\"$fqdn\"}),\r\n        \"Text\", \"$1\", \"hostedmachinename\", \"(.*)\"\r\n      ),\"Title\", \"VM Details\", \"__name__\", \"(.*)\"\r\n    ), \"link\", \"${sammurl}/sammvcenter/vmdetail?hostedmachinename=$1\", \"hostedmachinename\", \".*\"\r\n  ), \"Details\", \"Go ->\", \"caption\", \".*\"\r\n)",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "vm"
         }
       ],
       "title": "Server Info",
@@ -2467,9 +2409,9 @@
     "list": [
       {
         "current": {
-          "selected": true,
-          "text": "desktop-1c2pt9g.nclmiami.ncl.com",
-          "value": "desktop-1c2pt9g.nclmiami.ncl.com"
+          "selected": false,
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "prometheus",
@@ -2496,8 +2438,8 @@
       {
         "current": {
           "selected": false,
-          "text": "desktop-1c2pt9g",
-          "value": "desktop-1c2pt9g"
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "prometheus",
@@ -2513,33 +2455,6 @@
         "query": {
           "qryType": 1,
           "query": "label_values(cim_os_lastbootuptime{fqdn=~\"(?i)$fqdn\"},instance)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      },
-      {
-        "current": {
-          "selected": false,
-          "text": "desktop-1c2pt9g.nclmiami.ncl.com",
-          "value": "desktop-1c2pt9g.nclmiami.ncl.com"
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-        },
-        "definition": "label_values(cim_os_lastbootuptime{instance=\"$instance\"},fqdn)",
-        "hide": 2,
-        "includeAll": false,
-        "multi": false,
-        "name": "dnsname",
-        "options": [],
-        "query": {
-          "qryType": 1,
-          "query": "label_values(cim_os_lastbootuptime{instance=\"$instance\"},fqdn)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -2648,8 +2563,8 @@
       {
         "current": {
           "selected": false,
-          "text": "10.158.31.7",
-          "value": "10.158.31.7"
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "prometheus",
@@ -2674,65 +2589,9 @@
       },
       {
         "current": {
-          "isNone": true,
           "selected": false,
-          "text": "None",
+          "text": "",
           "value": ""
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-        },
-        "definition": "label_values(ctx_machine_currentpowerstate{dnsname=~\"(?i)$fqdn\"},hostedmachinename)",
-        "hide": 2,
-        "includeAll": false,
-        "multi": false,
-        "name": "hostedmachinename",
-        "options": [],
-        "query": {
-          "qryType": 1,
-          "query": "label_values(ctx_machine_currentpowerstate{dnsname=~\"(?i)$fqdn\"},hostedmachinename)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      },
-      {
-        "current": {
-          "isNone": true,
-          "selected": false,
-          "text": "None",
-          "value": ""
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-        },
-        "definition": "label_values(ctx_machine_currentpowerstate{dnsname=~\"(?i)$fqdn\"},hostingservername)",
-        "hide": 2,
-        "includeAll": false,
-        "multi": false,
-        "name": "hostingservername",
-        "options": [],
-        "query": {
-          "qryType": 1,
-          "query": "label_values(ctx_machine_currentpowerstate{dnsname=~\"(?i)$fqdn\"},hostingservername)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      },
-      {
-        "current": {
-          "selected": false,
-          "text": "2",
-          "value": "2"
         },
         "datasource": {
           "type": "prometheus",
@@ -2820,7 +2679,7 @@
           "type": "yesoreyeram-infinity-datasource",
           "uid": "fe37eb96-e778-4098-b04d-bf73e9683d48"
         },
-        "definition": "SAMM-CONFIG- (infinity) json",
+        "definition": "samm-config- (infinity) json",
         "hide": 2,
         "includeAll": false,
         "multi": false,
@@ -2828,18 +2687,54 @@
         "options": [],
         "query": {
           "infinityQuery": {
-            "columns": [
-              {
-                "selector": "sammurl",
-                "text": "",
-                "type": "string"
-              }
-            ],
+            "columns": [],
             "filters": [],
             "format": "table",
             "parser": "backend",
             "refId": "variable",
-            "root_selector": "",
+            "root_selector": "sammurl",
+            "source": "url",
+            "type": "json",
+            "url": "https://s3.amazonaws.com/samm.samana.cloud/${__org.name}/config.json",
+            "url_options": {
+              "data": "",
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "isNone": true,
+          "selected": false,
+          "text": "None",
+          "value": ""
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "fe37eb96-e778-4098-b04d-bf73e9683d48"
+        },
+        "definition": "samm-config- (infinity) json",
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "grafanaurl",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [],
+            "filters": [],
+            "format": "table",
+            "parser": "backend",
+            "refId": "variable",
+            "root_selector": "grafanaurl",
             "source": "url",
             "type": "json",
             "url": "https://s3.amazonaws.com/samm.samana.cloud/${__org.name}/config.json",
