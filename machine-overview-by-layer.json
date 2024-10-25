@@ -397,7 +397,7 @@
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(cim_os_lastbootuptime{layer!=\"resource\"},layer)",
+          "query": "label_values(cim_os_lastbootuptime{},layer)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
