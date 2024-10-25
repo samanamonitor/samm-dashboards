@@ -41,8 +41,9 @@
           },
           "links": [
             {
+              "targetBlank": true,
               "title": "",
-              "url": "/d/c96dd703-89d1-42e6-be4d-c9ccf02b7487/server-status?orgId=1&refresh=10s&var-fqdn=${__data.fields.fqdn}"
+              "url": "${grafanaurl}/d/bed40357-8f3d-480b-ac69-70bc428d9d40/workstation-status?orgId=1&refresh=10s&var-fqdn=${__data.fields.fqdn}"
             }
           ],
           "mappings": [],
@@ -483,6 +484,47 @@
           "qryType": 1,
           "query": "label_values(aws_workspaces_info,username)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "http://awspsamjba3lv.nclmiami.ncl.com/grafana",
+          "value": "http://awspsamjba3lv.nclmiami.ncl.com/grafana"
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "fe37eb96-e778-4098-b04d-bf73e9683d48"
+        },
+        "definition": "samm-config- (infinity) json",
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "grafanaurl",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [],
+            "filters": [],
+            "format": "table",
+            "parser": "backend",
+            "refId": "variable",
+            "root_selector": "grafanaurl",
+            "source": "url",
+            "type": "json",
+            "url": "https://s3.us-east-1.amazonaws.com/samm.samana.cloud/${__org.name}/config.json",
+            "url_options": {
+              "data": "",
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
         },
         "refresh": 1,
         "regex": "",
