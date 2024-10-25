@@ -2338,7 +2338,7 @@
           },
           "editorMode": "builder",
           "expr": "cim_certificates_ssldaystoexpire{instance=\"$instance\"}",
-          "format": "table",
+          "format": "time_series",
           "instant": true,
           "legendFormat": "{{sslcertkeyname}}",
           "range": false,
