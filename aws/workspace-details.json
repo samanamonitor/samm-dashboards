@@ -808,18 +808,32 @@
           "color": {
             "mode": "thresholds"
           },
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "index": 0,
+                  "text": "NOT CONNECTED"
+                },
+                "1": {
+                  "index": 1,
+                  "text": "CONNECTED"
+                }
+              },
+              "type": "value"
+            }
+          ],
           "noValue": "0",
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "yellow",
                 "value": null
               },
               {
-                "color": "red",
-                "value": 80
+                "color": "green",
+                "value": 1
               }
             ]
           }
@@ -857,56 +871,18 @@
             "type": "prometheus",
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
-          "disableTextWrap": false,
-          "editorMode": "builder",
-          "exemplar": false,
-          "expr": "count(cim_perftssession_handlecount{fqdn=~\"(?i)$fqdn\", name=~\"(?i)ica.*|rdp.*\"})",
-          "format": "table",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "A",
-          "useBackend": false
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "count(cim_perftssession_handlecount{fqdn=~\"(?i)$fqdn\",name=~\"(?i).*disc.*\"})",
+          "expr": "(0*aws_workspaces_info{computername=~\"(?i)$instance\"}) + on(workspaceid) group_left(username) aws_workspaces_connection_status_connectionstate",
           "format": "table",
           "hide": false,
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
-          "refId": "B"
+          "refId": "A"
         }
       ],
       "title": "Sessions",
-      "transformations": [
-        {
-          "id": "joinByField",
-          "options": {}
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {
-              "Time": true
-            },
-            "includeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "Value #A": "Active",
-              "Value #B": "Disconnected"
-            }
-          }
-        }
-      ],
       "type": "stat"
     },
     {
