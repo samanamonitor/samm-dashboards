@@ -115,28 +115,28 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Cert expires"
+              "options": "Certs expiring 90d"
             },
             "properties": [
-              {
-                "id": "unit",
-                "value": "d"
-              },
               {
                 "id": "thresholds",
                 "value": {
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "red",
+                      "color": "green",
                       "value": null
                     },
                     {
-                      "color": "green",
-                      "value": 90
+                      "color": "red",
+                      "value": 1
                     }
                   ]
                 }
+              },
+              {
+                "id": "unit",
+                "value": "none"
               }
             ]
           },
@@ -229,7 +229,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum by (fqdn,role,layer) ((1-(cim_os_freephysicalmemory{layer=\"$layer\"} / cim_os_totalvisiblememorysize))*100 > $ram_threshold) or clamp_max(absent(nonexistent{fqdn=\"none\"}), 0)",
+          "expr": "sum by (fqdn,role,layer) ((1-(cim_os_freephysicalmemory{fqdn=~\"$fqdn\",layer=\"$layer\"} / cim_os_totalvisiblememorysize))*100 > $ram_threshold) or clamp_max(absent(nonexistent{fqdn=\"none\"}), 0)",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -245,7 +245,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(max by (fqdn,role,layer) (1 - cim_disk_freespace{drivetype=\"3\",layer=\"$layer\"} / cim_disk_size{drivetype=\"3\"})*100 > $disk_threshold) or clamp_max(absent(nonexistent{fqdn=\"none\"}), 0)",
+          "expr": "(max by (fqdn,role,layer) (1 - cim_disk_freespace{fqdn=~\"$fqdn\",drivetype=\"3\",layer=\"$layer\"} / cim_disk_size{drivetype=\"3\"})*100 > $disk_threshold) or clamp_max(absent(nonexistent{fqdn=\"none\"}), 0)",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -261,7 +261,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum by (fqdn,role,layer) (time() - cim_os_lastbootuptime{layer=\"$layer\"} > $uptime_threshold) or clamp_max(absent(nonexistent{fqdn=\"none\"}), 0)",
+          "expr": "sum by (fqdn,role,layer) (time() - cim_os_lastbootuptime{fqdn=~\"$fqdn\",layer=\"$layer\"} > $uptime_threshold) or clamp_max(absent(nonexistent{fqdn=\"none\"}), 0)",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -276,7 +276,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "min by (fqdn,role,layer) (cim_certificates_ssldaystoexpire{layer=\"$layer\"} < $cert_expire_days) or clamp_max(absent(nonexistent{fqdn=\"none\"}), 0)",
+          "expr": "sum by (fqdn,role,layer) (clamp(cim_certificates_ssldaystoexpire{fqdn=~\"$fqdn\",layer=\"$layer\"} < 90, 1, 1) or clamp_max(cim_os_lastbootuptime{fqdn=~\"$fqdn\",layer=\"$layer\"},0))",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -291,7 +291,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "cim_os_lastbootuptime{layer=\"$layer\"}",
+          "expr": "cim_os_lastbootuptime{fqdn=~\"$fqdn\",layer=\"$layer\"}",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -313,53 +313,53 @@
           "options": {
             "excludeByName": {},
             "includeByName": {
-              "fqdn": true,
-              "role 1": true,
               "Value #CPU": true,
-              "Value #RAM": true,
+              "Value #Certs": true,
               "Value #Disk": true,
-              "Value #Certs": true
+              "Value #RAM": true,
+              "fqdn": true,
+              "role 1": true
             },
             "indexByName": {
-              "fqdn": 0,
-              "role 1": 1,
-              "Value #CPU": 2,
-              "Value #RAM": 3,
-              "Value #Disk": 4,
-              "Value #Uptime": 5,
-              "Value #Certs": 6,
-              "Time 4": 7,
-              "Time 3": 8,
               "Time 1": 9,
-              "layer 1": 10,
-              "layer 2": 11,
-              "role 2": 12,
-              "layer 3": 13,
-              "role 3": 14,
-              "layer 4": 15,
-              "role 4": 16,
-              "Time 5": 17,
-              "layer 5": 18,
-              "role 5": 19,
               "Time 2": 20,
+              "Time 3": 8,
+              "Time 4": 7,
+              "Time 5": 17,
               "Time 6": 21,
+              "Value #CPU": 2,
+              "Value #Certs": 6,
+              "Value #Disk": 4,
+              "Value #Info": 34,
+              "Value #RAM": 3,
+              "Value #Uptime": 5,
               "__name__": 22,
               "caption": 23,
-              "instance": 24,
-              "job": 25,
-              "layer 6": 26,
-              "osarchitecture": 27,
-              "role 6": 28,
-              "status": 29,
               "ctx_fas_cluster": 30,
               "ctx_pvs_cluster": 31,
-              "server_group": 32,
               "ctx_site": 33,
-              "Value #Info": 34
+              "fqdn": 0,
+              "instance": 24,
+              "job": 25,
+              "layer 1": 10,
+              "layer 2": 11,
+              "layer 3": 13,
+              "layer 4": 15,
+              "layer 5": 18,
+              "layer 6": 26,
+              "osarchitecture": 27,
+              "role 1": 1,
+              "role 2": 12,
+              "role 3": 14,
+              "role 4": 16,
+              "role 5": 19,
+              "role 6": 28,
+              "server_group": 32,
+              "status": 29
             },
             "renameByName": {
               "Value #CPU": "CPU %",
-              "Value #Certs": "Cert expires",
+              "Value #Certs": "Certs expiring 90d",
               "Value #Disk": "Disk Used %",
               "Value #RAM": "RAM %",
               "Value #Uptime": "Uptime",
@@ -489,26 +489,6 @@
       {
         "current": {
           "selected": false,
-          "text": "9999",
-          "value": "9999"
-        },
-        "hide": 0,
-        "label": "Cert Expire(days) <",
-        "name": "cert_expire_days",
-        "options": [
-          {
-            "selected": true,
-            "text": "9999",
-            "value": "9999"
-          }
-        ],
-        "query": "9999",
-        "skipUrlSync": false,
-        "type": "textbox"
-      },
-      {
-        "current": {
-          "selected": false,
           "text": "0",
           "value": "0"
         },
@@ -525,6 +505,17 @@
         "query": "0",
         "skipUrlSync": false,
         "type": "textbox"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        },
+        "filters": [],
+        "hide": 0,
+        "name": "Filters",
+        "skipUrlSync": false,
+        "type": "adhoc"
       }
     ]
   },
