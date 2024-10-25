@@ -198,12 +198,7 @@
         },
         "frameIndex": 1,
         "showHeader": true,
-        "sortBy": [
-          {
-            "desc": false,
-            "displayName": "Cert expires"
-          }
-        ]
+        "sortBy": []
       },
       "pluginVersion": "11.2.2+security-01",
       "targets": [
@@ -353,7 +348,7 @@
   "templating": {
     "list": [
       {
-        "allValue": "All",
+        "allValue": "",
         "current": {
           "selected": true,
           "text": "All",
