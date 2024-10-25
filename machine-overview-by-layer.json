@@ -388,7 +388,7 @@
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "label_values(cim_os_lastbootuptime{layer!=\"resource\"},layer)",
+        "definition": "label_values(cim_os_lastbootuptime{},layer)",
         "hide": 0,
         "includeAll": false,
         "label": "Layer",
