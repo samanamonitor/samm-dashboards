@@ -231,7 +231,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(sum by (role) (up{fqdn=\"$fqdn\"}),\r\n        \"Text\", \"$1\", \"role\", \"(.*)\"\r\n      ),\r\n      \"Title\", \"Role\", \"__name__\", \"(.*)\"\r\n    ),\r\n    \"link\", \"${grafanaurl}/d/248a36a7-1e83-4460-9341-ae917e0dcc50/workspaces-overview?orgId=1&var-username=All\", \"__name__\", \"(.*)\"\r\n  ),\r\n  \"Details\", \"Go ->\", \"caption\", \"(.*)\"\r\n)",
+          "expr": "label_replace(\r\n  label_replace(\r\n    label_replace(\r\n      label_replace(sum by (role) (up{fqdn=\"$fqdn\"}),\r\n        \"Text\", \"$1\", \"role\", \"(.*)\"),\r\n      \"Title\", \"Role\", \"__name__\", \"(.*)\"),\r\n    \"link\", \"${grafanaurl}/d/248a36a7-1e83-4460-9341-ae917e0dcc50/workspaces-overview?orgId=1&var-username=All\", \"__name__\", \"(.*)\"), \r\n  \"Details\", \"Go ->\", \"caption\", \"(.*)\"\r\n)",
           "format": "time_series",
           "hide": false,
           "instant": true,
