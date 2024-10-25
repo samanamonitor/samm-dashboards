@@ -462,10 +462,11 @@
         "type": "textbox"
       },
       {
+        "allValue": "All",
         "current": {
           "selected": true,
-          "text": "Jroapaniquita",
-          "value": "Jroapaniquita"
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": {
           "type": "prometheus",
