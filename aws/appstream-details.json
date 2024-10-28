@@ -29,7 +29,7 @@
       "title": "Overview",
       "tooltip": "",
       "type": "link",
-      "url": "${grafanaurl}/d/248a36a7-1e83-4460-9341-ae917e0dcc50/workspaces-overview?orgId=1&var-username=All&"
+      "url": "${grafanaurl}/d/0a11f903-0d39-4c4d-848e-c1b96c0c8b60/appstream-overview?orgId=1&var-username=All&"
     },
     {
       "asDropdown": false,
