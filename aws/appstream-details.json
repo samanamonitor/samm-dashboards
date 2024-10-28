@@ -173,8 +173,9 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "label_replace(\r\n  label_replace(sum by (instance) (up{fqdn=\"$fqdn\"}),\r\n    \"Text\", \"$1\", \"instance\", \"(.*)\"),\r\n  \"Title\", \"Server Name\", \"__name__\", \"(.*)\")",
+          "expr": "label_replace(\r\n  label_replace(\r\n    up{fqdn=\"$fqdn\"},\r\n    \"Text\", \"$1\", \"instance\", \"(.*)\"),\r\n  \"Title\", \"Server Name\", \"__name__\", \"(.*)\")",
           "format": "time_series",
+          "hide": false,
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -187,7 +188,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "label_replace(\r\n    label_replace(\r\n        sum by (username) (\r\n            label_replace(\r\n                up{instance=\"$instance\"}, \"ipaddress\", \"$1\", \"address\", \"(.*)\"\r\n                )\r\n            + on(ipaddress) group_left(username) (\r\n                0 * aws_workspaces_info{computername=~\"(?i)$instance\"}\r\n                )\r\n        ), \"Text\", \"$1\", \"username\", \"(.*)\"\r\n    ), \"Title\", \"Username\", \"__name__\", \"(.*)\"\r\n)",
+          "expr": "label_replace(\r\n    label_replace(\r\n        sum by (fqdn,address) (up{fqdn=\"$fqdn\"})\r\n        + on(address) group_left(userid) (\r\n            label_replace(aws_appstream_sessions_state,\r\n                \"address\", \"$1\", \"networkaccessconfiguration_eniprivateipaddress\", \"(.*)\")), \r\n        \"Text\", \"$1\", \"userid\", \"(.*)\"\r\n    ), \"Title\", \"Username\", \"__name__\", \"(.*)\"\r\n)",
           "hide": false,
           "instant": true,
           "legendFormat": "__auto",
@@ -305,13 +306,43 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "label_replace(\r\n  label_replace(sum by (address) (up{fqdn=\"$fqdn\"}),\r\n    \"Text\", \"$pagefilesize GB\", \"address\", \"(.*)\"),\r\n  \"Title\", \"Page File Size\", \"__name__\", \"(.*)\")",
+          "expr": "label_replace(\r\n  label_replace(sum by (address) (\r\n    up{fqdn=\"$fqdn\"}\r\n    ),\r\n    \"Text\", \"$pagefilesize GB\", \"address\", \"(.*)\"),\r\n  \"Title\", \"Page File Size\", \"__name__\", \"(.*)\")",
           "format": "time_series",
           "hide": false,
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
           "refId": "pagefilesize"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "label_replace(\r\n    label_replace(\r\n        sum by (fqdn,address) (up{fqdn=\"$fqdn\"}) \r\n        + on (address) group_left(fleetname) (\r\n            label_replace(aws_appstream_sessions_state,\r\n            \"address\", \"$1\", \"networkaccessconfiguration_eniprivateipaddress\", \"(.*)\")), \r\n        \"Text\", \"$1\", \"fleetname\", \"(.*)\"),\r\n    \"Title\", \"Fleet\", \"__name__\", \"(.*)\")",
+          "format": "time_series",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "fleetname"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "label_replace(\r\n    label_replace(\r\n        sum by (fqdn,address) (up{fqdn=\"$fqdn\"}) \r\n        + on (address) group_left(stackname) (\r\n            label_replace(aws_appstream_sessions_state,\r\n            \"address\", \"$1\", \"networkaccessconfiguration_eniprivateipaddress\", \"(.*)\")), \r\n        \"Text\", \"$1\", \"stackname\", \"(.*)\"),\r\n    \"Title\", \"Stack\", \"__name__\", \"(.*)\")",
+          "format": "time_series",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "stackname"
         }
       ],
       "title": "Server Info",
