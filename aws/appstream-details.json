@@ -750,6 +750,7 @@
           "color": {
             "mode": "thresholds"
           },
+          "displayName": "${__series.name}",
           "mappings": [
             {
               "options": {
@@ -815,11 +816,11 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(0*aws_workspaces_info{computername=~\"(?i)$instance\"}) + on(workspaceid) group_left(username) aws_workspaces_connection_status_connectionstate",
-          "format": "table",
+          "expr": "(0*up{fqdn=\"$fqdn\"}) + on(address) group_left(userid) (\r\n    label_replace(aws_appstream_sessions_state, \"address\", \"$1\", \"networkaccessconfiguration_eniprivateipaddress\", \"(.*)\")\r\n)",
+          "format": "time_series",
           "hide": false,
           "instant": true,
-          "legendFormat": "__auto",
+          "legendFormat": "{{userid}}",
           "range": false,
           "refId": "A"
         }
