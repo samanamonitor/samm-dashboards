@@ -245,7 +245,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum by (fqdn,address) (up{role=\"aws_appstream\"})\r\n+ on(address) group_left(userid,fleetname,stackname) (\r\n  0 * label_replace(\r\n    aws_appstream_sessions_state{userid=~\"$userid\",stackname=\"$stackname\",fleetname=\"$fleetname\"},\r\n    \"address\", \"$1\", \"networkaccessconfiguration_eniprivateipaddress\", \"(.*)\"\r\n  )\r\n)",
+          "expr": "sum by (fqdn,address) (up{role=\"aws_appstream\"})\r\n+ on(address) group_left(userid,fleetname,stackname) (\r\n  0 * label_replace(\r\n    aws_appstream_sessions_state{userid=~\"$userid\",stackname=~\"$stackname\",fleetname=~\"$fleetname\"},\r\n    \"address\", \"$1\", \"networkaccessconfiguration_eniprivateipaddress\", \"(.*)\"\r\n  )\r\n)",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -450,14 +450,14 @@
       {
         "current": {
           "selected": true,
-          "text": " TEST_NVS_PROD_PERFORMANCE_v2cpu",
-          "value": " TEST_NVS_PROD_PERFORMANCE_v2cpu"
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": {
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "label_values(aws_appstream_fleets_info,displayname)",
+        "definition": "label_values(aws_appstream_sessions_state,fleetname)",
         "hide": 0,
         "includeAll": true,
         "label": "Fleet",
@@ -466,7 +466,7 @@
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(aws_appstream_fleets_info,displayname)",
+          "query": "label_values(aws_appstream_sessions_state,fleetname)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -477,15 +477,15 @@
       },
       {
         "current": {
-          "selected": true,
-          "text": "None",
-          "value": "None"
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": {
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "label_values(aws_appstream_stacks_info,displayname)",
+        "definition": "label_values(aws_appstream_sessions_state,stackname)",
         "hide": 0,
         "includeAll": true,
         "label": "Stack",
@@ -494,7 +494,7 @@
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(aws_appstream_stacks_info,displayname)",
+          "query": "label_values(aws_appstream_sessions_state,stackname)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
