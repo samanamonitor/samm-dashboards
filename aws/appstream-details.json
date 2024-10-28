@@ -2417,7 +2417,7 @@
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "label_values(cim_os_lastbootuptime,fqdn)",
+        "definition": "label_values(cim_os_lastbootuptime{role=\"aws_appstream\"},fqdn)",
         "hide": 0,
         "includeAll": false,
         "label": "Server",
@@ -2426,7 +2426,7 @@
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(cim_os_lastbootuptime,fqdn)",
+          "query": "label_values(cim_os_lastbootuptime{role=\"aws_appstream\"},fqdn)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
