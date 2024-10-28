@@ -144,36 +144,24 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Role"
+              "options": "Machine"
             },
             "properties": [
               {
                 "id": "custom.width",
-                "value": 120
+                "value": 288
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "CPU %"
+              "options": "UserName"
             },
             "properties": [
               {
                 "id": "custom.width",
-                "value": 119
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "RAM %"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 147
+                "value": 273
               }
             ]
           }
@@ -257,7 +245,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum by (fqdn,address) (up{role=\"aws_appstream\"})\r\n+ on(address) group_left(userid) (\r\n  0 * label_replace(\r\n    aws_appstream_sessions_state{userid=~\"$userid\"},\r\n    \"address\", \"$1\", \"networkaccessconfiguration_eniprivateipaddress\", \"(.*)\"\r\n  )\r\n)",
+          "expr": "sum by (fqdn,address) (up{role=\"aws_appstream\"})\r\n+ on(address) group_left(userid,fleetname,stackname) (\r\n  0 * label_replace(\r\n    aws_appstream_sessions_state{userid=~\"$userid\"},\r\n    \"address\", \"$1\", \"networkaccessconfiguration_eniprivateipaddress\", \"(.*)\"\r\n  )\r\n)",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -283,37 +271,39 @@
               "Value #Certs": false,
               "Value #Disk": true,
               "Value #RAM": true,
+              "fleetname": true,
               "fqdn": true,
+              "stackname": true,
               "userid": true
             },
             "indexByName": {
-              "Time 1": 8,
-              "Time 2": 14,
-              "Time 3": 7,
-              "Time 4": 6,
+              "Time 1": 10,
+              "Time 2": 16,
+              "Time 3": 9,
+              "Time 4": 8,
               "Value #CPU": 2,
               "Value #Disk": 4,
               "Value #RAM": 3,
-              "Value #username": 15,
-              "address": 16,
+              "Value #username": 17,
+              "address": 18,
+              "fleetname": 6,
               "fqdn": 0,
-              "layer 1": 9,
-              "layer 2": 10,
-              "layer 3": 12,
-              "role 1": 5,
-              "role 2": 11,
-              "role 3": 13,
+              "layer 1": 11,
+              "layer 2": 12,
+              "layer 3": 14,
+              "role 1": 7,
+              "role 2": 13,
+              "role 3": 15,
+              "stackname": 5,
               "userid": 1
             },
             "renameByName": {
               "Value #CPU": "CPU %",
-              "Value #Certs": "Certs expiring 90d",
               "Value #Disk": "Disk Used %",
               "Value #RAM": "RAM %",
-              "Value #Uptime": "Uptime",
+              "fleetname": "Fleet",
               "fqdn": "Machine",
-              "role": "Role",
-              "role 1": "Role",
+              "stackname": "Stack",
               "username": "UserName"
             }
           }
