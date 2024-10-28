@@ -338,16 +338,16 @@
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "label_values(aws_workspaces_info,username)",
+        "definition": "label_values(aws_appstream_sessions_state,userid)",
         "hide": 0,
         "includeAll": true,
         "label": "UserName",
         "multi": false,
-        "name": "username",
+        "name": "userid",
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(aws_workspaces_info,username)",
+          "query": "label_values(aws_appstream_sessions_state,userid)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
