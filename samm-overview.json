@@ -348,6 +348,7 @@
     },
     {
       "datasource": {
+        "default": false,
         "type": "prometheus",
         "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
       },
@@ -407,7 +408,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "scrape_duration_seconds{job=\"sammdisc\"}",
+          "expr": "scrape_duration_seconds",
           "format": "time_series",
           "instant": true,
           "legendFormat": "{{instance}}",
