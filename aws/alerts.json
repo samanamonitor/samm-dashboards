@@ -36,7 +36,7 @@
             {
               "targetBlank": true,
               "title": "Show Details",
-              "url": "/d/1ef32c05-48af-42fa-9ed5-841a25110d0c/machine-overview-by-layer?orgId=1&var-layer=${__field.labels.layer}&${cpu_threshold:queryparam}"
+              "url": "${grafanaurl}/d/248a36a7-1e83-4460-9341-ae917e0dcc50/workspaces-overview?orgId=1&var-username=All&${cpu_threshold:queryparam}"
             }
           ],
           "mappings": [],
@@ -55,26 +55,7 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byFrameRefID",
-              "options": "Netscaler"
-            },
-            "properties": [
-              {
-                "id": "links",
-                "value": [
-                  {
-                    "targetBlank": true,
-                    "title": "",
-                    "url": "/d/d328e5a7-7275-47dd-9923-d974226944f5/netscaler-overview?orgId=1&${cpu_threshold:queryparam}"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "id": 8,
       "options": {
@@ -130,7 +111,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "/d/1ef32c05-48af-42fa-9ed5-841a25110d0c/machine-overview-by-layer?orgId=1&var-layer=${__field.labels.layer}&${ram_threshold:queryparam}"
+              "url": "${grafanaurl}/d/248a36a7-1e83-4460-9341-ae917e0dcc50/workspaces-overview?orgId=1&var-username=All&${ram_threshold:queryparam}"
             }
           ],
           "mappings": [],
@@ -153,26 +134,7 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byFrameRefID",
-              "options": "Netscaler"
-            },
-            "properties": [
-              {
-                "id": "links",
-                "value": [
-                  {
-                    "targetBlank": true,
-                    "title": "",
-                    "url": "/d/d328e5a7-7275-47dd-9923-d974226944f5/netscaler-overview?orgId=1&${ram_threshold:queryparam}"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 3,
@@ -234,7 +196,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "/d/1ef32c05-48af-42fa-9ed5-841a25110d0c/machine-overview-by-layer?orgId=1&var-layer=${__field.labels.layer}&${disk_threshold:queryparam}"
+              "url": "${grafanaurl}/d/248a36a7-1e83-4460-9341-ae917e0dcc50/workspaces-overview?orgId=1&var-username=All&${disk_threshold:queryparam}"
             }
           ],
           "mappings": [],
@@ -257,26 +219,7 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byFrameRefID",
-              "options": "Netscaler"
-            },
-            "properties": [
-              {
-                "id": "links",
-                "value": [
-                  {
-                    "targetBlank": true,
-                    "title": "",
-                    "url": "/d/d328e5a7-7275-47dd-9923-d974226944f5/netscaler-overview?orgId=1&${disk_threshold:queryparam}"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 3,
@@ -649,6 +592,47 @@
         "query": "90",
         "skipUrlSync": false,
         "type": "textbox"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "http://awspsamjba3lv.nclmiami.ncl.com/grafana",
+          "value": "http://awspsamjba3lv.nclmiami.ncl.com/grafana"
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "fe37eb96-e778-4098-b04d-bf73e9683d48"
+        },
+        "definition": "samm-config- (infinity) json",
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "grafanaurl",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [],
+            "filters": [],
+            "format": "table",
+            "parser": "backend",
+            "refId": "variable",
+            "root_selector": "grafanaurl",
+            "source": "url",
+            "type": "json",
+            "url": "https://s3.amazonaws.com/samm.samana.cloud/${__org.name}/config.json",
+            "url_options": {
+              "data": "",
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
       }
     ]
   },
