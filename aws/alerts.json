@@ -277,12 +277,12 @@
           "color": {
             "mode": "thresholds"
           },
-          "displayName": "${__field.labels.desktopgroup_name}",
+          "displayName": "${__field.labels.fleetname}",
           "links": [
             {
               "targetBlank": true,
               "title": "Show Details",
-              "url": "/d/a2b35c70-7470-4f91-a4bb-c669453654c9/machine-overview?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&${cpu_threshold:queryparam}"
+              "url": "${grafanaurl}/d/0a11f903-0d39-4c4d-848e-c1b96c0c8b60/appstream-overview?&orgId=1&var-fleetname=${__field.labels.fleetname}&${cpu_threshold:queryparam}"
             }
           ],
           "mappings": [],
@@ -364,12 +364,12 @@
           "color": {
             "mode": "thresholds"
           },
-          "displayName": "${__field.labels.layer}",
+          "displayName": "${__field.labels.fleetname}",
           "links": [
             {
               "targetBlank": true,
               "title": "",
-              "url": "/d/a2b35c70-7470-4f91-a4bb-c669453654c9/machine-overview?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&${ram_threshold:queryparam}"
+              "url": "${grafanaurl}/d/0a11f903-0d39-4c4d-848e-c1b96c0c8b60/appstream-overview?&orgId=1&var-fleetname=${__field.labels.fleetname}&${ram_threshold:queryparam}"
             }
           ],
           "mappings": [],
@@ -456,7 +456,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "/d/a2b35c70-7470-4f91-a4bb-c669453654c9/machine-overview?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&${disk_threshold:queryparam}"
+              "url": "${grafanaurl}/d/0a11f903-0d39-4c4d-848e-c1b96c0c8b60/appstream-overview?&orgId=1&var-fleetname=${__field.labels.fleetname}&${disk_threshold:queryparam}"
             }
           ],
           "mappings": [],
