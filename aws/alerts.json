@@ -32,6 +32,12 @@
           "color": {
             "mode": "thresholds"
           },
+          "links": [
+            {
+              "title": "",
+              "url": "${grafanaurl}/d/248a36a7-1e83-4460-9341-ae917e0dcc50/workspaces-overview?orgId=1&var-username=All"
+            }
+          ],
           "mappings": [],
           "min": 0,
           "thresholds": {
