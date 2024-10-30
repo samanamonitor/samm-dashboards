@@ -32,6 +32,75 @@
           "color": {
             "mode": "thresholds"
           },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id": 12,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.2.2+security-01",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count(aws_workspaces_connection_status_connectionstate == 1)",
+          "format": "time_series",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Connected WS Users",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
           "links": [
             {
               "targetBlank": true,
@@ -56,6 +125,12 @@
           }
         },
         "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 4,
+        "y": 0
       },
       "id": 8,
       "options": {
@@ -138,8 +213,8 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 6,
-        "x": 6,
+        "w": 5,
+        "x": 9,
         "y": 0
       },
       "id": 9,
@@ -178,7 +253,7 @@
           "refId": "Windows"
         }
       ],
-      "title": "Workspaces Alerted RAM",
+      "title": "Workspaces Alerted by RAM",
       "type": "stat"
     },
     {
@@ -223,8 +298,8 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 6,
-        "x": 12,
+        "w": 5,
+        "x": 14,
         "y": 0
       },
       "id": 10,
@@ -277,6 +352,75 @@
           "color": {
             "mode": "thresholds"
           },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 0,
+        "y": 3
+      },
+      "id": 11,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.2.2+security-01",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count(aws_appstream_sessions_state)",
+          "format": "time_series",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Connected Appstream Users",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
           "displayName": "${__field.labels.fleetname}",
           "links": [
             {
@@ -309,8 +453,8 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 6,
-        "x": 0,
+        "w": 5,
+        "x": 4,
         "y": 3
       },
       "id": 6,
@@ -396,8 +540,8 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 6,
-        "x": 6,
+        "w": 5,
+        "x": 9,
         "y": 3
       },
       "id": 7,
@@ -483,8 +627,8 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 6,
-        "x": 12,
+        "w": 5,
+        "x": 14,
         "y": 3
       },
       "id": 5,
