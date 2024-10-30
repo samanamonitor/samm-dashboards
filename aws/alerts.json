@@ -53,8 +53,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
-        "w": 4,
+        "h": 6,
+        "w": 6,
         "x": 0,
         "y": 0
       },
@@ -87,14 +87,176 @@
           "exemplar": false,
           "expr": "count(aws_workspaces_connection_status_connectionstate == 1)",
           "format": "time_series",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Connected WS Users",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 5,
+        "x": 7,
+        "y": 0
+      },
+      "id": 11,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.2.2+security-01",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count(aws_appstream_sessions_state)",
+          "format": "time_series",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Connected Appstream Users",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "default": false,
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 10,
+        "x": 12,
+        "y": 0
+      },
+      "id": 13,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Connected"
+          }
+        ]
+      },
+      "pluginVersion": "11.2.2+security-01",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count by (fleetname) (aws_appstream_sessions_state)",
+          "format": "table",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
           "refId": "A"
         }
       ],
-      "title": "Connected WS Users",
-      "type": "stat"
+      "title": "Connected Appstream Users",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Value": "Connected",
+              "fleetname": "Fleet"
+            }
+          }
+        }
+      ],
+      "type": "table"
     },
     {
       "datasource": {
@@ -134,9 +296,9 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 5,
-        "x": 4,
-        "y": 0
+        "w": 2,
+        "x": 0,
+        "y": 6
       },
       "id": 8,
       "options": {
@@ -174,7 +336,7 @@
           "refId": "Windows"
         }
       ],
-      "title": "Workspaces Alerted by CPU",
+      "title": "CPU Alerts",
       "type": "stat"
     },
     {
@@ -219,9 +381,9 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 5,
-        "x": 9,
-        "y": 0
+        "w": 2,
+        "x": 2,
+        "y": 6
       },
       "id": 9,
       "options": {
@@ -259,7 +421,7 @@
           "refId": "Windows"
         }
       ],
-      "title": "Workspaces Alerted by RAM",
+      "title": "RAM Alerts",
       "type": "stat"
     },
     {
@@ -304,9 +466,9 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 5,
-        "x": 14,
-        "y": 0
+        "w": 2,
+        "x": 4,
+        "y": 6
       },
       "id": 10,
       "options": {
@@ -344,76 +506,7 @@
           "refId": "Windows"
         }
       ],
-      "title": "Workspaces Alerted by Disk",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "default": false,
-        "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "blue",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 4,
-        "x": 0,
-        "y": 3
-      },
-      "id": 11,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.2.2+security-01",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "count(aws_appstream_sessions_state)",
-          "format": "time_series",
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "A"
-        }
-      ],
-      "title": "Connected Appstream Users",
+      "title": "Disk Alerts",
       "type": "stat"
     },
     {
@@ -460,8 +553,8 @@
       "gridPos": {
         "h": 6,
         "w": 5,
-        "x": 4,
-        "y": 3
+        "x": 7,
+        "y": 6
       },
       "id": 6,
       "options": {
@@ -547,8 +640,8 @@
       "gridPos": {
         "h": 6,
         "w": 5,
-        "x": 9,
-        "y": 3
+        "x": 12,
+        "y": 6
       },
       "id": 7,
       "options": {
@@ -634,8 +727,8 @@
       "gridPos": {
         "h": 6,
         "w": 5,
-        "x": 14,
-        "y": 3
+        "x": 17,
+        "y": 6
       },
       "id": 5,
       "options": {
@@ -787,7 +880,7 @@
     ]
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-12h",
     "to": "now"
   },
   "timepicker": {},
