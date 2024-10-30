@@ -107,6 +107,13 @@
           "color": {
             "mode": "thresholds"
           },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "",
+              "url": "${grafanaurl}/d/0a11f903-0d39-4c4d-848e-c1b96c0c8b60/appstream-overview?&orgId=1"
+            }
+          ],
           "mappings": [],
           "min": 0,
           "thresholds": {
@@ -183,6 +190,13 @@
             },
             "inspect": false
           },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "",
+              "url": "${grafanaurl}/d/0a11f903-0d39-4c4d-848e-c1b96c0c8b60/appstream-overview?&orgId=1&var-fleetname=${__data.fields.Fleet}"
+            }
+          ],
           "mappings": [],
           "min": 0,
           "thresholds": {
