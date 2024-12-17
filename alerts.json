@@ -680,7 +680,7 @@
           "color": {
             "mode": "thresholds"
           },
-          "displayName": "${__field.labels.layer}",
+          "displayName": "${__field.labels.desktopgroup_name}",
           "links": [
             {
               "targetBlank": true,
@@ -766,7 +766,7 @@
           "color": {
             "mode": "thresholds"
           },
-          "displayName": "${__field.labels.layer}",
+          "displayName": "${__field.labels.desktopgroup_name}",
           "links": [
             {
               "targetBlank": true,
@@ -852,7 +852,7 @@
           "color": {
             "mode": "thresholds"
           },
-          "displayName": "${__field.labels.layer}",
+          "displayName": "${__field.labels.desktopgroup_name}",
           "links": [
             {
               "targetBlank": true,
