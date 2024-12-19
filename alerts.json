@@ -857,7 +857,7 @@
             {
               "targetBlank": true,
               "title": "",
-              "url": "/d/1ef32c05-48af-42fa-9ed5-841a25110d0c/machine-overview-by-layer?orgId=1&var-layer=${__field.labels.layer}&${disk_threshold:queryparam}"
+              "url": "/d/a2b35c70-7470-4f91-a4bb-c669453654c9/machine-overview-by-desktopgroup?orgId=1&var-desktopgroup_name=${__field.labels.desktopgroup_name}&var-uptime_threshold=172800"
             }
           ],
           "mappings": [],
