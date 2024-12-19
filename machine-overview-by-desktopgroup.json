@@ -334,7 +334,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum by (fqdn) (time() - cim_os_lastbootuptime) + on (fqdn) group_left (desktopgroup_name) (label_replace(sum (ctx_machine_isinmaintenancemode{desktopgroup_name=\"$desktopgroup_name\"}) without (hostingservername) * 0, \"fqdn\", \"$1\", \"dnsname\", \"(.*)\"))",
+          "expr": "sum by (fqdn) (time() - cim_os_lastbootuptime > $uptime_threshold) + on (fqdn) group_left (desktopgroup_name) (label_replace(sum (ctx_machine_isinmaintenancemode{desktopgroup_name=\"$desktopgroup_name\"}) without (hostingservername) * 0, \"fqdn\", \"$1\", \"dnsname\", \"(.*)\"))",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -427,8 +427,8 @@
       {
         "current": {
           "selected": false,
-          "text": "XA Group D",
-          "value": "XA Group D"
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "prometheus",
@@ -488,7 +488,7 @@
             "value": "0"
           }
         ],
-        "query": "80",
+        "query": "0",
         "skipUrlSync": false,
         "type": "textbox"
       },
@@ -529,6 +529,26 @@
           }
         ],
         "query": ".*",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "0",
+          "value": "0"
+        },
+        "hide": 0,
+        "label": "Uptime(secs)>",
+        "name": "uptime_threshold",
+        "options": [
+          {
+            "selected": true,
+            "text": "0",
+            "value": "0"
+          }
+        ],
+        "query": "0",
         "skipUrlSync": false,
         "type": "textbox"
       },
