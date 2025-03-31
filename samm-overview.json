@@ -1326,7 +1326,7 @@
             "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
           },
           "editorMode": "code",
-          "expr": "sum by (mountpoint) (1 - node_filesystem_free_bytes{mountpoint=~\"/(opt|data)?\"} / node_filesystem_size_bytes{mountpoint=~\"/(opt|data)?\"})",
+          "expr": "sum by (mountpoint) (1 - node_filesystem_free_bytes / node_filesystem_size_bytes)",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
