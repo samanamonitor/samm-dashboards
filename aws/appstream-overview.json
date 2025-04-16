@@ -197,6 +197,21 @@
           },
           "editorMode": "code",
           "exemplar": false,
+          "expr": "sum by (fqdn,address) (up{role=\"aws_appstream\"})\r\n+ on(address) group_left(fleetname,stackname) (\r\n  0 * sum by (address,fleetname,stackname) (\r\n    label_replace(\r\n      aws_appstream_sessions_state{userid=~\"$userid\",stackname=~\"$stackname\",fleetname=~\"$fleetname\"},\r\n      \"address\", \"$1\", \"networkaccessconfiguration_eniprivateipaddress\", \"(.*)\"\r\n    )\r\n  )\r\n)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "username"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "exemplar": false,
           "expr": "sum by (fqdn,role,layer) ((1-rate(cim_perfcpu_percentidletime{name=\"_Total\",role=\"aws_appstream\"}[$__rate_interval]) / rate(cim_perfcpu_timestamp_sys100ns {name=\"_Total\"}[$__rate_interval]))*100 > $cpu_threshold)",
           "format": "table",
           "hide": false,
@@ -237,21 +252,6 @@
           "legendFormat": "__auto",
           "range": false,
           "refId": "Disk"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum by (fqdn,address) (up{role=\"aws_appstream\"})\r\n+ on(address) group_left(userid,fleetname,stackname) (\r\n  0 * label_replace(\r\n    aws_appstream_sessions_state{userid=~\"$userid\",stackname=~\"$stackname\",fleetname=~\"$fleetname\"},\r\n    \"address\", \"$1\", \"networkaccessconfiguration_eniprivateipaddress\", \"(.*)\"\r\n  )\r\n)",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "username"
         }
       ],
       "transformations": [
@@ -328,7 +328,7 @@
           "type": "prometheus",
           "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
         },
-        "definition": "label_values(aws_appstream_sessions_state,userid)",
+        "definition": "query_result(aws_appstream_sessions_state == 1)",
         "hide": 0,
         "includeAll": true,
         "label": "UserName",
@@ -336,12 +336,12 @@
         "name": "userid",
         "options": [],
         "query": {
-          "qryType": 1,
-          "query": "label_values(aws_appstream_sessions_state,userid)",
+          "qryType": 3,
+          "query": "query_result(aws_appstream_sessions_state == 1)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": "/.*userid=\"(?<text>[^\"]+)\".*$/",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
