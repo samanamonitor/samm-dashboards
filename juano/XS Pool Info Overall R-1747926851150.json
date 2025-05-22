@@ -1,0 +1,329 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_SAMM-PROMETHEUS",
+      "label": "SAMM-Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.1.1"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": true,
+  "panels": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_SAMM-PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "title": "",
+              "url": "/d/XSPoolInfoOverallR/xs-pool-info-overall-r?orgId=1&var-xen_pool_uuid=${__field.labels.uuid}"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-blue",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 12,
+      "maxPerRow": 4,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "name",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.1",
+      "repeat": "xen_pool_uuid",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_SAMM-PROMETHEUS}"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "exemplar": false,
+          "expr": "xen_pool_info{uuid=\"$xen_pool_uuid\"}",
+          "format": "time_series",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": true,
+          "legendFormat": "{{name_label}}",
+          "range": false,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "$xen_pool_uuid",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_SAMM-PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "targetBlank": false,
+              "title": "",
+              "url": "/d/ceje21dg8hlogcR/xs-host-info-r?orgId=1&var-xen_host_uuid=${__field.labels.host_name_label}"
+            }
+          ],
+          "mappings": [
+            {
+              "options": {
+                "1": {
+                  "index": 0,
+                  "text": "Running"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-blue",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "id": 4,
+      "maxPerRow": 4,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 12,
+          "valueSize": 24
+        },
+        "textMode": "value_and_name",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.1",
+      "repeat": "xen_pool_uuid",
+      "repeatDirection": "h",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_SAMM-PROMETHEUS}"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count by (host_name_label) (\r\n    xen_vm_info\r\n    * on (resident_on) group_left (host_name_label) (\r\n        label_replace (\r\n            label_replace ( \r\n                xen_host_info{pool_uuid=\"$xen_pool_uuid\"}\r\n                , \"host_name_label\", \"$1\" , \"name_label\", \"(.*)\"\r\n            )\r\n            , \"resident_on\" , \"$1\", \"uuid\" , \"(.*)\"\r\n        )\r\n    )\r\n)",
+          "format": "time_series",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": true,
+          "legendFormat": "{{name_label}}",
+          "range": false,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Hosts Running in $xen_pool_uuid",
+      "type": "stat"
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": "",
+        "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_SAMM-PROMETHEUS}"
+        },
+        "definition": "query_result(xen_pool_info)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "XEN_POOL_UUID",
+        "multi": true,
+        "name": "xen_pool_uuid",
+        "options": [],
+        "query": {
+          "qryType": 3,
+          "query": "query_result(xen_pool_info)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "/.*name_label=\"(?<text>[^\"]*)\".*uuid=\"(?<value>[^\"]*)\".*/",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_SAMM-PROMETHEUS}"
+        },
+        "definition": "label_values({pool_uuid=\"$xen_pool_uuid\"},name_label)",
+        "hide": 2,
+        "includeAll": false,
+        "label": "Host UUID",
+        "multi": false,
+        "name": "xen_host_uuid",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values({pool_uuid=\"$xen_pool_uuid\"},name_label)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_SAMM-PROMETHEUS}"
+        },
+        "definition": "label_values({pool_uuid=\"$xen_pool_uuid\"},instance)",
+        "hide": 2,
+        "includeAll": false,
+        "label": "Host Instance IP",
+        "multi": false,
+        "name": "xen_host_instance",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values({pool_uuid=\"$xen_pool_uuid\"},instance)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "XS Pool Info Overall R",
+  "uid": "XSPoolInfoOverallR",
+  "version": 9,
+  "weekStart": ""
+}
