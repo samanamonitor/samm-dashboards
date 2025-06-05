@@ -104,7 +104,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\r\n  dg.Name, COUNT(*)\r\nFROM\r\n  CitrixMMMMonitoring.MonitorData.Machine m,\r\n  CitrixMMMMonitoring.MonitorData.DesktopGroup dg\r\nWHERE\r\n  (\r\n    CurrentRegistrationState = 2\r\n    AND CurrentPowerState = 3\r\n    AND m.IsInMaintenanceMode = 0\r\n    AND DesktopGroupId IS NOT NULL\r\n    AND dg.id = m.DesktopGroupId\r\n    AND DateDiff(hour, LastDeregisteredDate, getdate()) > 1\r\n  )\r\nGROUP BY (dg.Name)",
+          "rawSql": "SELECT\r\n  dg.Name, COUNT(*)\r\nFROM\r\n  MonitorData.Machine m,\r\n  MonitorData.DesktopGroup dg\r\nWHERE\r\n  (\r\n    CurrentRegistrationState = 2\r\n    AND CurrentPowerState = 3\r\n    AND m.IsInMaintenanceMode = 0\r\n    AND DesktopGroupId IS NOT NULL\r\n    AND dg.id = m.DesktopGroupId\r\n    AND DateDiff(hour, LastDeregisteredDate, getdate()) > 1\r\n  )\r\nGROUP BY (dg.Name)",
           "refId": "A",
           "sql": {
             "columns": [
@@ -473,7 +473,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\r\n  TOP(50) DnsName as Machine,\r\n  CurrentPowerState as \"Power State\",\r\n  m.IsInMaintenanceMode as \"Is In Maintenance\",\r\n  CurrentRegistrationState as \"Registration State\",\r\n  LastDeregisteredCode as \"Last Error Code\",\r\n  LastDeregisteredDate as \"Last Error Date\",\r\n  dg.Name as \"Delivery Group\"\r\nFROM\r\n  CitrixMMMMonitoring.MonitorData.Machine m,\r\n  CitrixMMMMonitoring.MonitorData.DesktopGroup dg\r\nWHERE\r\n  (\r\n    CurrentRegistrationState = 2\r\n    AND CurrentPowerState = 3\r\n    AND m.IsInMaintenanceMode = 0\r\n    AND DesktopGroupId IS NOT NULL\r\n    AND dg.id = m.DesktopGroupId\r\n    AND DateDiff(hour, LastDeregisteredDate, getdate()) > 1\r\n  )",
+          "rawSql": "SELECT\r\n  TOP(50) DnsName as Machine,\r\n  CurrentPowerState as \"Power State\",\r\n  m.IsInMaintenanceMode as \"Is In Maintenance\",\r\n  CurrentRegistrationState as \"Registration State\",\r\n  LastDeregisteredCode as \"Last Error Code\",\r\n  LastDeregisteredDate as \"Last Error Date\",\r\n  dg.Name as \"Delivery Group\"\r\nFROM\r\n  MonitorData.Machine m,\r\n  MonitorData.DesktopGroup dg\r\nWHERE\r\n  (\r\n    CurrentRegistrationState = 2\r\n    AND CurrentPowerState = 3\r\n    AND m.IsInMaintenanceMode = 0\r\n    AND DesktopGroupId IS NOT NULL\r\n    AND dg.id = m.DesktopGroupId\r\n    AND DateDiff(hour, LastDeregisteredDate, getdate()) > 1\r\n  )",
           "refId": "A",
           "sql": {
             "columns": [
@@ -826,7 +826,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\r\n  COUNT(*) as Value\r\nFROM\r\n  CitrixMMMMonitoring.MonitorData.Machine m,\r\n  CitrixMMMMonitoring.MonitorData.DesktopGroup dg\r\nWHERE\r\n  (\r\n    CurrentRegistrationState = 2\r\n    AND CurrentPowerState = 3\r\n    AND m.IsInMaintenanceMode = 0\r\n    AND DesktopGroupId IS NOT NULL\r\n    AND dg.id = m.DesktopGroupId\r\n    AND DateDiff(hour, LastDeregisteredDate, getdate()) > 1\r\n  )",
+          "rawSql": "SELECT\r\n  COUNT(*) as Value\r\nFROM\r\n  MonitorData.Machine m,\r\n  MonitorData.DesktopGroup dg\r\nWHERE\r\n  (\r\n    CurrentRegistrationState = 2\r\n    AND CurrentPowerState = 3\r\n    AND m.IsInMaintenanceMode = 0\r\n    AND DesktopGroupId IS NOT NULL\r\n    AND dg.id = m.DesktopGroupId\r\n    AND DateDiff(hour, LastDeregisteredDate, getdate()) > 1\r\n  )",
           "refId": "A",
           "sql": {
             "columns": [
