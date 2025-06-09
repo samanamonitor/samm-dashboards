@@ -76,7 +76,7 @@
       "title": "OS Info",
       "tooltip": "",
       "type": "link",
-      "url": "https://samm.pr.mmmhc.com:3000/d/c96dd703-89d1-42e6-be4d-c9ccf02b7487/server-status?orgId=1&refresh=10s&var-fqdn=${vm_fqdn}"
+      "url": "${grafanaurl}/d/c96dd703-89d1-42e6-be4d-c9ccf02b7487/server-status?orgId=1&refresh=10s&var-fqdn=${vm_fqdn}"
     },
     {
       "asDropdown": false,
@@ -88,7 +88,7 @@
       "title": "Host Info",
       "tooltip": "",
       "type": "link",
-      "url": "https://samm.pr.mmmhc.com:3000/d/ceje21dg8hlogc/xs-host-info?orgId=1&var-xen_host_uuid=${xen_host_uuid}"
+      "url": "${grafanaurl}/d/ceje21dg8hlogc/xs-host-info?orgId=1&var-xen_host_uuid=${xen_host_uuid}"
     }
   ],
   "panels": [
@@ -360,7 +360,7 @@
           "links": [
             {
               "title": "",
-              "url": "https://samm.pr.mmmhc.com:3000/d/ceje21dg8hlogc/xs-host-info?orgId=1&var-xen_host_uuid=${xen_host_uuid}"
+              "url": "${grafanaurl}/d/ceje21dg8hlogc/xs-host-info?orgId=1&var-xen_host_uuid=${xen_host_uuid}"
             }
           ],
           "mappings": [
@@ -453,7 +453,7 @@
           "links": [
             {
               "title": "",
-              "url": "https://samm.pr.mmmhc.com:3000/d/eejm2zr88efwgc/xs-pool-info-v1-1?orgId=1&var-xen_pool_uuid=${xen_pool_uuid}"
+              "url": "${grafanaurl}/d/eejm2zr88efwgc/xs-pool-info-v1-1?orgId=1&var-xen_pool_uuid=${xen_pool_uuid}"
             }
           ],
           "mappings": [
@@ -1801,6 +1801,47 @@
           "qryType": 1,
           "query": "label_values(xen_pool_info{instance=\"$xen_host_instance\"},uuid)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "http://awspsamjba3lv.nclmiami.ncl.com/grafana",
+          "value": "http://awspsamjba3lv.nclmiami.ncl.com/grafana"
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "fe37eb96-e778-4098-b04d-bf73e9683d48"
+        },
+        "definition": "samm-config- (infinity) json",
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "grafanaurl",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [],
+            "filters": [],
+            "format": "table",
+            "parser": "backend",
+            "refId": "variable",
+            "root_selector": "grafanaurl",
+            "source": "url",
+            "type": "json",
+            "url": "https://s3.amazonaws.com/samm.samana.cloud/${__org.name}/config.json",
+            "url_options": {
+              "data": "",
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
         },
         "refresh": 1,
         "regex": "",
