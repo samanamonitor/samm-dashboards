@@ -134,9 +134,9 @@
           },
           "links": [
             {
-              "targetBlank": false,
-              "title": "",
-              "url": "${grafanaurl}/d/ceje21dg8hlogc/xs-host-info?orgId=1&var-xen_host_uuid=${__field.labels.host_name_label}"
+              "targetBlank": true,
+              "title": "Host Details",
+              "url": "${grafanaurl}/d/ceje21dg8hlogc/xs-host-info?orgId=1&var-xen_host_uuid=${__field.labels.resident_on}"
             }
           ],
           "mappings": [
@@ -207,12 +207,12 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "count by (host_name_label) (\r\n    xen_vm_info\r\n    * on (resident_on) group_left (host_name_label) (\r\n        label_replace (\r\n            label_replace ( \r\n                xen_host_info{pool_uuid=\"$xen_pool_uuid\"}\r\n                , \"host_name_label\", \"$1\" , \"name_label\", \"(.*)\"\r\n            )\r\n            , \"resident_on\" , \"$1\", \"uuid\" , \"(.*)\"\r\n        )\r\n    )\r\n)",
+          "expr": "count by (host_name_label,resident_on) (\r\n    xen_vm_info\r\n    * on (resident_on) group_left (host_name_label) (\r\n        label_replace (\r\n            label_replace ( \r\n                xen_host_info{pool_uuid=\"$xen_pool_uuid\"}\r\n                , \"host_name_label\", \"$1\" , \"name_label\", \"(.*)\"\r\n            )\r\n            , \"resident_on\" , \"$1\", \"uuid\" , \"(.*)\"\r\n        )\r\n    )\r\n)",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": true,
-          "legendFormat": "{{name_label}}",
+          "legendFormat": "{{host_name_label}}",
           "range": false,
           "refId": "A",
           "useBackend": false
