@@ -1,14 +1,5 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_SAMM-PROMETHEUS",
-      "label": "SAMM-Prometheus",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
-    }
-  ],
+  "__inputs": [],
   "__elements": {},
   "__requires": [
     {
@@ -67,7 +58,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -120,7 +111,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -140,7 +131,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -227,7 +218,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -247,7 +238,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -307,7 +298,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -327,7 +318,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "description": "",
       "fieldConfig": {
@@ -387,7 +378,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -409,7 +400,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -463,7 +454,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -484,7 +475,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -537,7 +528,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -558,7 +549,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -611,7 +602,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -632,7 +623,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -685,7 +676,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -706,7 +697,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -811,7 +802,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -827,7 +818,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -848,7 +839,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -913,7 +904,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -933,7 +924,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "description": "",
       "fieldConfig": {
@@ -999,7 +990,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1019,7 +1010,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1099,7 +1090,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1116,7 +1107,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "editorMode": "code",
           "expr": "xen_host_pif_tx{uuid=\"$xen_host_uuid\"}\r\n",
@@ -1133,7 +1124,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1214,7 +1205,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1230,7 +1221,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1251,7 +1242,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "description": "",
       "fieldConfig": {
@@ -1314,7 +1305,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -1337,10 +1328,24 @@
   "templating": {
     "list": [
       {
+        "allowCustomValue": false,
+        "current": {
+          "text": "samm-prometheus",
+          "value": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        },
+        "hide": 2,
+        "name": "ds_samm_prometheus",
+        "options": [],
+        "query": "prometheus",
+        "refresh": 1,
+        "regex": "/^samm-prometheus$/",
+        "type": "datasource"
+      },
+      {
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_SAMM-PROMETHEUS}"
+          "uid": "${ds_samm_prometheus}"
         },
         "definition": "query_result(xen_host_info)",
         "hide": 0,
@@ -1364,7 +1369,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_SAMM-PROMETHEUS}"
+          "uid": "${ds_samm_prometheus}"
         },
         "definition": "label_values(xen_host_info{uuid=\"$xen_host_uuid\"},instance)",
         "hide": 2,
@@ -1388,7 +1393,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_SAMM-PROMETHEUS}"
+          "uid": "${ds_samm_prometheus}"
         },
         "definition": "label_values(xen_vm_info{instance=\"$xen_host_instance\", power_state=\"Running\"},name_label)",
         "hide": 2,
@@ -1411,7 +1416,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_SAMM-PROMETHEUS}"
+          "uid": "${ds_samm_prometheus}"
         },
         "definition": "label_values(xen_host_info{uuid=\"$xen_host_uuid\"},hostname)",
         "hide": 2,

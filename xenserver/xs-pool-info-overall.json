@@ -1,14 +1,5 @@
 {
-  "__inputs": [
-    {
-      "name": "ds_samm_prometheus",
-      "label": "SAMM-Prometheus",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
-    }
-  ],
+  "__inputs": [],
   "__elements": {},
   "__requires": [
     {
