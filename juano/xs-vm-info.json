@@ -1,4 +1,59 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_SAMM-PROMETHEUS",
+      "label": "SAMM-Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "bargauge",
+      "name": "Bar gauge",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "11.1.1"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -49,7 +104,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        "uid": "${DS_SAMM-PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -115,7 +170,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+            "uid": "${DS_SAMM-PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -138,7 +193,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        "uid": "${DS_SAMM-PROMETHEUS}"
       },
       "description": "Basic CPU Info",
       "fieldConfig": {
@@ -196,7 +251,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+            "uid": "${DS_SAMM-PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -216,7 +271,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        "uid": "${DS_SAMM-PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -286,7 +341,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+            "uid": "${DS_SAMM-PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -306,7 +361,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        "uid": "${DS_SAMM-PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -378,7 +433,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+            "uid": "${DS_SAMM-PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -399,7 +454,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        "uid": "${DS_SAMM-PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -471,7 +526,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+            "uid": "${DS_SAMM-PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -492,7 +547,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        "uid": "${DS_SAMM-PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -562,7 +617,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+            "uid": "${DS_SAMM-PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -583,7 +638,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        "uid": "${DS_SAMM-PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -649,7 +704,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+            "uid": "${DS_SAMM-PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -670,7 +725,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        "uid": "${DS_SAMM-PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -725,7 +780,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+            "uid": "${DS_SAMM-PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -771,7 +826,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        "uid": "${DS_SAMM-PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -846,7 +901,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+            "uid": "${DS_SAMM-PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -863,7 +918,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+            "uid": "${DS_SAMM-PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -906,7 +961,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        "uid": "${DS_SAMM-PROMETHEUS}"
       },
       "description": "Read / Write Latency",
       "fieldConfig": {
@@ -998,7 +1053,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+            "uid": "${DS_SAMM-PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1014,7 +1069,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+            "uid": "${DS_SAMM-PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1035,7 +1090,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        "uid": "${DS_SAMM-PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1116,7 +1171,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+            "uid": "${DS_SAMM-PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1132,7 +1187,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+            "uid": "${DS_SAMM-PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "-xen_vm_vbd_iops_write{uuid=\"$vm_uuid\"}",
@@ -1149,7 +1204,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        "uid": "${DS_SAMM-PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1240,7 +1295,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+            "uid": "${DS_SAMM-PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -1260,7 +1315,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        "uid": "${DS_SAMM-PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1342,7 +1397,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+            "uid": "${DS_SAMM-PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1358,7 +1413,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+            "uid": "${DS_SAMM-PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1394,7 +1449,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          "uid": "${DS_SAMM-PROMETHEUS}"
         },
         "definition": "query_result(xen_vm_info)",
         "description": "VM Information",
@@ -1418,7 +1473,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          "uid": "${DS_SAMM-PROMETHEUS}"
         },
         "definition": "query_result(xen_vm_info{uuid=\"$vm_uuid\"})",
         "description": "VM Name Label",
@@ -1443,7 +1498,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          "uid": "${DS_SAMM-PROMETHEUS}"
         },
         "definition": "query_result(xen_vm_info{uuid=\"$vm_uuid\"})",
         "description": "VM Power State",
@@ -1468,7 +1523,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          "uid": "${DS_SAMM-PROMETHEUS}"
         },
         "definition": "query_result(xen_vm_info{uuid=\"$vm_uuid\"})",
         "description": "VM Resident On",
@@ -1493,7 +1548,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          "uid": "${DS_SAMM-PROMETHEUS}"
         },
         "definition": "query_result(xen_vm_info{name_label=\"$vm_name_label\"} * on (guest_metrics) group_left (os_version_distro) label_replace(xen_vm_guest_metrics_info, \"guest_metrics\", \"$1\", \"uuid\", \"(.*)\"))",
         "description": "VM Operating System",
@@ -1518,7 +1573,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          "uid": "${DS_SAMM-PROMETHEUS}"
         },
         "definition": "query_result(xen_vm_info{name_label=\"$vm_name_label\"} * on (guest_metrics) group_left (networks) label_replace(xen_vm_guest_metrics_info, \"guest_metrics\", \"$1\", \"uuid\", \"(.*)\"))",
         "description": "",
@@ -1543,7 +1598,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          "uid": "${DS_SAMM-PROMETHEUS}"
         },
         "definition": "query_result(xen_vm_info{name_label=\"$vm_name_label\"} * on (guest_metrics) group_left (networks) label_replace(xen_vm_guest_metrics_info, \"guest_metrics\", \"$1\", \"uuid\", \"(.*)\"))",
         "description": "",
@@ -1568,7 +1623,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          "uid": "${DS_SAMM-PROMETHEUS}"
         },
         "definition": "label_values(xen_vm_info{uuid=\"$vm_uuid\"},guest_metrics)",
         "description": "",
@@ -1615,7 +1670,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          "uid": "${DS_SAMM-PROMETHEUS}"
         },
         "definition": "query_result(cim_os_lastbootuptime{instance=~\"((?i)${vm_name_label})\"})",
         "hide": 2,
@@ -1638,7 +1693,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          "uid": "${DS_SAMM-PROMETHEUS}"
         },
         "definition": "label_values(xen_host_info{uuid=\"$vm_resident_on\"},hostname)",
         "hide": 2,
@@ -1661,7 +1716,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          "uid": "${DS_SAMM-PROMETHEUS}"
         },
         "definition": "label_values(xen_host_info{uuid=\"$vm_resident_on\"},address)",
         "hide": 2,
@@ -1684,7 +1739,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          "uid": "${DS_SAMM-PROMETHEUS}"
         },
         "definition": "label_values(xen_host_info{uuid=\"$vm_resident_on\"},uuid)",
         "hide": 2,
@@ -1707,7 +1762,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          "uid": "${DS_SAMM-PROMETHEUS}"
         },
         "definition": "label_values(xen_pool_info{instance=\"$xen_host_instance\"},name_label)",
         "hide": 2,
@@ -1730,7 +1785,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          "uid": "${DS_SAMM-PROMETHEUS}"
         },
         "definition": "label_values(xen_host_info{uuid=\"$vm_resident_on\"},instance)",
         "hide": 2,
@@ -1753,7 +1808,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          "uid": "${DS_SAMM-PROMETHEUS}"
         },
         "definition": "label_values(xen_pool_info{instance=\"$xen_host_instance\"},uuid)",
         "hide": 2,
