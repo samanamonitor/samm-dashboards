@@ -1,14 +1,5 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_SAMM-PROMETHEUS",
-      "label": "SAMM-Prometheus",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
-    }
-  ],
+  "__inputs": [],
   "__elements": {},
   "__requires": [
     {
@@ -85,7 +76,7 @@
       "title": "OS Info",
       "tooltip": "",
       "type": "link",
-      "url": "https://samm.pr.mmmhc.com:3000/d/c96dd703-89d1-42e6-be4d-c9ccf02b7487/server-status?orgId=1&refresh=10s&var-fqdn=${vm_fqdn}"
+      "url": "${grafanaurl}/d/c96dd703-89d1-42e6-be4d-c9ccf02b7487/server-status?orgId=1&refresh=10s&var-fqdn=${vm_fqdn}"
     },
     {
       "asDropdown": false,
@@ -97,14 +88,14 @@
       "title": "Host Info",
       "tooltip": "",
       "type": "link",
-      "url": "https://samm.pr.mmmhc.com:3000/d/ceje21dg8hlogc/xs-host-info?orgId=1&var-xen_host_uuid=${xen_host_uuid}"
+      "url": "${grafanaurl}/d/ceje21dg8hlogc/xs-host-info?orgId=1&var-xen_host_uuid=${xen_host_uuid}"
     }
   ],
   "panels": [
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "description": "",
       "fieldConfig": {
@@ -171,7 +162,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -193,7 +184,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "description": "Basic CPU Info",
       "fieldConfig": {
@@ -252,7 +243,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -272,7 +263,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "description": "",
       "fieldConfig": {
@@ -337,7 +328,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -357,7 +348,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "description": "",
       "fieldConfig": {
@@ -369,7 +360,7 @@
           "links": [
             {
               "title": "",
-              "url": "https://samm.pr.mmmhc.com:3000/d/ceje21dg8hlogc/xs-host-info?orgId=1&var-xen_host_uuid=${xen_host_uuid}"
+              "url": "${grafanaurl}/d/ceje21dg8hlogc/xs-host-info?orgId=1&var-xen_host_uuid=${xen_host_uuid}"
             }
           ],
           "mappings": [
@@ -430,7 +421,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -450,7 +441,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "description": "",
       "fieldConfig": {
@@ -462,7 +453,7 @@
           "links": [
             {
               "title": "",
-              "url": "https://samm.pr.mmmhc.com:3000/d/eejm2zr88efwgc/xs-pool-info-v1-1?orgId=1&var-xen_pool_uuid=${xen_pool_uuid}"
+              "url": "${grafanaurl}/d/eejm2zr88efwgc/xs-pool-info-v1-1?orgId=1&var-xen_pool_uuid=${xen_pool_uuid}"
             }
           ],
           "mappings": [
@@ -523,7 +514,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -543,7 +534,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "description": "",
       "fieldConfig": {
@@ -608,7 +599,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -629,7 +620,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "description": "",
       "fieldConfig": {
@@ -696,7 +687,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -717,7 +708,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -773,7 +764,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -793,7 +784,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "description": "",
       "gridPos": {
@@ -819,7 +810,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "description": "",
       "fieldConfig": {
@@ -889,7 +880,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -905,7 +896,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "editorMode": "code",
           "expr": "(xen_vm_vif_tx{uuid=\"$vm_uuid\"})/1024",
@@ -947,7 +938,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "description": "Read / Write Latency",
       "fieldConfig": {
@@ -1037,7 +1028,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1053,7 +1044,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1074,7 +1065,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1153,7 +1144,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1169,7 +1160,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "editorMode": "code",
           "expr": "-xen_vm_vbd_iops_write{uuid=\"$vm_uuid\"}",
@@ -1186,7 +1177,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1275,7 +1266,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -1295,7 +1286,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_SAMM-PROMETHEUS}"
+        "uid": "${ds_samm_prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1375,7 +1366,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1391,7 +1382,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_SAMM-PROMETHEUS}"
+            "uid": "${ds_samm_prometheus}"
           },
           "disableTextWrap": false,
           "editorMode": "code",
@@ -1420,10 +1411,24 @@
   "templating": {
     "list": [
       {
+        "allowCustomValue": false,
+        "current": {
+          "text": "samm-prometheus",
+          "value": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        },
+        "hide": 2,
+        "name": "ds_samm_prometheus",
+        "options": [],
+        "query": "prometheus",
+        "refresh": 1,
+        "regex": "/^samm-prometheus$/",
+        "type": "datasource"
+      },
+      {
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_SAMM-PROMETHEUS}"
+          "uid": "${ds_samm_prometheus}"
         },
         "definition": "query_result(xen_vm_info)",
         "description": "VM Information",
@@ -1448,7 +1453,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_SAMM-PROMETHEUS}"
+          "uid": "${ds_samm_prometheus}"
         },
         "definition": "query_result(xen_vm_info{uuid=\"$vm_uuid\"})",
         "description": "VM Name Label",
@@ -1473,7 +1478,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_SAMM-PROMETHEUS}"
+          "uid": "${ds_samm_prometheus}"
         },
         "definition": "query_result(xen_vm_info{uuid=\"$vm_uuid\"})",
         "description": "VM Power State",
@@ -1498,7 +1503,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_SAMM-PROMETHEUS}"
+          "uid": "${ds_samm_prometheus}"
         },
         "definition": "query_result(xen_vm_info{uuid=\"$vm_uuid\"})",
         "description": "VM Resident On",
@@ -1523,7 +1528,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_SAMM-PROMETHEUS}"
+          "uid": "${ds_samm_prometheus}"
         },
         "definition": "query_result(xen_vm_info{name_label=\"$vm_name_label\"} * on (guest_metrics) group_left (os_version_distro) label_replace(xen_vm_guest_metrics_info, \"guest_metrics\", \"$1\", \"uuid\", \"(.*)\"))",
         "description": "VM Operating System",
@@ -1548,7 +1553,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_SAMM-PROMETHEUS}"
+          "uid": "${ds_samm_prometheus}"
         },
         "definition": "query_result(xen_vm_info{name_label=\"$vm_name_label\"} * on (guest_metrics) group_left (networks) label_replace(xen_vm_guest_metrics_info, \"guest_metrics\", \"$1\", \"uuid\", \"(.*)\"))",
         "description": "",
@@ -1573,7 +1578,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_SAMM-PROMETHEUS}"
+          "uid": "${ds_samm_prometheus}"
         },
         "definition": "query_result(xen_vm_info{name_label=\"$vm_name_label\"} * on (guest_metrics) group_left (networks) label_replace(xen_vm_guest_metrics_info, \"guest_metrics\", \"$1\", \"uuid\", \"(.*)\"))",
         "description": "",
@@ -1598,7 +1603,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_SAMM-PROMETHEUS}"
+          "uid": "${ds_samm_prometheus}"
         },
         "definition": "label_values(xen_vm_info{uuid=\"$vm_uuid\"},guest_metrics)",
         "description": "",
@@ -1623,7 +1628,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_SAMM-PROMETHEUS}"
+          "uid": "${ds_samm_prometheus}"
         },
         "definition": "label_values(xen_vm_guest_metrics_info{uuid=\"$vm_guest_metrics_uuid\"},netbios_name)",
         "hide": 2,
@@ -1646,7 +1651,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_SAMM-PROMETHEUS}"
+          "uid": "${ds_samm_prometheus}"
         },
         "definition": "query_result(cim_os_lastbootuptime{instance=~\"((?i)${vm_name_label})\"})",
         "hide": 2,
@@ -1669,7 +1674,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_SAMM-PROMETHEUS}"
+          "uid": "${ds_samm_prometheus}"
         },
         "definition": "label_values(xen_host_info{uuid=\"$vm_resident_on\"},hostname)",
         "hide": 2,
@@ -1692,7 +1697,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_SAMM-PROMETHEUS}"
+          "uid": "${ds_samm_prometheus}"
         },
         "definition": "label_values(xen_host_info{uuid=\"$vm_resident_on\"},address)",
         "hide": 2,
@@ -1715,7 +1720,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_SAMM-PROMETHEUS}"
+          "uid": "${ds_samm_prometheus}"
         },
         "definition": "label_values(xen_host_info{uuid=\"$vm_resident_on\"},uuid)",
         "hide": 2,
@@ -1738,7 +1743,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_SAMM-PROMETHEUS}"
+          "uid": "${ds_samm_prometheus}"
         },
         "definition": "label_values(xen_pool_info{instance=\"$xen_host_instance\"},name_label)",
         "hide": 2,
@@ -1761,7 +1766,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_SAMM-PROMETHEUS}"
+          "uid": "${ds_samm_prometheus}"
         },
         "definition": "label_values(xen_host_info{uuid=\"$vm_resident_on\"},instance)",
         "hide": 2,
@@ -1784,7 +1789,7 @@
         "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "${DS_SAMM-PROMETHEUS}"
+          "uid": "${ds_samm_prometheus}"
         },
         "definition": "label_values(xen_pool_info{instance=\"$xen_host_instance\"},uuid)",
         "hide": 2,
@@ -1796,6 +1801,47 @@
           "qryType": 1,
           "query": "label_values(xen_pool_info{instance=\"$xen_host_instance\"},uuid)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "http://awspsamjba3lv.nclmiami.ncl.com/grafana",
+          "value": "http://awspsamjba3lv.nclmiami.ncl.com/grafana"
+        },
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "fe37eb96-e778-4098-b04d-bf73e9683d48"
+        },
+        "definition": "samm-config- (infinity) json",
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "grafanaurl",
+        "options": [],
+        "query": {
+          "infinityQuery": {
+            "columns": [],
+            "filters": [],
+            "format": "table",
+            "parser": "backend",
+            "refId": "variable",
+            "root_selector": "grafanaurl",
+            "source": "url",
+            "type": "json",
+            "url": "https://s3.amazonaws.com/samm.samana.cloud/${__org.name}/config.json",
+            "url_options": {
+              "data": "",
+              "method": "GET"
+            }
+          },
+          "query": "",
+          "queryType": "infinity"
         },
         "refresh": 1,
         "regex": "",
