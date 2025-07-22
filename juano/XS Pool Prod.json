@@ -17,9 +17,25 @@
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "graphTooltip": 0,
-  "id": 51,
-  "links": [],
+  "graphTooltip": 1,
+  "id": 63,
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "incluprodars": false,
+      "keepTime": false,
+      "tags": [
+        "PoolInfo",
+        "XenServer"
+      ],
+      "targetBlank": true,
+      "title": "Pool Overview",
+      "tooltip": "",
+      "type": "link",
+      "url": "https://samm.pr.mmmhc.com:3000/d/xs-pool-info-overall/xs-pool-info-overall?orgId=1&var-xen_pool_uuid=${xen_pool_uuid}"
+    }
+  ],
   "liveNow": true,
   "panels": [
     {
@@ -36,7 +52,7 @@
             {
               "targetBlank": false,
               "title": "XS Pool Info",
-              "url": "/d/xs-pool-info-overall/xs-pool-info-overall?orgId=1&var-xen_pool_uuid=${__field.labels.uuid}"
+              "url": "/d/xs-pool-info-overall-prod/xs-pool-info-overall??orgId=1&var-xen_pool_uuid=${__field.labels.uuid}"
             }
           ],
           "mappings": [],
@@ -44,10 +60,10 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "semi-dark-blue"
+                "color": "#5794f2"
               },
               {
-                "color": "red",
+                "color": "#e02f44",
                 "value": 80
               }
             ]
@@ -57,13 +73,13 @@
       },
       "gridPos": {
         "h": 10,
-        "w": 5,
+        "w": 4,
         "x": 0,
         "y": 0
       },
       "id": 10,
       "options": {
-        "colorMode": "background",
+        "colorMode": "value",
         "graphMode": "none",
         "justifyMode": "center",
         "orientation": "auto",
@@ -100,7 +116,8 @@
           "useBackend": false
         }
       ],
-      "title": "$xen_pool_uuid",
+      "title": "",
+      "transparent": true,
       "type": "stat"
     },
     {
@@ -117,7 +134,7 @@
             {
               "targetBlank": false,
               "title": "XS Host Info",
-              "url": "/d/xs-host-info/xs-host-info?orgId=1&var-xen_host_hostname=${__field.labels.host_name_label}"
+              "url": "/d/xs-host-info-prod/xs-host-info-prod?orgId=1&var-xen_host_hostname=${__field.labels.host_name_label}"
             }
           ],
           "mappings": [
@@ -135,10 +152,10 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "light-blue"
+                "color": "blue"
               },
               {
-                "color": "red",
+                "color": "#e02f44",
                 "value": 80
               }
             ]
@@ -148,8 +165,8 @@
       },
       "gridPos": {
         "h": 10,
-        "w": 19,
-        "x": 5,
+        "w": 20,
+        "x": 4,
         "y": 0
       },
       "id": 4,
@@ -199,6 +216,32 @@
       "type": "stat"
     },
     {
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 15,
+        "w": 4,
+        "x": 0,
+        "y": 10
+      },
+      "id": 25,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<div style='background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%); padding: 16px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px);'>\r\n\t<div style='display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 12px; height: 100%;'>\r\n\t\t<div style='display: flex; justify-content: space-between; align-items: center; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 8px; border-left: 4px solid #5794f2;'>\r\n\t\t\t<span style='color: #8e8e8e; font-weight: 600; font-size: 13px;'>Pool Name</span>\r\n\t\t\t<span style='color: #ffffff; font-weight: 500; font-size: 13px;'>${xen_pool_name}</span>\r\n\t\t</div>\r\n\t\t<div style='display: flex; justify-content: space-between; align-items: center; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 8px; border-left: 4px solid #5794f2;'>\r\n\t\t\t<span style='color: #8e8e8e; font-weight: 600; font-size: 13px;'>Total Hosts</span>\r\n\t\t\t<span style='color: #ffffff; font-weight: 500; font-size: 13px; padding: 3px 10px; background: rgba(115, 191, 105, 0.2); border-radius: 6px; border: 1px solid rgba(115, 191, 105, 0.3);'>${total_hosts}</span>\r\n\t\t</div>\r\n\t\t<div style='display: flex; justify-content: space-between; align-items: center; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 8px; border-left: 4px solid #5794f2;'>\r\n\t\t\t<span style='color: #8e8e8e; font-weight: 600; font-size: 13px;'>Pool UUID</span>\r\n\t\t\t<span style='color: #ffffff; font-weight: 500; font-size: 13px; font-family: monospace;'>${xen_pool_uuid}</span>\r\n\t\t</div>\r\n\r\n\r\n\t\t<div style='display: flex; justify-content: space-between; align-items: center; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 8px; border-left: 4px solid #5794f2;'>\r\n\t\t\t<span style='color: #8e8e8e; font-weight: 600; font-size: 13px;'>Pool Status</span>\r\n\t\t\t<span style='color: #ffffff; font-weight: 500; font-size: 13px; padding: 3px 10px; background: rgba(115, 191, 105, 0.2); border-radius: 6px; border: 1px solid rgba(115, 191, 105, 0.3);'>Healthy</span>\r\n\t\t</div>\r\n\t\t<div style='display: flex; justify-content: space-between; align-items: center; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 8px; border-left: 4px solid #5794f2;'>\r\n\t\t\t<span style='color: #8e8e8e; font-weight: 600; font-size: 13px;'>Instance</span>\r\n\t\t\t<span style='color: #ffffff; font-weight: 500; font-size: 13px; font-family: monospace;'>${xen_host_instance}</span>\r\n\t\t</div>\r\n\t</div>\r\n</div>",
+        "mode": "html"
+      },
+      "pluginVersion": "12.0.1",
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
       "datasource": {
         "type": "prometheus",
         "uid": "${ds_samm_prometheus}"
@@ -216,14 +259,14 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "#73bf69"
               },
               {
-                "color": "semi-dark-purple",
+                "color": "#f59e0b",
                 "value": 0.5
               },
               {
-                "color": "red",
+                "color": "#e02f44",
                 "value": 0.8
               }
             ]
@@ -233,9 +276,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 14,
-        "w": 8,
-        "x": 0,
+        "h": 16,
+        "w": 5,
+        "x": 4,
         "y": 10
       },
       "id": 8,
@@ -287,6 +330,7 @@
         }
       ],
       "title": "Host AVG Load",
+      "transparent": true,
       "type": "bargauge"
     },
     {
@@ -307,14 +351,14 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "#73bf69"
               },
               {
-                "color": "semi-dark-purple",
+                "color": "#f59e0b",
                 "value": 0.5
               },
               {
-                "color": "dark-red",
+                "color": "#e02f44",
                 "value": 0.8
               }
             ]
@@ -324,9 +368,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 14,
-        "w": 8,
-        "x": 8,
+        "h": 16,
+        "w": 5,
+        "x": 9,
         "y": 10
       },
       "id": 11,
@@ -378,6 +422,7 @@
         }
       ],
       "title": "Host AVG CPU",
+      "transparent": true,
       "type": "bargauge"
     },
     {
@@ -398,14 +443,14 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "#73bf69"
               },
               {
-                "color": "#EAB839",
+                "color": "#f59e0b",
                 "value": 0.75
               },
               {
-                "color": "red",
+                "color": "#e02f44",
                 "value": 0.9
               }
             ]
@@ -415,9 +460,9 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 14,
-        "w": 8,
-        "x": 16,
+        "h": 16,
+        "w": 5,
+        "x": 14,
         "y": 10
       },
       "id": 9,
@@ -469,14 +514,122 @@
         }
       ],
       "title": "Host RAM Load",
+      "transparent": true,
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "title": "Show details",
+              "url": "/d/xs-host-info-prod/xs-host-info-prod?orgId=1&var-xen_host_uuid=${__field.labels.uuid}"
+            }
+          ],
+          "mappings": [],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#73bf69"
+              },
+              {
+                "color": "#f59e0b",
+                "value": 0.8
+              },
+              {
+                "color": "#e02f44",
+                "value": 0.9
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 17,
+        "w": 5,
+        "x": 19,
+        "y": 10
+      },
+      "id": 12,
+      "options": {
+        "displayMode": "lcd",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "maxVizHeight": 16,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "left",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "manual",
+        "text": {
+          "titleSize": 12,
+          "valueSize": 10
+        },
+        "valueMode": "color"
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "editorMode": "code",
+          "expr": "(1-(xen_host_memory_free_kib{instance=\"$xen_host_instance\"}/xen_host_memory_total_kib{instance=\"$xen_host_instance\"}))>0.8",
+          "instant": false,
+          "legendFormat": "{{name_label}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Hosts with RAM utilization over 80%",
+      "transparent": true,
       "type": "bargauge"
     }
   ],
   "preload": false,
+  "refresh": "5s",
   "schemaVersion": 41,
   "tags": [],
   "templating": {
     "list": [
+      {
+        "current": {
+          "text": "samm-prometheus",
+          "value": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        },
+        "hide": 2,
+        "name": "ds_samm_prometheus",
+        "options": [],
+        "query": "prometheus",
+        "refresh": 1,
+        "regex": "/^samm-prometheus/",
+        "type": "datasource"
+      },
       {
         "current": {
           "text": "Pool VDI 01",
@@ -551,8 +704,8 @@
       },
       {
         "current": {
-          "text": "3XKLOUD04P",
-          "value": "3XKLOUD04P"
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "prometheus",
@@ -609,6 +762,52 @@
         "refresh": 1,
         "regex": "",
         "type": "query"
+      },
+      {
+        "current": {
+          "text": "Pool VDI 01",
+          "value": "Pool VDI 01"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${ds_samm_prometheus}"
+        },
+        "definition": "label_values(xen_pool_info{uuid=\"$xen_pool_uuid\"},name_label)",
+        "hide": 2,
+        "includeAll": false,
+        "name": "xen_pool_name",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(xen_pool_info{uuid=\"$xen_pool_uuid\"},name_label)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "29",
+          "value": "29"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+        },
+        "definition": "query_result( count(xen_host_info{pool_uuid=\"$xen_pool_uuid\"}))",
+        "hide": 2,
+        "includeAll": false,
+        "name": "total_hosts",
+        "options": [],
+        "query": {
+          "qryType": 3,
+          "query": "query_result( count(xen_host_info{pool_uuid=\"$xen_pool_uuid\"}))",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "/.*?\\s+(\\d+)\\s+.*/",
+        "type": "query"
       }
     ]
   },
@@ -618,7 +817,7 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "XS Pool Info",
-  "uid": "xs-pool-info",
+  "title": "XS Pool Info prod",
+  "uid": "xs-pool-info-prod",
   "version": 4
 }
