@@ -586,7 +586,7 @@
           "links": [
             {
               "title": "XS Pool Info",
-              "url": "/d/xs-pool-info-prod/xs-pool-info-prod?orgId=1&var-xen_pool_uuid=${__field.labels.uuid}"
+              "url": "/d/xs-pool-info-dev/xs-pool-info-dev?orgId=1&var-xen_pool_uuid=${__field.labels.uuid}"
             }
           ],
           "mappings": [],
@@ -1011,7 +1011,7 @@
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "rx-{{prodice}}",
+          "legendFormat": "rx-{{device}}",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -1025,7 +1025,7 @@
           "expr": "xen_host_pif_tx{uuid=\"$xen_host_uuid\"}\r\n",
           "hide": false,
           "instant": false,
-          "legendFormat": "tx-{{prodice}}",
+          "legendFormat": "tx-{{device}}",
           "range": true,
           "refId": "B"
         }
@@ -1047,7 +1047,7 @@
           "links": [
             {
               "title": "XS VM Info",
-              "url": "/d/xs-vm-info-prod/vm-info-prod?orgId=1&refresh=5s&var-vm_uuid=${__field.labels.uuid}"
+              "url": "/d/xs-vm-info-dev/vm-info-dev?orgId=1&refresh=5s&var-vm_uuid=${__field.labels.uuid}"
             }
           ],
           "mappings": [],
@@ -1128,8 +1128,8 @@
     "list": [
       {
         "current": {
-          "text": "3XKLOUD04D",
-          "value": "3XKLOUD04D"
+          "text": "3XKLOUD02",
+          "value": "3XKLOUD02"
         },
         "datasource": {
           "type": "prometheus",
@@ -1164,8 +1164,8 @@
       },
       {
         "current": {
-          "text": "0c30cdec-f724-434c-8b5b-df7739a2e77b",
-          "value": "0c30cdec-f724-434c-8b5b-df7739a2e77b"
+          "text": "e9b0608d-90cd-44fb-a40e-be482d59c164",
+          "value": "e9b0608d-90cd-44fb-a40e-be482d59c164"
         },
         "datasource": {
           "type": "prometheus",
@@ -1236,8 +1236,8 @@
       },
       {
         "current": {
-          "text": "3XKLOUD04D",
-          "value": "3XKLOUD04D"
+          "text": "3XKLOUD02",
+          "value": "3XKLOUD02"
         },
         "datasource": {
           "type": "prometheus",
@@ -1297,8 +1297,8 @@
       },
       {
         "current": {
-          "text": "172.29.1.237",
-          "value": "172.29.1.237"
+          "text": "172.29.1.127",
+          "value": "172.29.1.127"
         },
         "datasource": {
           "type": "prometheus",
@@ -1366,8 +1366,8 @@
       },
       {
         "current": {
-          "text": "FLM241503L3",
-          "value": "FLM241503L3"
+          "text": "FLM24140AGD",
+          "value": "FLM24140AGD"
         },
         "datasource": {
           "type": "prometheus",
@@ -1395,7 +1395,7 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "XS Host Info prod",
-  "uid": "xs-host-info-prod",
+  "title": "XS Host Info Dev",
+  "uid": "xs-host-info-dev",
   "version": 3
 }
