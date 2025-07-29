@@ -32,382 +32,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "links": [],
-          "mappings": [],
-          "max": 1,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 2,
-        "x": 0,
-        "y": 0
-      },
-      "id": 22,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "12.0.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${ds_samm_prometheus}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "count ( xen_pool_info )",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "{{name_label}}",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
-        }
-      ],
-      "title": "Total Pools",
-      "transparent": true,
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${ds_samm_prometheus}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "links": [],
-          "mappings": [],
-          "max": 1,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 2,
-        "x": 2,
-        "y": 0
-      },
-      "id": 20,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "12.0.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${ds_samm_prometheus}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "count ( (xen_host_memory_free_kib))",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "{{name_label}}",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
-        }
-      ],
-      "title": "Total Hosts",
-      "transparent": true,
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${ds_samm_prometheus}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "links": [],
-          "mappings": [],
-          "max": 1,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 2,
-        "x": 4,
-        "y": 0
-      },
-      "id": 21,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "12.0.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${ds_samm_prometheus}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "count (  xen_vm_info )",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "{{name_label}}",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
-        }
-      ],
-      "title": "Total VMs",
-      "transparent": true,
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${ds_samm_prometheus}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "links": [],
-          "mappings": [],
-          "max": 1,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "#EAB839",
-                "value": 0.85
-              },
-              {
-                "color": "red",
-                "value": 0.95
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 2,
-        "x": 10,
-        "y": 0
-      },
-      "id": 17,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "value",
-        "wideLayout": true
-      },
-      "pluginVersion": "12.0.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${ds_samm_prometheus}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "count ((1- (xen_host_memory_free_kib / xen_host_memory_total_kib))>($memory_threshold/100))",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "{{name_label}}",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
-        }
-      ],
-      "title": "Hosts with RAM > $memory_threshold%",
-      "transparent": true,
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${ds_samm_prometheus}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "links": [],
-          "mappings": [],
-          "max": 1,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "#EAB839",
-                "value": 0.8
-              },
-              {
-                "color": "red",
-                "value": 0.95
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 2,
-        "x": 12,
-        "y": 0
-      },
-      "id": 18,
-      "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "12.0.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${ds_samm_prometheus}"
-          },
-          "disableTextWrap": false,
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": " count ( xen_vm_cpu_usage> ( $cpu_threshold / 100) )",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "{{name_label}}",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
-        }
-      ],
-      "title": "VMs  CPU >  $cpu_threshold %",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${ds_samm_prometheus}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
           "links": [
             {
               "title": "XS Pool Info",
@@ -434,7 +58,7 @@
         "h": 4,
         "w": 24,
         "x": 0,
-        "y": 3
+        "y": 0
       },
       "id": 12,
       "maxPerRow": 4,
@@ -528,7 +152,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 7
+        "y": 4
       },
       "id": 4,
       "maxPerRow": 4,
@@ -622,7 +246,7 @@
         "h": 13,
         "w": 7,
         "x": 0,
-        "y": 17
+        "y": 14
       },
       "id": 13,
       "options": {
@@ -718,7 +342,7 @@
         "h": 14,
         "w": 6,
         "x": 7,
-        "y": 17
+        "y": 14
       },
       "id": 16,
       "options": {
@@ -815,7 +439,7 @@
         "h": 14,
         "w": 6,
         "x": 13,
-        "y": 17
+        "y": 14
       },
       "id": 14,
       "options": {
@@ -911,7 +535,7 @@
         "h": 14,
         "w": 5,
         "x": 19,
-        "y": 17
+        "y": 14
       },
       "id": 15,
       "options": {
@@ -987,10 +611,10 @@
       {
         "current": {
           "text": [
-            "Pool VDI 01"
+            " "
           ],
           "value": [
-            "f47ed948-df7e-54c1-2626-f0cdaad37f78"
+            " "
           ]
         },
         "datasource": {
@@ -1015,8 +639,8 @@
       },
       {
         "current": {
-          "text": "3XKLOUD01",
-          "value": "3XKLOUD01"
+          "text": " ",
+          "value": " "
         },
         "datasource": {
           "type": "prometheus",
@@ -1039,8 +663,8 @@
       },
       {
         "current": {
-          "text": "samm-xen-pool1:8000",
-          "value": "samm-xen-pool1:8000"
+          "text": " ",
+          "value": " "
         },
         "datasource": {
           "type": "prometheus",
@@ -1063,7 +687,7 @@
       },
       {
         "current": {
-          "text": "",
+            "text": "",
           "value": ""
         },
         "datasource": {
@@ -1164,8 +788,8 @@
       },
       {
         "current": {
-          "text": "80",
-          "value": "80"
+          "text": "90",
+          "value": "90"
         },
         "description": "",
         "label": "CPU",
@@ -1173,11 +797,11 @@
         "options": [
           {
             "selected": true,
-            "text": "80",
-            "value": "80"
+            "text": "90",
+            "value": "90"
           }
         ],
-        "query": "80",
+        "query": "90",
         "type": "textbox"
       },
       {
@@ -1208,5 +832,5 @@
   "timezone": "browser",
   "title": "XS Pool Info Overall prod",
   "uid": "xs-pool-info-overall-prod",
-  "version": 5
+  "version": 6
 }
