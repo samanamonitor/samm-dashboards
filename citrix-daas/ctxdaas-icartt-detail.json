@@ -1,0 +1,523 @@
+{
+  "__inputs": [
+    {
+      "name": "samm-citrixodata-datasource",
+      "label": "samm-citrixodata-datasource",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "samm-citrixodata-datasource",
+      "pluginName": "CitrixCloud"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "12.0.2"
+    },
+    {
+      "type": "datasource",
+      "id": "samm-citrixodata-datasource",
+      "name": "CitrixCloud",
+      "version": "1.1.3"
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "samm-citrixodata-datasource",
+        "uid": "samm-citrixodata-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "#EAB839",
+                "value": 100
+              },
+              {
+                "color": "red",
+                "value": 200
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ICA RTT"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "applyToRow": false,
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "ms"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ICA Latency"
+            },
+            "properties": [
+              {
+                "id": "color"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "ms"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 21,
+        "w": 17,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 0,
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "ICA RTT"
+          }
+        ]
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.SessionMetricsView",
+            "name": "SessionMetrics"
+          },
+          "filterConditions": [],
+          "hide": false,
+          "properties": [
+            {
+              "name": "IcaRttMS",
+              "type": "Edm.Int32"
+            },
+            {
+              "name": "SessionId",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "ConnectionState",
+              "type": "Edm.Int16"
+            },
+            {
+              "name": "IcaLatency",
+              "type": "Edm.Int32"
+            }
+          ],
+          "refId": "ICARTT",
+          "timeProperty": {
+            "name": "CollectedDate",
+            "type": "Edm.DateTimeOffset"
+          }
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.Session",
+            "name": "Sessions"
+          },
+          "filterConditions": [
+            {
+              "operator": "eq",
+              "property": {
+                "name": "ConnectionState",
+                "type": "Edm.Int32"
+              },
+              "value": "5"
+            }
+          ],
+          "hide": false,
+          "properties": [
+            {
+              "name": "SessionKey",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "MachineId",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "UserId",
+              "type": "Edm.Int64"
+            }
+          ],
+          "refId": "Sessions"
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.Machine",
+            "name": "Machines"
+          },
+          "filterConditions": [
+            {
+              "operator": "ne null",
+              "property": {
+                "name": "DnsName",
+                "type": "Edm.String"
+              },
+              "value": ""
+            }
+          ],
+          "hide": false,
+          "properties": [
+            {
+              "name": "Id",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "DnsName",
+              "type": "Edm.String"
+            }
+          ],
+          "refId": "Machines"
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.User",
+            "name": "Users"
+          },
+          "filterConditions": [
+            {
+              "operator": "ne null",
+              "property": {
+                "name": "Upn",
+                "type": "Edm.String"
+              },
+              "value": ""
+            }
+          ],
+          "hide": false,
+          "properties": [
+            {
+              "name": "Id",
+              "type": "Edm.Int64"
+            },
+            {
+              "name": "Upn",
+              "type": "Edm.String"
+            }
+          ],
+          "refId": "Users"
+        }
+      ],
+      "title": "ICARTT",
+      "transformations": [
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Machines)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Id": "MachineId"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Users)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Id": "UserId"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:ICARTT)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "SessionId": "SessionKey"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Sessions|Machines)$/"
+          },
+          "id": "joinByField",
+          "options": {
+            "byField": "MachineId",
+            "mode": "inner"
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:joinByField-Machines-Sessions|Users)$/"
+          },
+          "id": "joinByField",
+          "options": {
+            "byField": "UserId",
+            "mode": "inner"
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:joinByField-joinByField-Machines-Sessions-Users|ICARTT)$/"
+          },
+          "id": "joinByField",
+          "options": {
+            "byField": "SessionKey",
+            "mode": "inner"
+          }
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "CollectedDate": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "ConnectionState": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "DNS Name": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "DnsName": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "DnsName {name=\"Machines\"}": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "ICA RTT": {
+                "aggregations": [
+                  "lastNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "IcaLatency": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "IcaRttMS": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "SessionKey": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "UPN": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Upn": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "UserId": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "ConnectionState (last)": true,
+              "MachineId": true,
+              "SessionKey": true,
+              "SessionKey {name=\"Sessions\"}": true,
+              "UserId (last)": true,
+              "UserId {name=\"Sessions\"}": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "CollectedDate {name=\"ICARTT\", time=\"CollectedDate\"}": 5,
+              "DnsName {name=\"Machines\"}": 3,
+              "IcaRttMS {name=\"ICARTT\"}": 6,
+              "MachineId": 1,
+              "SessionKey {name=\"Sessions\"}": 0,
+              "Upn {name=\"Users\"}": 4,
+              "UserId {name=\"Sessions\"}": 2
+            },
+            "renameByName": {
+              "CollectedDate (last)": "Collected Date",
+              "CollectedDate {name=\"ICARTT\", time=\"CollectedDate\"}": "Collected Date",
+              "DnsName (last)": "Machine Name",
+              "DnsName {name=\"Machines\"}": "DNS Name",
+              "IcaLatency (last)": "ICA Latency",
+              "IcaRttMS (last)": "ICA RTT",
+              "IcaRttMS {name=\"ICARTT\"}": "ICA RTT",
+              "Upn (last)": "User",
+              "Upn {name=\"Users\"}": "UPN"
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "ICA RTT"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "schemaVersion": 41,
+  "tags": [
+    "citrix-daas"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "ICA RTT detail",
+  "uid": "34a0d01c-aeb7-samm-ctxdaas-icartt-detail",
+  "version": 8,
+  "weekStart": ""
+}

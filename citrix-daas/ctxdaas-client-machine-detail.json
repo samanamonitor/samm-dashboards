@@ -1,0 +1,296 @@
+{
+    "__inputs": [
+      {
+        "name": "samm-citrixodata-datasource",
+        "label": "samm-citrixodata-datasource",
+        "description": "",
+        "type": "datasource",
+        "pluginId": "samm-citrixodata-datasource",
+        "pluginName": "CitrixCloud"
+      }
+    ],
+    "__elements": {},
+    "__requires": [
+      {
+        "type": "grafana",
+        "id": "grafana",
+        "name": "Grafana",
+        "version": "12.0.2"
+      },
+      {
+        "type": "datasource",
+        "id": "samm-citrixodata-datasource",
+        "name": "CitrixCloud",
+        "version": "1.1.3"
+      },
+      {
+        "type": "panel",
+        "id": "table",
+        "name": "Table",
+        "version": ""
+      }
+    ],
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": null,
+    "links": [],
+    "panels": [
+      {
+        "datasource": {
+          "type": "samm-citrixodata-datasource",
+          "uid": "samm-citrixodata-datasource"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "inspect": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Client Name"
+              },
+              "properties": [
+                {
+                  "id": "custom.filterable",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "IP Address"
+              },
+              "properties": [
+                {
+                  "id": "custom.filterable",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Workspace App version"
+              },
+              "properties": [
+                {
+                  "id": "custom.filterable",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Public IP Address"
+              },
+              "properties": [
+                {
+                  "id": "custom.filterable",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 22,
+          "w": 16,
+          "x": 0,
+          "y": 0
+        },
+        "id": 2,
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": false,
+              "displayName": "Client Name"
+            }
+          ]
+        },
+        "pluginVersion": "12.0.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "samm-citrixodata-datasource",
+              "uid": "samm-citrixodata-datasource"
+            },
+            "entitySet": {
+              "entityType": "Citrix.Monitor.DataService.V4.Connection",
+              "name": "Connections"
+            },
+            "properties": [
+              {
+                "name": "ClientName",
+                "type": "Edm.String"
+              },
+              {
+                "name": "ClientAddress",
+                "type": "Edm.String"
+              },
+              {
+                "name": "ClientPublicIP",
+                "type": "Edm.String"
+              },
+              {
+                "name": "ClientVersion",
+                "type": "Edm.String"
+              },
+              {
+                "name": "ClientPlatform",
+                "type": "Edm.String"
+              },
+              {
+                "name": "ConnectedViaIPAddress",
+                "type": "Edm.String"
+              },
+              {
+                "name": "LogOnEndDate",
+                "type": "Edm.DateTimeOffset"
+              }
+            ],
+            "refId": "A"
+          }
+        ],
+        "title": "Client machines",
+        "transformations": [
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "ClientAddress": {
+                  "aggregations": [
+                    "last"
+                  ],
+                  "operation": "aggregate"
+                },
+                "ClientName": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "ClientPlatform": {
+                  "aggregations": [
+                    "last"
+                  ],
+                  "operation": "aggregate"
+                },
+                "ClientPublicIP": {
+                  "aggregations": [
+                    "last"
+                  ],
+                  "operation": "aggregate"
+                },
+                "ClientVersion": {
+                  "aggregations": [
+                    "last"
+                  ],
+                  "operation": "aggregate"
+                },
+                "ConnectedViaIPAddress": {
+                  "aggregations": [
+                    "last"
+                  ],
+                  "operation": "aggregate"
+                },
+                "LogOnEndDate": {
+                  "aggregations": [
+                    "last"
+                  ],
+                  "operation": "aggregate"
+                }
+              }
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Value": true
+              },
+              "includeByName": {},
+              "indexByName": {},
+              "renameByName": {
+                "ClientAddress": "IP Address",
+                "ClientAddress (last)": "IP Address",
+                "ClientName": "Client Name",
+                "ClientPlatform": "OS Type",
+                "ClientPlatform (last)": "Client Platform",
+                "ClientPublicIP": "Public IP Address",
+                "ClientPublicIP (last)": "Public IP Address",
+                "ClientVersion": "Workspace App Version",
+                "ClientVersion (last)": "Workspace App version",
+                "ConnectedViaIPAddress": "Connected via",
+                "ConnectedViaIPAddress (last)": "Conected Via",
+                "LogOnEndDate (last)": "Last access"
+              }
+            }
+          }
+        ],
+        "type": "table"
+      }
+    ],
+    "schemaVersion": 41,
+    "tags": [
+      "citrix-daas"
+    ],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "browser",
+    "title": "Client machine detail",
+    "uid": "86a58856-a233-472456-ctx-daas-machdetail",
+    "version": 4,
+    "weekStart": ""
+  }

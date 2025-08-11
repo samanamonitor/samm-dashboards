@@ -1,0 +1,1219 @@
+{
+  "__inputs": [
+    {
+      "name": "samm-prometheus",
+      "label": "samm-prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    },
+    {
+      "name": "samm-citrixodata-datasource",
+      "label": "samm-citrixodata-datasource",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "samm-citrixodata-datasource",
+      "pluginName": "CitrixCloud"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "12.0.2"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "datasource",
+      "id": "samm-citrixodata-datasource",
+      "name": "CitrixCloud",
+      "version": "1.1.3"
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "samm-prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ctxdaassessiontimeseries"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Active Sessions"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ctxdaasdisconsessiontimeseries"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Disconnected sessions"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 23,
+        "x": 0,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "samm-prometheus"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "ctxdaassessiontimeseries",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "samm-prometheus"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "ctxdaasdisconsessiontimeseries",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B",
+          "useBackend": false
+        }
+      ],
+      "title": "Sessions",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "samm-citrixodata-datasource",
+        "uid": "samm-citrixodata-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Idle Time"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "dateTimeFromNow"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Session Type"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "Desktop"
+                      },
+                      "1": {
+                        "index": 1,
+                        "text": "Application"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 121
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Machine Name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 264
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Session Start"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 174
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "User UPN"
+            },
+            "properties": [
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Machine Name"
+            },
+            "properties": [
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Delivery Group"
+            },
+            "properties": [
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "SessionKey Session"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 394
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 22,
+        "w": 23,
+        "x": 0,
+        "y": 8
+      },
+      "id": 2,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 0,
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "SessionKey Session"
+          }
+        ]
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.Session",
+            "name": "Sessions"
+          },
+          "filterConditions": [
+            {
+              "operator": "eq",
+              "property": {
+                "name": "ConnectionState",
+                "type": "Edm.Int32"
+              },
+              "value": "5"
+            }
+          ],
+          "properties": [
+            {
+              "name": "SessionKey",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "UserId",
+              "type": "Edm.Int64"
+            },
+            {
+              "name": "MachineId",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "StartDate",
+              "type": "Edm.DateTimeOffset"
+            },
+            {
+              "name": "SessionIdleTime",
+              "type": "Edm.DateTimeOffset"
+            },
+            {
+              "name": "SessionType",
+              "type": "Edm.Int32"
+            }
+          ],
+          "refId": "Session"
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.Machine",
+            "name": "Machines"
+          },
+          "filterConditions": [
+            {
+              "operator": "eq",
+              "property": {
+                "name": "CurrentPowerState",
+                "type": "Edm.Int32"
+              },
+              "value": "3"
+            }
+          ],
+          "hide": false,
+          "properties": [
+            {
+              "name": "DnsName",
+              "type": "Edm.String"
+            },
+            {
+              "name": "DesktopGroupId",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "Id",
+              "type": "Edm.Guid"
+            }
+          ],
+          "refId": "Machine"
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.DesktopGroup",
+            "name": "DesktopGroups"
+          },
+          "hide": false,
+          "properties": [
+            {
+              "name": "Id",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "Name",
+              "type": "Edm.String"
+            }
+          ],
+          "refId": "Delivery Group"
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.User",
+            "name": "Users"
+          },
+          "filterConditions": [
+            {
+              "operator": "ne",
+              "property": {
+                "name": "Upn",
+                "type": "Edm.String"
+              },
+              "value": ""
+            }
+          ],
+          "hide": false,
+          "properties": [
+            {
+              "name": "Id",
+              "type": "Edm.Int64"
+            },
+            {
+              "name": "Upn",
+              "type": "Edm.String"
+            }
+          ],
+          "refId": "User"
+        }
+      ],
+      "title": "Active sessions detail",
+      "transformations": [
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Machine)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Id": "MachineId"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Machine|Session)$/"
+          },
+          "id": "joinByField",
+          "options": {
+            "byField": "MachineId",
+            "mode": "inner"
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:User)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Id": "UserId"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:joinByField-Machine-Session|User)$/"
+          },
+          "id": "joinByField",
+          "options": {
+            "byField": "UserId",
+            "mode": "inner"
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Delivery Group)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Id": "DesktopGroupId"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Delivery Group|joinByField-User-joinByField-Machine-Session)$/"
+          },
+          "id": "joinByField",
+          "options": {
+            "byField": "DesktopGroupId",
+            "mode": "inner"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "DesktopGroupId Machine": true,
+              "MachineId": true,
+              "SessionKey Session": false,
+              "UserId": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "DesktopGroupId Machine": 0,
+              "DnsName Machine": 5,
+              "MachineId": 2,
+              "Name Delivery Group": 9,
+              "SessionIdleTime Session": 7,
+              "SessionKey Session": 3,
+              "SessionType Session": 8,
+              "StartDate Session": 6,
+              "Upn User": 4,
+              "UserId": 1
+            },
+            "renameByName": {
+              "DnsName Machine": "Machine Name",
+              "Name Delivery Group": "Delivery Group",
+              "SessionIdleTime Session": "Idle Time",
+              "SessionType Session": "Session Type",
+              "StartDate Session": "Session Start",
+              "Upn User": "User UPN"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "samm-citrixodata-datasource",
+        "uid": "samm-citrixodata-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Idle Time"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "dateTimeFromNow"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Session Type"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "Desktop"
+                      },
+                      "1": {
+                        "index": 1,
+                        "text": "Application"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.width",
+                "value": 121
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Machine Name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 264
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Session Start"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 174
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "User UPN"
+            },
+            "properties": [
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Machine Name"
+            },
+            "properties": [
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Delivery Group"
+            },
+            "properties": [
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "SessionKey Session"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 394
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 22,
+        "w": 23,
+        "x": 0,
+        "y": 30
+      },
+      "id": 4,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 0,
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "SessionKey Session"
+          }
+        ]
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.Session",
+            "name": "Sessions"
+          },
+          "filterConditions": [
+            {
+              "operator": "eq",
+              "property": {
+                "name": "ConnectionState",
+                "type": "Edm.Int32"
+              },
+              "value": "5"
+            }
+          ],
+          "properties": [
+            {
+              "name": "SessionKey",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "UserId",
+              "type": "Edm.Int64"
+            },
+            {
+              "name": "MachineId",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "StartDate",
+              "type": "Edm.DateTimeOffset"
+            },
+            {
+              "name": "SessionIdleTime",
+              "type": "Edm.DateTimeOffset"
+            },
+            {
+              "name": "SessionType",
+              "type": "Edm.Int32"
+            }
+          ],
+          "refId": "Session"
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.Machine",
+            "name": "Machines"
+          },
+          "filterConditions": [
+            {
+              "operator": "eq",
+              "property": {
+                "name": "CurrentPowerState",
+                "type": "Edm.Int32"
+              },
+              "value": "3"
+            }
+          ],
+          "hide": false,
+          "properties": [
+            {
+              "name": "DnsName",
+              "type": "Edm.String"
+            },
+            {
+              "name": "DesktopGroupId",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "Id",
+              "type": "Edm.Guid"
+            }
+          ],
+          "refId": "Machine"
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.DesktopGroup",
+            "name": "DesktopGroups"
+          },
+          "hide": false,
+          "properties": [
+            {
+              "name": "Id",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "Name",
+              "type": "Edm.String"
+            }
+          ],
+          "refId": "Delivery Group"
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.User",
+            "name": "Users"
+          },
+          "filterConditions": [
+            {
+              "operator": "ne",
+              "property": {
+                "name": "Upn",
+                "type": "Edm.String"
+              },
+              "value": ""
+            }
+          ],
+          "hide": false,
+          "properties": [
+            {
+              "name": "Id",
+              "type": "Edm.Int64"
+            },
+            {
+              "name": "Upn",
+              "type": "Edm.String"
+            }
+          ],
+          "refId": "User"
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.ApplicationInstance",
+            "name": "ApplicationInstances"
+          },
+          "hide": false,
+          "properties": [
+            {
+              "name": "ApplicationId",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "SessionKey",
+              "type": "Edm.Guid"
+            }
+          ],
+          "refId": "ApplicationInstances"
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.Application",
+            "name": "Applications"
+          },
+          "filterConditions": [
+            {
+              "operator": "eq",
+              "property": {
+                "name": "LifecycleState",
+                "type": "Edm.Int32"
+              },
+              "value": "0"
+            }
+          ],
+          "hide": false,
+          "properties": [
+            {
+              "name": "Id",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "Name",
+              "type": "Edm.String"
+            }
+          ],
+          "refId": "Apps"
+        }
+      ],
+      "title": "Active sessions detail with app (Temp)",
+      "transformations": [
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Machine)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Id": "MachineId"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Machine|Session)$/"
+          },
+          "id": "joinByField",
+          "options": {
+            "byField": "MachineId",
+            "mode": "inner"
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:User)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Id": "UserId"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:joinByField-Machine-Session|User)$/"
+          },
+          "id": "joinByField",
+          "options": {
+            "byField": "UserId",
+            "mode": "inner"
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Delivery Group)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Id": "DesktopGroupId"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Delivery Group|joinByField-User-joinByField-Machine-Session)$/"
+          },
+          "id": "joinByField",
+          "options": {
+            "byField": "DesktopGroupId",
+            "mode": "inner"
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:joinByField-Delivery Group-joinByField-User-joinByField-Machine-Session)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "DesktopGroupId Machine": true,
+              "MachineId": true,
+              "SessionKey Session": false,
+              "UserId": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "DesktopGroupId Machine": 0,
+              "DnsName Machine": 5,
+              "MachineId": 2,
+              "Name Delivery Group": 9,
+              "SessionIdleTime Session": 7,
+              "SessionKey Session": 3,
+              "SessionType Session": 8,
+              "StartDate Session": 6,
+              "Upn User": 4,
+              "UserId": 1
+            },
+            "renameByName": {
+              "DnsName Machine": "Machine Name",
+              "Name Delivery Group": "Delivery Group",
+              "SessionIdleTime Session": "Idle Time",
+              "SessionType Session": "Session Type",
+              "StartDate Session": "Session Start",
+              "Upn User": "User UPN"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Apps)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Id": "ApplicationId"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Apps|ApplicationInstances)$/"
+          },
+          "id": "joinByField",
+          "options": {
+            "byField": "ApplicationId",
+            "mode": "inner"
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:joinByField-Apps-ApplicationInstances)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "SessionKey ApplicationInstances": "SessionKey"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:joinByField-Delivery Group-joinByField-User-joinByField-Machine-Session)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "SessionKey Session": "SessionKey"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:joinByField-Delivery Group-joinByField-User-joinByField-Machine-Session|joinByField-Apps-ApplicationInstances)$/"
+          },
+          "id": "joinByField",
+          "options": {
+            "byField": "SessionKey",
+            "mode": "outer"
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "schemaVersion": 41,
+  "tags": [
+    "citrix-daas"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Active Session Details",
+  "uid": "86a58856-a233-4724-samm-ctxdaas-actsess",
+  "version": 8,
+  "weekStart": ""
+}

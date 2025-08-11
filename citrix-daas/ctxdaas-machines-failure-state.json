@@ -1,0 +1,519 @@
+{
+  "__inputs": [
+    {
+      "name": "samm-citrixodata-datasource",
+      "label": "samm-citrixodata-datasource",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "samm-citrixodata-datasource",
+      "pluginName": "CitrixCloud"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "12.0.2"
+    },
+    {
+      "type": "datasource",
+      "id": "samm-citrixodata-datasource",
+      "name": "CitrixCloud",
+      "version": "1.1.3"
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "samm-citrixodata-datasource",
+        "uid": "samm-citrixodata-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "State"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 79
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "Active"
+                      },
+                      "1": {
+                        "index": 1,
+                        "text": "Deleted"
+                      },
+                      "2": {
+                        "index": 2,
+                        "text": "Requires Resol"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "DNS Name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 264
+              },
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "IP Address"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 94
+              },
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Maintenance?"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 118
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "false": {
+                        "index": 0,
+                        "text": "No"
+                      },
+                      "true": {
+                        "index": 1,
+                        "text": "Yes"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Power State"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 110
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "Unmanaged"
+                      },
+                      "1": {
+                        "index": 1,
+                        "text": "Unknown"
+                      },
+                      "2": {
+                        "index": 2,
+                        "text": "Unavailable"
+                      },
+                      "3": {
+                        "index": 3,
+                        "text": "On"
+                      },
+                      "4": {
+                        "index": 4,
+                        "text": "Off"
+                      },
+                      "5": {
+                        "index": 5,
+                        "text": "Suspended"
+                      },
+                      "6": {
+                        "index": 6,
+                        "text": "Turning On"
+                      },
+                      "7": {
+                        "index": 7,
+                        "text": "Turning Off"
+                      },
+                      "8": {
+                        "index": 8,
+                        "text": "Suspending"
+                      },
+                      "9": {
+                        "index": 9,
+                        "text": "Resuming"
+                      },
+                      "11": {
+                        "index": 10,
+                        "text": "Deleted"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Registered?"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "1": {
+                        "index": 0,
+                        "text": "Registered"
+                      },
+                      "2": {
+                        "index": 1,
+                        "text": "Unregistered"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Session Count"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 132
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Failure State"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "Unknown"
+                      },
+                      "1": {
+                        "index": 1,
+                        "text": "No fault (Healthy)"
+                      },
+                      "2": {
+                        "index": 2,
+                        "text": "Failed to start"
+                      },
+                      "3": {
+                        "index": 3,
+                        "text": "Stuck on boot"
+                      },
+                      "4": {
+                        "index": 4,
+                        "text": "Unregistered"
+                      },
+                      "5": {
+                        "index": 5,
+                        "text": "Max capacity"
+                      },
+                      "6": {
+                        "index": 6,
+                        "text": "VM Not found"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 22,
+        "w": 19,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 1,
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.Machine",
+            "name": "Machines"
+          },
+          "filterConditions": [
+            {
+              "operator": "ne",
+              "property": {
+                "name": "LifecycleState",
+                "type": "Edm.Int32"
+              },
+              "value": "3"
+            }
+          ],
+          "properties": [
+            {
+              "name": "Id",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "DnsName",
+              "type": "Edm.String"
+            },
+            {
+              "name": "IPAddress",
+              "type": "Edm.String"
+            },
+            {
+              "name": "LifecycleState",
+              "type": "Edm.Int32"
+            },
+            {
+              "name": "IsInMaintenanceMode",
+              "type": "Edm.Boolean"
+            },
+            {
+              "name": "CurrentPowerState",
+              "type": "Edm.Int32"
+            },
+            {
+              "name": "CurrentSessionCount",
+              "type": "Edm.Int32"
+            },
+            {
+              "name": "CurrentRegistrationState",
+              "type": "Edm.Int32"
+            }
+          ],
+          "refId": "Machines"
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.MachineFailureLog",
+            "name": "MachineFailureLogs"
+          },
+          "filterConditions": [
+            {
+              "operator": "eq null",
+              "property": {
+                "name": "FailureEndDate",
+                "type": "Edm.DateTimeOffset"
+              },
+              "value": ""
+            }
+          ],
+          "hide": false,
+          "properties": [
+            {
+              "name": "MachineId",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "FailureStartDate",
+              "type": "Edm.DateTimeOffset"
+            },
+            {
+              "name": "FaultState",
+              "type": "Edm.Int32"
+            }
+          ],
+          "refId": "Failures"
+        }
+      ],
+      "title": "Machines in failure state",
+      "transformations": [
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Machines)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Id": false
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "AgentVersion": "VDA Version",
+              "CurrentPowerState": "Power State",
+              "CurrentRegistrationState": "Registered?",
+              "CurrentSessionCount": "Session Count",
+              "DnsName": "DNS Name",
+              "IPAddress": "IP Address",
+              "Id": "MachineId",
+              "IsInMaintenanceMode": "Maintenance?",
+              "LifecycleState": "State"
+            }
+          }
+        },
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "MachineId",
+            "mode": "inner"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "MachineId": true
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "FailureStartDate Failures": "Failure Date",
+              "FaultState Failures": "Failure State"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "schemaVersion": 41,
+  "tags": [
+    "citrix-daas"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Machines in failure state (Current)",
+  "uid": "4cbd6513-832-samm-ctxdaas-machfail-state",
+  "version": 4,
+  "weekStart": ""
+}
