@@ -869,7 +869,7 @@
     "timepicker": {},
     "timezone": "browser",
     "title": "SNMP Alerts",
-    "uid": "8b4d3f2e-2c31-44cb-be01-samm-snmp-alerts",
-    "version": 35,
+    "uid": "8b4d3f2e-2c31-44cb-sd45678-snmp-alerts",
+    "version": 36,
     "weekStart": ""
   }
