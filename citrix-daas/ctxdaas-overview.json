@@ -1,0 +1,1842 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 158,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "samm-citrixodata-datasource",
+        "uid": "samm-citrixodata-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "blue",
+            "mode": "fixed"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Active Session Details",
+              "url": "/d/88e25cd3-7ac3-ctxdaasactivesession-00000/active-session-details"
+            }
+          ],
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 60
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.2.0-17027759091",
+      "targets": [
+        {
+          "count": true,
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.Session",
+            "name": "Sessions"
+          },
+          "filterConditions": [
+            {
+              "operator": "eq",
+              "property": {
+                "name": "ConnectionState",
+                "type": "Edm.Int32"
+              },
+              "value": "5"
+            }
+          ],
+          "properties": [
+            {
+              "name": "SessionKey",
+              "type": "Edm.Guid"
+            }
+          ],
+          "refId": "A"
+        }
+      ],
+      "title": "Active Sessions (Current)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "samm-citrixodata-datasource",
+        "uid": "samm-citrixodata-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "red",
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Disconnected Session Details",
+              "url": "/d/a4a5dff-ctxdaas-discon-sess-detail-00000/disconnected-session-detail"
+            }
+          ],
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 3,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 60
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.2.0-17027759091",
+      "targets": [
+        {
+          "count": true,
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.Session",
+            "name": "Sessions"
+          },
+          "filterConditions": [
+            {
+              "operator": "eq",
+              "property": {
+                "name": "ConnectionState",
+                "type": "Edm.Int32"
+              },
+              "value": "2"
+            }
+          ],
+          "properties": [
+            {
+              "name": "SessionKey",
+              "type": "Edm.Guid"
+            }
+          ],
+          "refId": "A"
+        }
+      ],
+      "title": "Disconnected Sessions (Current)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "samm-citrixodata-datasource",
+        "uid": "samm-citrixodata-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "red",
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Machine failures",
+              "url": "/d/46f4833-36-ctxdaas-machfail-detail-00000/machine-failures"
+            }
+          ],
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 6,
+        "y": 0
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "count"
+          ],
+          "fields": "/^Id$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 60
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.2.0-17027759091",
+      "targets": [
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.MachineFailureLog",
+            "name": "MachineFailureLogs"
+          },
+          "hide": false,
+          "properties": [
+            {
+              "name": "Id",
+              "type": "Edm.Int64"
+            },
+            {
+              "name": "MachineId",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "FaultState",
+              "type": "Edm.Int32"
+            }
+          ],
+          "refId": "A",
+          "timeProperty": {
+            "name": "CreatedDate",
+            "type": "Edm.DateTimeOffset"
+          }
+        }
+      ],
+      "title": "Machine Failures",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 80,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Active sessions detail",
+              "url": "/d/88e25cd3-7ac3-ctxdaasactivesession-00000/active-session-details"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ctxdaassessiontimeseries"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Active Sessions"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ctxdaasdisconsessiontimeseries"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Disconnected sessions"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 9,
+        "x": 15,
+        "y": 0
+      },
+      "id": 17,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.2.0-17027759091",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "ctxdaassessiontimeseries",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "c3a5e98c-6e94-44b8-b894-ae05241051b7"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "ctxdaasdisconsessiontimeseries",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B",
+          "useBackend": false
+        }
+      ],
+      "title": "Sessions",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "samm-citrixodata-datasource",
+        "uid": "samm-citrixodata-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Machine details",
+              "url": "/d/7178f26d-0-ctxdaas-machines-detail-00000/machine-detail"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 0,
+        "y": 4
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "/^Count$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 60
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.2.0-17027759091",
+      "targets": [
+        {
+          "count": true,
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.Machine",
+            "name": "Machines"
+          },
+          "filterConditions": [
+            {
+              "operator": "eq",
+              "property": {
+                "name": "LifecycleState",
+                "type": "Edm.Int32"
+              },
+              "value": "0"
+            }
+          ],
+          "properties": [
+            {
+              "name": "DnsName",
+              "type": "Edm.String"
+            }
+          ],
+          "refId": "A"
+        }
+      ],
+      "title": "Active Machines (Current)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "samm-citrixodata-datasource",
+        "uid": "samm-citrixodata-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Machines in failure state",
+              "url": "/d/4cbd6513-83-ctxdaas-machfail-state-00000/machines-in-failure-state"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 3,
+        "y": 4
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "/^Count$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 60
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.2.0-17027759091",
+      "targets": [
+        {
+          "count": true,
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.Machine",
+            "name": "Machines"
+          },
+          "filterConditions": [
+            {
+              "operator": "ne null",
+              "property": {
+                "name": "FailureDate",
+                "type": "Edm.DateTimeOffset"
+              },
+              "value": ""
+            }
+          ],
+          "properties": [
+            {
+              "name": "Name",
+              "type": "Edm.String"
+            }
+          ],
+          "refId": "A"
+        }
+      ],
+      "title": "Machines in failure state (current)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "samm-citrixodata-datasource",
+        "uid": "samm-citrixodata-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "red",
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Machine failures",
+              "url": "/d/46f4833-36-ctxdaas-machfail-detail-00000/machine-failures"
+            }
+          ],
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 6,
+        "y": 4
+      },
+      "id": 14,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 60
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.2.0-17027759091",
+      "targets": [
+        {
+          "count": true,
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.Machine",
+            "name": "Machines"
+          },
+          "filterConditions": [
+            {
+              "operator": "eq",
+              "property": {
+                "name": "CurrentRegistrationState",
+                "type": "Edm.Int32"
+              },
+              "value": "2"
+            }
+          ],
+          "hide": false,
+          "properties": [
+            {
+              "name": "CurrentRegistrationState",
+              "type": "Edm.Int32"
+            },
+            {
+              "name": "Name",
+              "type": "Edm.String"
+            }
+          ],
+          "refId": "Unregistered"
+        }
+      ],
+      "title": "Unregistered Machines",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "samm-citrixodata-datasource",
+        "uid": "samm-citrixodata-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 80,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "links": [
+            {
+              "oneClick": true,
+              "targetBlank": true,
+              "title": "Logon time details",
+              "url": "/d/84bbdde8-ebdd2-ctxdaaslogontimedet-00000/logon-time-details"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "orange",
+                "value": 60000
+              },
+              {
+                "color": "red",
+                "value": 120000
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "LogOnDuration"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Logon duration"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Average"
+            },
+            "properties": [
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 9,
+        "x": 15,
+        "y": 7
+      },
+      "id": 11,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.2.0-17027759091",
+      "targets": [
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.Session",
+            "name": "Sessions"
+          },
+          "properties": [
+            {
+              "name": "SessionKey",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "LogOnDuration",
+              "type": "Edm.Int32"
+            }
+          ],
+          "refId": "A",
+          "timeProperty": {
+            "name": "StartDate",
+            "type": "Edm.DateTimeOffset"
+          }
+        }
+      ],
+      "title": "Logon Duration",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Average",
+            "cumulative": {
+              "field": "LogOnDuration",
+              "reducer": "mean"
+            },
+            "mode": "cumulativeFunctions",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "samm-citrixodata-datasource",
+        "uid": "samm-citrixodata-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Running Apps detail",
+              "url": "/d/452f9f5b-a85e12-ctxdaasrunningapps-00000/running-apps"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 0,
+        "y": 8
+      },
+      "id": 15,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "/^Id \\(count\\)$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 60
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.2.0-17027759091",
+      "targets": [
+        {
+          "count": false,
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.Application",
+            "name": "Applications"
+          },
+          "hide": false,
+          "properties": [
+            {
+              "name": "Id",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "Name",
+              "type": "Edm.String"
+            },
+            {
+              "name": "Enabled",
+              "type": "Edm.Boolean"
+            }
+          ],
+          "refId": "Applications"
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.ApplicationInstance",
+            "name": "ApplicationInstances"
+          },
+          "filterConditions": [
+            {
+              "operator": "eq null",
+              "property": {
+                "name": "EndDate",
+                "type": "Edm.DateTimeOffset"
+              },
+              "value": ""
+            }
+          ],
+          "hide": false,
+          "properties": [
+            {
+              "name": "Id",
+              "type": "Edm.Int64"
+            },
+            {
+              "name": "ApplicationId",
+              "type": "Edm.Guid"
+            }
+          ],
+          "refId": "OpenApps"
+        }
+      ],
+      "title": "Running Apps",
+      "transformations": [
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Applications)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Id": "ApplicationId"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:OpenApps)$/"
+          },
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "ApplicationId": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Id": {
+                "aggregations": [
+                  "count"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        },
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "ApplicationId",
+            "mode": "inner"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "ApplicationId": true,
+              "Enabled Applications": true
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Id (count) OpenApps": "Instances running",
+              "Name Applications": "App Name"
+            }
+          }
+        },
+        {
+          "id": "reduce",
+          "options": {
+            "includeTimeField": false,
+            "mode": "reduceFields",
+            "reducers": [
+              "sum"
+            ]
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "samm-citrixodata-datasource",
+        "uid": "samm-citrixodata-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Client machine detail",
+              "url": "/d/86a58856-a2334-ctx-daas-machdetail-00000/client-machine-detail"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 3,
+        "y": 8
+      },
+      "id": 12,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "count"
+          ],
+          "fields": "/^SessionKey$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 60
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.2.0-17027759091",
+      "targets": [
+        {
+          "count": false,
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.Connection",
+            "name": "Connections"
+          },
+          "filterConditions": [],
+          "properties": [
+            {
+              "name": "SessionKey",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "ClientName",
+              "type": "Edm.String"
+            }
+          ],
+          "refId": "Connections"
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.Session",
+            "name": "Sessions"
+          },
+          "filterConditions": [
+            {
+              "operator": "eq",
+              "property": {
+                "name": "ConnectionState",
+                "type": "Edm.Int32"
+              },
+              "value": "5"
+            }
+          ],
+          "hide": false,
+          "properties": [
+            {
+              "name": "SessionKey",
+              "type": "Edm.Guid"
+            }
+          ],
+          "refId": "Sessions"
+        }
+      ],
+      "title": "Connected clients",
+      "transformations": [
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Connections)$/"
+          },
+          "id": "reduce",
+          "options": {
+            "includeTimeField": false,
+            "mode": "reduceFields",
+            "reducers": [
+              "distinctCount"
+            ]
+          }
+        },
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "Sessions SessionKey",
+            "mode": "inner"
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "samm-citrixodata-datasource",
+        "uid": "samm-citrixodata-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "User connection failures detail",
+              "url": "/d/ed67ec5-ctxdaas-usrconnfail-detail-00000/user-connection-failures-detail"
+            }
+          ],
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 6,
+        "y": 8
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "/^Count$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 60
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.2.0-17027759091",
+      "targets": [
+        {
+          "count": true,
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.ConnectionFailureLog",
+            "name": "ConnectionFailureLogs"
+          },
+          "properties": [
+            {
+              "name": "SessionKey",
+              "type": "Edm.Guid"
+            }
+          ],
+          "refId": "A",
+          "timeProperty": {
+            "name": "FailureDate",
+            "type": "Edm.DateTimeOffset"
+          }
+        }
+      ],
+      "title": "User Conn. Failures (Current)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "samm-citrixodata-datasource",
+        "uid": "samm-citrixodata-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Deliverty Group detail",
+              "url": "/d/abec-2fa6-ctxdaas-dliverygp-detail-00000/delivery-groups-details"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 0,
+        "y": 12
+      },
+      "id": 13,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "count"
+          ],
+          "fields": "/^Name$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "valueSize": 60
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.2.0-17027759091",
+      "targets": [
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.DesktopGroup",
+            "name": "DesktopGroups"
+          },
+          "properties": [
+            {
+              "name": "Id",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "Name",
+              "type": "Edm.String"
+            }
+          ],
+          "refId": "Delivery Groups"
+        }
+      ],
+      "title": "Delivery Groups",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "samm-citrixodata-datasource",
+        "uid": "samm-citrixodata-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "ICA RTT Detail",
+              "url": "/d/f553d355-db9d-123-ctxdaasicarttdet-00000/ica-rtt-detail"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": ">100ms"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 3,
+        "y": 12
+      },
+      "id": 8,
+      "options": {
+        "colorMode": "background_solid",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "count"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 20,
+          "valueSize": 60
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.2.0-17027759091",
+      "targets": [
+        {
+          "count": false,
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.SessionMetricsView",
+            "name": "SessionMetrics"
+          },
+          "filterConditions": [
+            {
+              "operator": "gt",
+              "property": {
+                "name": "IcaRttMS",
+                "type": "Edm.Int32"
+              },
+              "value": "200"
+            }
+          ],
+          "properties": [
+            {
+              "name": "IcaRttMS",
+              "type": "Edm.Int32"
+            }
+          ],
+          "refId": "High",
+          "timeProperty": {
+            "name": "CollectedDate",
+            "type": "Edm.DateTimeOffset"
+          }
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.SessionMetricsView",
+            "name": "SessionMetrics"
+          },
+          "filterConditions": [
+            {
+              "operator": "gt",
+              "property": {
+                "name": "IcaRttMS",
+                "type": "Edm.Int32"
+              },
+              "value": "100"
+            },
+            {
+              "operator": "lt",
+              "property": {
+                "name": "IcaRttMS",
+                "type": "Edm.Int32"
+              },
+              "value": "200"
+            }
+          ],
+          "hide": false,
+          "properties": [
+            {
+              "name": "IcaRttMS",
+              "type": "Edm.Int32"
+            }
+          ],
+          "refId": "Mid",
+          "timeProperty": {
+            "name": "CollectedDate",
+            "type": "Edm.DateTimeOffset"
+          }
+        }
+      ],
+      "title": "ICA RTT",
+      "transformations": [
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:High)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "IcaRttMS": ">200ms"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Mid)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "IcaRttMS": ">100ms"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "samm-citrixodata-datasource",
+        "uid": "samm-citrixodata-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 9,
+        "x": 15,
+        "y": 14
+      },
+      "id": 9,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.6,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "always",
+        "stacking": "none",
+        "text": {
+          "valueSize": 20
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 100
+      },
+      "pluginVersion": "12.2.0-17027759091",
+      "targets": [
+        {
+          "count": false,
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.ApplicationInstance",
+            "name": "ApplicationInstances"
+          },
+          "hide": false,
+          "properties": [
+            {
+              "name": "Id",
+              "type": "Edm.Int64"
+            },
+            {
+              "name": "ApplicationId",
+              "type": "Edm.Guid"
+            }
+          ],
+          "refId": "Application Instances",
+          "timeProperty": {
+            "name": "StartDate",
+            "type": "Edm.DateTimeOffset"
+          }
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.Application",
+            "name": "Applications"
+          },
+          "hide": false,
+          "properties": [
+            {
+              "name": "Id",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "Name",
+              "type": "Edm.String"
+            }
+          ],
+          "refId": "Application Names"
+        }
+      ],
+      "title": "Most used applications",
+      "transformations": [
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Application Names)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Id": false,
+              "PublishedName": false
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Id": "ApplicationId"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Application Names|Application Instances)$/"
+          },
+          "id": "joinByField",
+          "options": {
+            "byField": "ApplicationId",
+            "mode": "inner"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "ApplicationId": true,
+              "Id {name=\"Application Instances\"}": true,
+              "StartDate {name=\"Application Instances\", time=\"StartDate\"}": true
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {}
+          }
+        },
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "Name {name=\"Application Names\"}"
+            ],
+            "keepFields": true,
+            "naming": {
+              "asLabels": true
+            }
+          }
+        },
+        {
+          "id": "reduce",
+          "options": {
+            "labelsToFields": true,
+            "reducers": [
+              "count"
+            ]
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Field": true,
+              "name": true
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Count": "Application launches"
+            }
+          }
+        }
+      ],
+      "type": "barchart"
+    }
+  ],
+  "preload": false,
+  "schemaVersion": 41,
+  "tags": [
+    "citrix-daas"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Citrix DaaS Overview",
+  "uid": "d9722b37-5ab-95b0123-ctxdaasovview-00000",
+  "version": 2
+}

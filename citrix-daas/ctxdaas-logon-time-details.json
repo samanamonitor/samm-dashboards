@@ -1,0 +1,1005 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 118,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "samm-citrixodata-datasource",
+        "uid": "samm-citrixodata-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 80,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "orange",
+                "value": 60000
+              },
+              {
+                "color": "red",
+                "value": 120000
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "LogOnDuration"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Logon duration"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Average"
+            },
+            "properties": [
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 18,
+        "x": 0,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.Session",
+            "name": "Sessions"
+          },
+          "properties": [
+            {
+              "name": "SessionKey",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "LogOnDuration",
+              "type": "Edm.Int32"
+            }
+          ],
+          "refId": "A",
+          "timeProperty": {
+            "name": "StartDate",
+            "type": "Edm.DateTimeOffset"
+          }
+        }
+      ],
+      "title": "Logon Duration",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Average",
+            "cumulative": {
+              "field": "LogOnDuration",
+              "reducer": "mean"
+            },
+            "mode": "cumulativeFunctions",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "samm-citrixodata-datasource",
+        "uid": "samm-citrixodata-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "orange",
+                "value": 60000
+              },
+              {
+                "color": "red",
+                "value": 120000
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Logon Duration"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "ms"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "User UPN"
+            },
+            "properties": [
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Machine DNS Name"
+            },
+            "properties": [
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Delivery Group"
+            },
+            "properties": [
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 15,
+        "w": 18,
+        "x": 0,
+        "y": 9
+      },
+      "id": 2,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 0,
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Logon time"
+          }
+        ]
+      },
+      "pluginVersion": "12.0.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.Session",
+            "name": "Sessions"
+          },
+          "properties": [
+            {
+              "name": "SessionKey",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "LogOnDuration",
+              "type": "Edm.Int32"
+            },
+            {
+              "name": "UserId",
+              "type": "Edm.Int64"
+            },
+            {
+              "name": "MachineId",
+              "type": "Edm.Guid"
+            }
+          ],
+          "refId": "Logon",
+          "timeProperty": {
+            "name": "StartDate",
+            "type": "Edm.DateTimeOffset"
+          }
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.User",
+            "name": "Users"
+          },
+          "filterConditions": [
+            {
+              "operator": "ne",
+              "property": {
+                "name": "Upn",
+                "type": "Edm.String"
+              },
+              "value": ""
+            }
+          ],
+          "hide": false,
+          "properties": [
+            {
+              "name": "Id",
+              "type": "Edm.Int64"
+            },
+            {
+              "name": "Upn",
+              "type": "Edm.String"
+            }
+          ],
+          "refId": "User"
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.Machine",
+            "name": "Machines"
+          },
+          "filterConditions": [
+            {
+              "operator": "ne null",
+              "property": {
+                "name": "DnsName",
+                "type": "Edm.String"
+              },
+              "value": ""
+            },
+            {
+              "operator": "ne null",
+              "property": {
+                "name": "DesktopGroupId",
+                "type": "Edm.Guid"
+              },
+              "value": ""
+            }
+          ],
+          "hide": false,
+          "properties": [
+            {
+              "name": "Id",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "DnsName",
+              "type": "Edm.String"
+            },
+            {
+              "name": "DesktopGroupId",
+              "type": "Edm.Guid"
+            }
+          ],
+          "refId": "Machine"
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.DesktopGroup",
+            "name": "DesktopGroups"
+          },
+          "hide": false,
+          "properties": [
+            {
+              "name": "Id",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "Name",
+              "type": "Edm.String"
+            }
+          ],
+          "refId": "Delivery Group"
+        }
+      ],
+      "title": "Logon time details",
+      "transformations": [
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:User)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Id": "UserId"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Machine)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Id": "MachineId"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Delivery Group)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Id": "DesktopGroupId"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Logon|User)$/"
+          },
+          "id": "joinByField",
+          "options": {
+            "byField": "UserId",
+            "mode": "inner"
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:joinByField-User-Logon|Machine)$/"
+          },
+          "id": "joinByField",
+          "options": {
+            "byField": "MachineId",
+            "mode": "inner"
+          }
+        },
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "DesktopGroupId",
+            "mode": "inner"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "DesktopGroupId {name=\"Machine\"}": true,
+              "MachineId {name=\"Logon\"}": true,
+              "SessionKey {name=\"Logon\"}": true,
+              "UserId": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "DesktopGroupId {name=\"Machine\"}": 0,
+              "DnsName {name=\"Machine\"}": 7,
+              "LogOnDuration {name=\"Logon\"}": 6,
+              "MachineId {name=\"Logon\"}": 1,
+              "Name {name=\"Delivery Group\"}": 8,
+              "SessionKey {name=\"Logon\"}": 3,
+              "StartDate {name=\"Logon\", time=\"StartDate\"}": 5,
+              "Upn {name=\"User\"}": 4,
+              "UserId": 2
+            },
+            "renameByName": {
+              "DnsName {name=\"Machine\"}": "Machine DNS Name",
+              "LogOnDuration {name=\"Logon\"}": "Logon Duration",
+              "Name {name=\"Delivery Group\"}": "Delivery Group",
+              "StartDate {name=\"Logon\", time=\"StartDate\"}": "Logon time",
+              "Upn {name=\"User\"}": "User UPN"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "samm-citrixodata-datasource",
+        "uid": "samm-citrixodata-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Logons"
+            },
+            "properties": [
+              {
+                "id": "unit"
+              },
+              {
+                "id": "custom.width",
+                "value": 89
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Delivery Group"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 163
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Total Duration"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 115
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Brokering"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 102
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "GPO"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 120
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "GPO"
+            },
+            "properties": []
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Interactive Duration"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 160
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Total"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green"
+                    },
+                    {
+                      "color": "red",
+                      "value": 60000
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "applyToRow": true,
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 107
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "HDX"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 127
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 18,
+        "x": 0,
+        "y": 24
+      },
+      "id": 4,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "12.0.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.LogOnSummary",
+            "name": "LogOnSummaries"
+          },
+          "properties": [
+            {
+              "name": "TotalCount",
+              "type": "Edm.Int32"
+            },
+            {
+              "name": "DesktopGroupId",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "BrokeringDuration",
+              "type": "Edm.Int64"
+            },
+            {
+              "name": "TotalDuration",
+              "type": "Edm.Int64"
+            },
+            {
+              "name": "HdxDuration",
+              "type": "Edm.Int64"
+            },
+            {
+              "name": "GpoDuration",
+              "type": "Edm.Int64"
+            },
+            {
+              "name": "InteractiveDuration",
+              "type": "Edm.Int64"
+            },
+            {
+              "name": "ProfileLoadDuration",
+              "type": "Edm.Int64"
+            }
+          ],
+          "refId": "Logon Summary",
+          "timeProperty": {
+            "name": "SummaryDate",
+            "type": "Edm.DateTimeOffset"
+          }
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.DesktopGroup",
+            "name": "DesktopGroups"
+          },
+          "hide": false,
+          "properties": [
+            {
+              "name": "Id",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "Name",
+              "type": "Edm.String"
+            }
+          ],
+          "refId": "Delivery Group"
+        }
+      ],
+      "title": "Logon summary per Delivery Group",
+      "transformations": [
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Delivery Group)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Id": "DesktopGroupId"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Logon Summary)$/"
+          },
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "BrokeringDuration": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "BrokeringDuration {name=\"Logon Summary\"}": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "DesktopGroupId": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "groupby"
+              },
+              "GpoDuration": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "GpoDuration {name=\"Logon Summary\"}": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "HdxDuration": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "HdxDuration {name=\"Logon Summary\"}": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "InteractiveDuration": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "InteractiveDuration {name=\"Logon Summary\"}": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "ProfileLoadDuration": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "ProfileLoadDuration {name=\"Logon Summary\"}": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "SummaryDate": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "SummaryDate SummaryDate": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "SummaryDate {name=\"Logon Summary\", time=\"SummaryDate\"}": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "TotalCount": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "TotalCount {name=\"Logon Summary\"}": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "TotalDuration": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              },
+              "TotalDuration {name=\"Logon Summary\"}": {
+                "aggregations": [
+                  "last"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        },
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "DesktopGroupId",
+            "mode": "inner"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "DesktopGroupId": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "BrokeringDuration {name=\"Logon Summary\"} (last) Logon Summary": 5,
+              "DesktopGroupId": 0,
+              "GpoDuration {name=\"Logon Summary\"} (last) Logon Summary": 7,
+              "HdxDuration {name=\"Logon Summary\"} (last) Logon Summary": 6,
+              "InteractiveDuration {name=\"Logon Summary\"} (last) Logon Summary": 8,
+              "Name Delivery Group": 1,
+              "ProfileLoadDuration {name=\"Logon Summary\"} (last) Logon Summary": 9,
+              "SummaryDate {name=\"Logon Summary\", time=\"SummaryDate\"} (last) Logon Summary": 2,
+              "TotalCount {name=\"Logon Summary\"} (last) Logon Summary": 3,
+              "TotalDuration {name=\"Logon Summary\"} (last) Logon Summary": 4
+            },
+            "renameByName": {
+              "BrokeringDuration {name=\"Logon Summary\"}": "Brokering Duration",
+              "BrokeringDuration {name=\"Logon Summary\"} (last) Logon Summary": "Brokering",
+              "GpoDuration {name=\"Logon Summary\"}": "GPO Duration",
+              "GpoDuration {name=\"Logon Summary\"} (last) Logon Summary": "GPO",
+              "HdxDuration {name=\"Logon Summary\"}": "HDX Duration",
+              "HdxDuration {name=\"Logon Summary\"} (last) Logon Summary": "HDX",
+              "InteractiveDuration {name=\"Logon Summary\"}": "Interactive Duration",
+              "InteractiveDuration {name=\"Logon Summary\"} (last) Logon Summary": "Interactive",
+              "Name Delivery Group": "Delivery Group",
+              "Name {name=\"Delivery Group\"}": "Delivery Group",
+              "ProfileLoadDuration {name=\"Logon Summary\"}": "Profile Load Duration",
+              "ProfileLoadDuration {name=\"Logon Summary\"} (last) Logon Summary": "Profile Load",
+              "SummaryDate {name=\"Logon Summary\", time=\"SummaryDate\"}": "Date",
+              "SummaryDate {name=\"Logon Summary\", time=\"SummaryDate\"} (last) Logon Summary": "Date Collected",
+              "TotalCount {name=\"Logon Summary\"}": "Logons",
+              "TotalCount {name=\"Logon Summary\"} (last) Logon Summary": "Logons",
+              "TotalDuration {name=\"Logon Summary\"}": "Total Duration",
+              "TotalDuration {name=\"Logon Summary\"} (last) Logon Summary": "Total"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "preload": false,
+  "schemaVersion": 41,
+  "tags": [
+    "citrix-daas"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Logon time details",
+  "uid": "84bbdde8-ebdd2-ctxdaaslogontimedet-00000",
+  "version": 3
+}

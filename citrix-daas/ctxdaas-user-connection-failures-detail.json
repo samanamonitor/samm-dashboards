@@ -1,0 +1,542 @@
+{
+  "__inputs": [
+    {
+      "name": "samm-citrixodata-datasource",
+      "label": "samm-citrixodata-datasource",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "samm-citrixodata-datasource",
+      "pluginName": "CitrixCloud"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "12.0.2"
+    },
+    {
+      "type": "datasource",
+      "id": "samm-citrixodata-datasource",
+      "name": "CitrixCloud",
+      "version": "1.1.3"
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "samm-citrixodata-datasource",
+        "uid": "samm-citrixodata-datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Error Description"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "index": 0,
+                        "text": "Unknown"
+                      },
+                      "1": {
+                        "index": 1,
+                        "text": "No failure"
+                      },
+                      "2": {
+                        "index": 2,
+                        "text": "Failure during session preparation"
+                      },
+                      "3": {
+                        "index": 3,
+                        "text": "Registration timeout"
+                      },
+                      "4": {
+                        "index": 4,
+                        "text": "Connection timeout"
+                      },
+                      "5": {
+                        "index": 5,
+                        "text": "Failure due to licensing"
+                      },
+                      "6": {
+                        "index": 6,
+                        "text": "Failure due to ticketing"
+                      },
+                      "7": {
+                        "index": 7,
+                        "text": "Other failure"
+                      },
+                      "8": {
+                        "index": 8,
+                        "text": "General failure"
+                      },
+                      "9": {
+                        "index": 9,
+                        "text": "Maintenance mode"
+                      },
+                      "10": {
+                        "index": 10,
+                        "text": "Selected application is currently disabled"
+                      },
+                      "11": {
+                        "index": 11,
+                        "text": "Required feature is not licensed"
+                      },
+                      "12": {
+                        "index": 12,
+                        "text": "No machine is available to satisfy launch"
+                      },
+                      "13": {
+                        "index": 13,
+                        "text": "VDI machine is already in use (not used for RDS)"
+                      },
+                      "14": {
+                        "index": 14,
+                        "text": "Requested protocol is not allowed"
+                      },
+                      "15": {
+                        "index": 15,
+                        "text": "Resource is unavailable."
+                      },
+                      "16": {
+                        "index": 16,
+                        "text": "Active session stealing is required, but is disabled"
+                      },
+                      "17": {
+                        "index": 17,
+                        "text": "Session to which reconnect is directed is not found"
+                      },
+                      "18": {
+                        "index": 18,
+                        "text": "Failed to power-up machine for launch"
+                      },
+                      "19": {
+                        "index": 19,
+                        "text": "Session refused"
+                      },
+                      "20": {
+                        "index": 20,
+                        "text": "Configuration set failure"
+                      },
+                      "21": {
+                        "index": 21,
+                        "text": "App launch refused because limit on total concurrent usage is reached"
+                      },
+                      "22": {
+                        "index": 22,
+                        "text": "App launch refused because limit on per-user usage is reached"
+                      },
+                      "23": {
+                        "index": 23,
+                        "text": "Launch failed because the VDA could not be contacted"
+                      },
+                      "100": {
+                        "index": 24,
+                        "text": "No machine available"
+                      },
+                      "101": {
+                        "index": 25,
+                        "text": "Machine not functional"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "User"
+            },
+            "properties": [
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Machine Name"
+            },
+            "properties": [
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "IP Address"
+            },
+            "properties": [
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Delivery Group"
+            },
+            "properties": [
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 21,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "FailureDate Connection failures table"
+          }
+        ]
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "count": false,
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.ConnectionFailureLog",
+            "name": "ConnectionFailureLogs"
+          },
+          "properties": [
+            {
+              "name": "FailureDate",
+              "type": "Edm.DateTimeOffset"
+            },
+            {
+              "name": "ConnectionFailureEnumValue",
+              "type": "Edm.Int32"
+            },
+            {
+              "name": "UserId",
+              "type": "Edm.Int64"
+            },
+            {
+              "name": "MachineId",
+              "type": "Edm.Guid"
+            }
+          ],
+          "refId": "Connection failures table",
+          "timeProperty": {
+            "name": "FailureDate",
+            "type": "Edm.DateTimeOffset"
+          }
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.User",
+            "name": "Users"
+          },
+          "hide": false,
+          "properties": [
+            {
+              "name": "Id",
+              "type": "Edm.Int64"
+            },
+            {
+              "name": "Upn",
+              "type": "Edm.String"
+            }
+          ],
+          "refId": "Users"
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.Machine",
+            "name": "Machines"
+          },
+          "hide": false,
+          "properties": [
+            {
+              "name": "Id",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "IPAddress",
+              "type": "Edm.String"
+            },
+            {
+              "name": "DesktopGroupId",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "DnsName",
+              "type": "Edm.String"
+            }
+          ],
+          "refId": "Machines"
+        },
+        {
+          "datasource": {
+            "type": "samm-citrixodata-datasource",
+            "uid": "samm-citrixodata-datasource"
+          },
+          "entitySet": {
+            "entityType": "Citrix.Monitor.DataService.V4.DesktopGroup",
+            "name": "DesktopGroups"
+          },
+          "hide": false,
+          "properties": [
+            {
+              "name": "Id",
+              "type": "Edm.Guid"
+            },
+            {
+              "name": "Name",
+              "type": "Edm.String"
+            }
+          ],
+          "refId": "Delivery Groups"
+        }
+      ],
+      "title": "User connection failures",
+      "transformations": [
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Users)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Id": "UserId"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Machines)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Id": "MachineId"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Delivery Groups)$/"
+          },
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Id": "DesktopGroupId"
+            }
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Connection failures table|Users)$/"
+          },
+          "id": "joinByField",
+          "options": {
+            "byField": "UserId",
+            "mode": "inner"
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": "/^(?:Machines|Delivery Groups)$/"
+          },
+          "id": "joinByField",
+          "options": {
+            "byField": "DesktopGroupId",
+            "mode": "inner"
+          }
+        },
+        {
+          "filter": {
+            "id": "byRefId",
+            "options": ""
+          },
+          "id": "joinByField",
+          "options": {
+            "byField": "MachineId",
+            "mode": "inner"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Connection failures table": true,
+              "DesktopGroupId": true,
+              "FailureDate {name=\"Connection failures table\"}": true,
+              "MachineId Connection failures table": true,
+              "MachineId {name=\"Connection failures table\"}": true,
+              "UserId": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "Connection failures table": 8,
+              "ConnectionFailureEnumValue Connection failures table": 2,
+              "DesktopGroupId": 9,
+              "DnsName Machines": 4,
+              "FailureDate Connection failures table": 0,
+              "IPAddress Machines": 5,
+              "MachineId Connection failures table": 7,
+              "Name Delivery Groups": 3,
+              "Upn Users": 1,
+              "UserId": 6
+            },
+            "renameByName": {
+              "ConnectionFailureEnumValue Connection failures table": "Error Description",
+              "ConnectionFailureEnumValue {name=\"Connection failures table\"}": "Error Description",
+              "DnsName Machines": "Machine DNS Name",
+              "DnsName {name=\"Machines\"}": "Machine Name",
+              "FailureDate Connection failures table": "Date/Time",
+              "FailureDate {name=\"Connection failures table\", time=\"FailureDate\"}": "Failure Date",
+              "IPAddress Machines": "Machine IP Address",
+              "IPAddress {name=\"Machines\"}": "IP Address",
+              "MachineId Connection failures table": "",
+              "MachineId {name=\"Connection failures table\"}": "",
+              "Name Delivery Groups": "Delivery Group",
+              "Name {name=\"Delivery Groups\"}": "Delivery Group",
+              "Upn Users": "UPN",
+              "Upn {name=\"Users\"}": "User"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "schemaVersion": 41,
+  "tags": [
+    "citrix-daas"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "User Connection Failures detail",
+  "uid": "ed67ec5-ctxdaas-usrconnfail-detail-00000",
+  "version": 4,
+  "weekStart": ""
+}
