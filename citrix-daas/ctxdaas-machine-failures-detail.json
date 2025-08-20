@@ -1,35 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "samm-citrixodata-datasource",
-      "label": "samm-citrixodata-datasource",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "samm-citrixodata-datasource",
-      "pluginName": "CitrixCloud"
-    }
-  ],
-  "__elements": {},
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "12.0.2"
-    },
-    {
-      "type": "datasource",
-      "id": "samm-citrixodata-datasource",
-      "name": "CitrixCloud",
-      "version": "1.1.3"
-    },
-    {
-      "type": "panel",
-      "id": "table",
-      "name": "Table",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -49,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": null,
+  "id": 111,
   "links": [],
   "panels": [
     {
@@ -369,7 +338,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "12.0.2",
+      "pluginVersion": "12.0.4",
       "targets": [
         {
           "datasource": {
@@ -532,6 +501,7 @@
       "type": "table"
     }
   ],
+  "preload": false,
   "schemaVersion": 41,
   "tags": [
     "citrix-daas"
@@ -546,7 +516,6 @@
   "timepicker": {},
   "timezone": "browser",
   "title": "Machine failures detail",
-  "uid": "46f4833-365-samm-ctxdaas-machfail-detail",
-  "version": 7,
-  "weekStart": ""
+  "uid": "46f4833-36-ctxdaas-machfail-detail-00000",
+  "version": 1
 }

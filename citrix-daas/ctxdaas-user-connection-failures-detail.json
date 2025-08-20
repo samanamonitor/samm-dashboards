@@ -536,7 +536,7 @@
   "timepicker": {},
   "timezone": "browser",
   "title": "User Connection Failures detail",
-  "uid": "ed67ec5-samm-ctxdaas-userconnfail-detail",
+  "uid": "ed67ec5-ctxdaas-usrconnfail-detail-00000",
   "version": 4,
   "weekStart": ""
 }

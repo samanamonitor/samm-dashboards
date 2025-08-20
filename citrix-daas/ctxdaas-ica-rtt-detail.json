@@ -1,35 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "samm-citrixodata-datasource",
-      "label": "samm-citrixodata-datasource",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "samm-citrixodata-datasource",
-      "pluginName": "CitrixCloud"
-    }
-  ],
-  "__elements": {},
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "12.0.2"
-    },
-    {
-      "type": "datasource",
-      "id": "samm-citrixodata-datasource",
-      "name": "CitrixCloud",
-      "version": "1.1.3"
-    },
-    {
-      "type": "panel",
-      "id": "table",
-      "name": "Table",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -49,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": null,
+  "id": 117,
   "links": [],
   "panels": [
     {
@@ -162,7 +131,7 @@
           }
         ]
       },
-      "pluginVersion": "12.0.2",
+      "pluginVersion": "12.0.4",
       "targets": [
         {
           "datasource": {
@@ -173,7 +142,16 @@
             "entityType": "Citrix.Monitor.DataService.V4.SessionMetricsView",
             "name": "SessionMetrics"
           },
-          "filterConditions": [],
+          "filterConditions": [
+            {
+              "operator": "eq",
+              "property": {
+                "name": "ConnectionState",
+                "type": "Edm.Int16"
+              },
+              "value": "5"
+            }
+          ],
           "hide": false,
           "properties": [
             {
@@ -503,6 +481,7 @@
       "type": "table"
     }
   ],
+  "preload": false,
   "schemaVersion": 41,
   "tags": [
     "citrix-daas"
@@ -511,13 +490,12 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-12h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "ICA RTT detail",
-  "uid": "34a0d01c-aeb7-samm-ctxdaas-icartt-detail",
-  "version": 8,
-  "weekStart": ""
+  "uid": "f553d355-db9d-123-ctxdaasicarttdet-00000",
+  "version": 2
 }
