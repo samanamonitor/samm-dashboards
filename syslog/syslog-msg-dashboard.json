@@ -35,7 +35,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 113,
+  "id": 139,
   "links": [
     {
       "asDropdown": false,
@@ -74,7 +74,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "blue",
+                "value": 0
               }
             ]
           },
@@ -124,7 +125,7 @@
         "textMode": "value_and_name",
         "wideLayout": true
       },
-      "pluginVersion": "12.0.4",
+      "pluginVersion": "12.2.0-17027759091",
       "targets": [
         {
           "datasource": {
@@ -171,7 +172,7 @@
         "sortOrder": "Descending",
         "wrapLogMessage": true
       },
-      "pluginVersion": "12.0.4",
+      "pluginVersion": "12.2.0-17027759091",
       "targets": [
         {
           "datasource": {
@@ -237,7 +238,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               }
             ]
           },
@@ -341,7 +343,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.0.4",
+      "pluginVersion": "12.2.0-17027759091",
       "targets": [
         {
           "datasource": {
@@ -349,8 +351,8 @@
             "uid": "a3b388bb-5990-45ca-a5b5-0bca47387fe1"
           },
           "direction": "backward",
-          "editorMode": "builder",
-          "expr": "sum by(hostname) (count_over_time({component=\"loki.source.syslog\"} [$__interval]))",
+          "editorMode": "code",
+          "expr": "sum by(hostname) (count_over_time({component=\"loki.source.syslog\"}  |~ `$filter` |~ `$free_form_filter` [$__auto]))",
           "legendFormat": "{{hostname}}",
           "queryType": "range",
           "refId": "A"
@@ -508,5 +510,5 @@
   "timezone": "",
   "title": "SYSLOG Dashboard",
   "uid": "627b7634-2d98-4fc4-34567890-syslog-00000",
-  "version": 2
+  "version": 1
 }
